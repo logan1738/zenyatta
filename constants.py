@@ -13,7 +13,7 @@ STREAMLABS_TOKEN = os.getenv("STREAMLABS_TOKEN")
 
 WEBSITE_DOMAIN = 'https://spicyesports.com'
 
-ALL_CONTEXTS = ['OW', 'MR', 'VL']
+ALL_CONTEXTS = ['OW', 'MR', 'VL', 'DB']
 
 BOT_ID = 1130225436006305946
 
@@ -154,7 +154,7 @@ MAX_WAGER = 10000
 SECONDS_IN_A_WEEK = 604800
 
 ALL_LEAGUE_CONTEXTS = {
-    'OW', 'MR', 'VL'
+    'OW', 'MR', 'VL', 'DB'
 }
 
 DEFAULT_GEMS = {

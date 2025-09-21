@@ -151,6 +151,7 @@ CONTEXT_TO_DEFAULT_USER_ID = {
     'OW': '[Battle Tag Not Found]',
     'MR': '[Username Not Found]',
     'VL': '[Riot ID Not Found]',
+    'DB': '[Dead by Daylight ID Not Found]',
 }
 
 def make_member_game_id(db, member, context):
@@ -170,6 +171,11 @@ def make_member_game_id(db, member, context):
                 member_id = user['riot_id']
             except Exception as e:
                 raise Exception('Could not find a riot id for user with id '+str(member['discord_id']))
+        elif context == 'DB':
+            try:
+                member_id = user['dbd_id']
+            except Exception as e:
+                raise Exception('Could not find a dead by daylight id for user with id '+str(member['discord_id']))
         else:
             if 'rivals_username' in user:
                 member_id = user['rivals_username']
@@ -280,6 +286,9 @@ def has_username_for_game(user, context):
             return True
     elif context == 'VL':
         if 'riot_id' in user:
+            return True
+    elif context == 'DB':
+        if 'dbd_id' in user:
             return True
 
     return False

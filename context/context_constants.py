@@ -3,67 +3,71 @@ import constants
 CONTEXT_TO_LEAGUE_TEAM_COLLECTION = {
     'OW': 'leagueteams',
     'MR': 'rivals_leagueteams',
-    'VL': 'valorant_leagueteams', 
+    'VL': 'valorant_leagueteams',
+    'DB': 'dbd_leagueteams',
 }
 
 CONTEXT_TO_LEAGUE_TEAM_FIELD = {
     'OW': 'league_team',
     'MR': 'rivals_league_team',
     'VL': 'valorant_league_team',
+    'DB': 'dbd_league_team',
 }
 
 CONTEXT_TO_LEAGUE_INVITES_FIELD = {
     'OW': 'league_invites',
     'MR': 'rivals_league_invites',
     'VL': 'valorant_league_invites',
+    'DB': 'dbd_league_invites',
 }
 
 CONTEXT_TO_FAN_OF_FIELD = {
     'OW': 'fan_of',
     'MR': 'fan_of_rivals',
     'VL': 'fan_of_valorant',
+    'DB': 'fan_of_dbd',
 }
 
 CONTEXT_TO_RIVAL_OF_FIELD = {
     'OW': 'rival_of',
     'MR': 'rival_of_rivals',
     'VL': 'rival_of_valorant',
+    'DB': 'rival_of_dbd',
 }
 
 CONTEXT_TO_LEAGUE_SEASON_CONSTANT_NAME = {
     'OW': 'league_season',
     'MR': 'league_season_rivals',
     'VL': 'league_season_valorant',
+    'DB': 'league_season_dbd',
 }
 
 CONTEXT_TO_LEAGUE_TEAM_IMAGE_UPDATE_INDEX = {
     'OW': 'team_image_update_index',
     'MR': 'rivals_team_image_update_index',
     'VL': 'valorant_team_image_update_index',
-}
-
-CONTEXT_TO_TEAM_INFO_CHANNEL_ID = {
-    'OW': constants.TEAM_INFO_CHANNEL,
-    'MR': constants.RIVALS_TEAM_INFO_CHANNEL,
-    'VL': constants.VALORANT_TEAM_INFO_CHANNEL,
+    'DB': 'dbd_team_image_update_index',
 }
 
 CONTEXT_TO_LEAGUE_NOTIFS_CHANNEL = {
     'OW': constants.TEAM_NOTIFS_CHANNEL,
     'MR': constants.RIVALS_TEAM_NOTIFS_CHANNEL,
     'VL': constants.VALORANT_TEAM_NOTIFS_CHANNEL,
+    'DB': constants.DBD_TEAM_NOTIFS_CHANNEL,
 }
 
 CONTEXT_TO_TEAM_OWNERS_CHANNEL = {
     'OW': constants.TEAM_OWNERS_CHANNEL,
     'MR': constants.RIVALS_TEAM_OWNERS_CHANNEL,
     'VL': constants.VALORANT_TEAM_OWNERS_CHANNEL,
+    'DB': constants.DBD_TEAM_OWNERS_CHANNEL,
 }
 
 CONTEXT_TO_LEAGUE_ANNOUNCEMENTS_CHANNEL = {
     'OW': constants.LEAGUE_ANNOUNCEMENTS_CHANNEL,
     'MR': constants.RIVALS_LEAGUE_ANNOUNCEMENTS_CHANNEL,
     'VL': constants.VALORANT_LEAGUE_ANNOUNCEMENTS_CHANNEL,
+    'DB': constants.DBD_LEAGUE_ANNOUNCEMENTS_CHANNEL,
 }
 
 CONTEXT_TO_LEAGUE_URL = {

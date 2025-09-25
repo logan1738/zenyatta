@@ -81,6 +81,29 @@ DEFAULT_VL_LINEUP = {
     },
 }
 
+DEFAULT_DB_LINEUP = {
+    'survivor1': {
+        'role': 'survivor',
+        'user_id': 0
+    },
+    'survivor2': {
+        'role': 'survivor',
+        'user_id': 0
+    },
+    'survivor3': {
+        'role': 'survivor',
+        'user_id': 0
+    },
+    'survivor4': {
+        'role': 'survivor',
+        'user_id': 0
+    },
+    'killer': {
+        'role': 'killer',
+        'user_id': 0
+    },
+}
+
 
 def get_default_lineup_from_context(context):
 
@@ -90,6 +113,8 @@ def get_default_lineup_from_context(context):
         return DEFAULT_MR_LINEUP
     elif context == 'VL':
         return DEFAULT_VL_LINEUP
+    elif context == 'DB':
+        return DEFAULT_DB_LINEUP
     else:
         raise Exception('Default lineup does not exist for context: '+context)
 

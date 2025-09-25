@@ -141,6 +141,26 @@ def valorant_profile(user, voucher_value):
     return final_string
 
 
+def dead_by_daylight_profile(user, voucher_value):
+
+    gen_data = get_generic_profile_data(user, 'DB', voucher_value)
+    
+    final_string = "**USER PROFILE FOR "+user['dbd_username']+':**\n'
+    final_string += 'Twitch Username: **'+gen_data['twitch_username']+'**\n'
+    
+    final_string += get_league_team_string(gen_data['league_team'])
+    final_string += get_fan_of_string(gen_data['fan_of'])
+    final_string += get_rival_of_string(gen_data['rival_of'])
+
+    final_string +='\n'
+    vouchers_string =' '+constants.SPICY_VOUCHER_EMOJI_STRING+' '+str(gen_data['vouchers'])+' (Est. $'+str(round(gen_data['value_of_vouchers'],2))+')'
+    final_string += '🪙 '+str(gen_data['tokens'])+' ⛏️ '+str(gen_data['pickaxes'])+' '+constants.SPICY_PACK_EMOJI_STRING+' '+str(gen_data['packs'])+' '+constants.SPICY_DROP_EMOJI_STRING+' '+str(gen_data['drops'])+' 🏆 '+str(gen_data['trophies'])+vouchers_string+'\n'
+
+    final_string +='\n'
+    final_string += make_gem_string(gen_data['gems'])
+
+    return final_string
+
 
 def verify_overwatch_user(user):
 
@@ -158,6 +178,12 @@ def verify_valorant_user(user):
 
     if not 'riot_id' in user:
         raise CommandError('This is a Valorant channel. I do not see a Riot ID in that profile.')
+    
+
+def verify_dbd_user(user):
+    
+    if not 'dbd_username' in user:
+        raise CommandError('This is a Dead by Daylight channel. I do not see a Dead by Daylight username in that profile.')
 
 
 
@@ -193,6 +219,9 @@ async def profile_handler(db, message, client, context):
     elif context == 'VL':
         verify_valorant_user(user)
         profile_string = valorant_profile(user, voucher_value)
+    elif context == 'DB':
+        verify_dbd_user(user)
+        profile_string = dead_by_daylight_profile(user, voucher_value)
     else:
         raise CommandError('This command is not ready yet for this league.')
 

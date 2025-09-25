@@ -265,6 +265,7 @@ from random_event.check_random_event_on_message import check_random_event_on_mes
 from random_event.random_event import react_to_event
 from rewards import give_packs_command, give_pickaxes_command, give_tokens_command, sell_pickaxe_for_tokens
 from roster_lock import handle_lock
+from route_messages.dbd_message.route_dbd_message import route_dbd_message
 from route_messages.dm_messages.route_dm_message import route_dm_message
 from route_messages.rivals_message.route_rivals_message import route_rivals_message
 from route_messages.utils.get_context import get_context
@@ -1795,6 +1796,9 @@ async def handle_message(message, db, client):
 
     elif context == 'VL':
         await route_valorant_message(client, db, message, lower_message)
+
+    elif context == 'DB':
+        await route_dbd_message(client, db, message, lower_message)
 
     else:
         await safe_send(message.channel, 'Invalid command. Please see **!help** for a list of commands.')

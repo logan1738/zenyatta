@@ -10,7 +10,7 @@ async def team_page_handler(db, message, context):
 
     valid_params, params = valid_number_of_params(message, 2)
     if not valid_params:
-        await invalid_number_of_params(message)
+        await safe_send(message.channel, 'Please specify the name of the team to get the team page for. (Example: !teampage Polar)')
         return
     
     team_name = params[1]

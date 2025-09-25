@@ -78,4 +78,4 @@ async def dbd_username_handler(db, message, client):
     word_parts = message.content.split()
     dbd_username = make_string_from_word_list(word_parts, 1)
 
-    await dbd_username(db, message, client, message.author, dbd_username)
+    await dbd_username_link(db, message, client, message.author, dbd_username)

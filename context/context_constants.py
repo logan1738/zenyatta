@@ -74,40 +74,47 @@ CONTEXT_TO_LEAGUE_URL = {
     'OW': 'sol',
     'MR': 'srl',
     'VL': 'svl',
+    'DB': 'sdl',
 }
 
 CONTEXT_TO_TEAM_LIST = {
     'OW': constants.TEAM_LIST,
     'MR': constants.RIVALS_TEAM_LIST,
     'VL': constants.VALORANT_TEAM_LIST,
+    'DB': constants.DBD_TEAM_LIST,
 }
 
 CONTEXT_TO_TEAM_ADMIN_ROLE_ID = {
     'OW': 1353479674008961104,
     'MR': 1353487134895378582,
     'VL': 1361872050804887664,
+    'DB': 1420882255894544444,
 }
 
 CONTEXT_TO_LINEUP_ROLE_LIST = {
     'OW': ['tank', 'dps1', 'dps2', 'sup1', 'sup2'],
     'MR': ['player1', 'player2', 'player3', 'player4', 'player5', 'player6'],
-    'VL': ['player1', 'player2', 'player3', 'player4', 'player5']
+    'VL': ['player1', 'player2', 'player3', 'player4', 'player5'],
+    'DB': ['survivor1', 'survivor2', 'survivor3', 'survivor4', 'killer']
 }
 
 CONTEXT_TO_USER_ID = {
     'OW': 'battle_tag',
     'MR': 'rivals_username',
     'VL': 'riot_id',
+    'DB': 'dbd_username'
 }
 
 CONTEXT_TO_CALL = {
     'OW': 'call',
     'MR': 'rivals_call',
     'VL': 'valorant_call',
+    'DB': 'dbd_call',
 }
 
 CONTEXT_TO_TEAMS_JOINED_THIS_SEASON = {
     'OW': 'teams_joined_this_season',
     'MR': 'rivals_teams_joined_this_season',
     'VL': 'valorant_teams_joined_this_season',
+    'DB': 'dbd_teams_joined_this_season',
 }

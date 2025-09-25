@@ -117,6 +117,7 @@ ANNOUNCEMENTS_CHANNEL_ID = 1133457825461440632
 LEAGUE_ANNOUNCEMENTS_CHANNEL = 1343724891781730304
 RIVALS_LEAGUE_ANNOUNCEMENTS_CHANNEL = 1343725102688374794
 VALORANT_LEAGUE_ANNOUNCEMENTS_CHANNEL = 1361872494914699274
+DBD_LEAGUE_ANNOUNCEMENTS_CHANNEL = 1419195529656664086
 
 BET_CHANNEL_ID = 1248421720721719346
 SUB_VOTE_CHANNEL = 1272712092436402247
@@ -140,6 +141,8 @@ RIVALS_TEAMS_CATEGORY_ID = 1331720386995425290
 
 VALORANT_CATEGORY_ID = 1361863357296152617
 VALORANT_TEAMS_CATEGORY_ID = 1361875968704254052
+
+DBD_CATEGORY_ID = 1419033285136224427
 
 LEAGUE_NOTIFS_MENTION = '<@&1255683967353491476>'
 
@@ -323,6 +326,8 @@ TEAM_LIST = ['Olympians', 'Polar', 'Eclipse', 'Saviors', 'Ragu', 'Instigators', 
 RIVALS_TEAM_LIST = ['Angels', 'Celestials', 'Deadlock', 'Evergreen', 'Fresas', 'Guardians', 'Hunters', 'Lotus', 'Misfits','Ragu']
 
 VALORANT_TEAM_LIST = ['Deadlock', 'Guardians', 'Horizon', 'Hunters', 'Lotus', 'Polar', 'Ragu', 'Saviors']
+
+DBD_TEAM_LIST = []
 
 LOWERCASE_HERO_NAMES = ['ana', 'ashe', 'baptiste', 'bastion', 'brigitte', 'cassidy', 'dva', 'doomfist', 'echo', 'genji', 'hanzo', 'illari', 
                         'junker queen', 'junkrat', 'juno', 'kiriko', 'lifeweaver', 'lucio', 'mauga', 'mei', 'mercy', 'moira', 'orisa', 'ramattra', 'reaper', 

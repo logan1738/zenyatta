@@ -58,7 +58,7 @@ def test_get_league_team_string():
 
     assert get_league_team_string('None') == 'League Team: **None**\n'
 
-    assert get_league_team_string('FakeTeam') == 'League Team: **<:solwhite:1278858168826593312> FakeTeam**\n'
+    assert get_league_team_string('FakeTeam') == 'League Team: **<:spicyesports:1344813172342788177> FakeTeam**\n'
 
     assert get_league_team_string('Polar') == 'League Team: **<:polar:1173786406238298242> Polar**\n'
 
@@ -67,7 +67,7 @@ def test_get_fan_of_string():
 
     assert get_fan_of_string('None') == 'Fan of Team: **None**\n'
 
-    assert get_fan_of_string('FakeTeam') == 'Fan of Team: **<:solwhite:1278858168826593312> FakeTeam**\n'
+    assert get_fan_of_string('FakeTeam') == 'Fan of Team: **<:spicyesports:1344813172342788177> FakeTeam**\n'
 
     assert get_fan_of_string('Polar') == 'Fan of Team: **<:polar:1173786406238298242> Polar**\n'
 
@@ -76,7 +76,7 @@ def test_get_rival_of_string():
 
     assert get_rival_of_string('None') == 'Rival of Team: **None**\n'
 
-    assert get_rival_of_string('FakeTeam') == 'Rival of Team: **<:solwhite:1278858168826593312> FakeTeam**\n'
+    assert get_rival_of_string('FakeTeam') == 'Rival of Team: **<:spicyesports:1344813172342788177> FakeTeam**\n'
 
     assert get_rival_of_string('Polar') == 'Rival of Team: **<:polar:1173786406238298242> Polar**\n'
 
@@ -139,7 +139,7 @@ def test_get_team_display_string():
 
     assert get_team_display_string('None') == 'None'
 
-    assert get_team_display_string('FakeTeam') == '<:solwhite:1278858168826593312> FakeTeam'
+    assert get_team_display_string('FakeTeam') == '<:spicyesports:1344813172342788177> FakeTeam'
 
     assert get_team_display_string('Polar') == '<:polar:1173786406238298242> Polar'
 

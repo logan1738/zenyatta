@@ -139,7 +139,7 @@ def test_get_team_display_string():
 
     assert get_team_display_string('None') == 'None'
 
-    assert get_team_display_string('FakeTeam') == '<:solwhite:1278858168826593312> FakeTeam'
+    assert get_team_display_string('FakeTeam') == '<:spicyesports:1344813172342788177> FakeTeam'
 
     assert get_team_display_string('Polar') == '<:polar:1173786406238298242> Polar'
 

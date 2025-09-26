@@ -3,6 +3,7 @@
 
 from common_messages import invalid_number_of_params
 from helpers import valid_number_of_params
+from safe_send import safe_send
 
 
 # color vars:
@@ -442,15 +443,15 @@ async def team_colors_handler(message):
     team_2 = normalize_team_name(team_2)
 
     if team_1 not in TEAM_DEFAULT_COLORS:
-        await message.channel.send('Invalid team name: '+team_1)
+        await safe_send(message.channel, 'Invalid team name: '+team_1)
         return
     
     if team_2 not in TEAM_DEFAULT_COLORS:
-        await message.channel.send('Invalid team name: '+team_2)
+        await safe_send(message.channel, 'Invalid team name: '+team_2)
         return
     
     if team_1 == team_2:
-        await message.channel.send('A team cannot play against itself!')
+        await safe_send(message.channel, 'A team cannot play against itself!')
         return
 
     team_1_color = TEAM_DEFAULT_COLORS[team_1]['primary']
@@ -461,7 +462,7 @@ async def team_colors_handler(message):
         override_string = build_override_string(team_1, team_2)
 
         if not override_string in COLOR_OVERRIDES:
-            await message.channel.send('Incompatible team colors! Please let an admin know so they can add an override for this matchup.')
+            await safe_send('Incompatible team colors! Please let an admin know so they can add an override for this matchup.')
             return
         
         override = COLOR_OVERRIDES[override_string]
@@ -469,4 +470,4 @@ async def team_colors_handler(message):
         team_1_color = override[team_1]
         team_2_color = override[team_2]
 
-    await message.channel.send(f"Team colors for {team_1} vs {team_2}:\n{team_1}: {team_1_color}\n{team_2}: {team_2_color}")
+    await safe_send(message, f"Team colors for {team_1} vs {team_2}:\n{team_1}: {team_1_color}\n{team_2}: {team_2_color}")

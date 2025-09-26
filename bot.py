@@ -418,12 +418,6 @@ async def handle_message(message, db, client):
     elif lower_message.startswith('!giftrewards') and is_admin:
         await gift_rewards_handler(client, db, message)
 
-    elif lower_message == "!events":
-        await events_handler(db, message)
-
-    elif lower_message.startswith("!join "):
-        await join_handler(db, message, client)
-
     elif lower_message.startswith("!suggest "):
         await suggest_handler(message, client)
 
@@ -511,9 +505,6 @@ async def handle_message(message, db, client):
 
     elif lower_message == '!battleleaderboard':
         await battle_leaderboard_handler(db, message)
-
-    elif lower_message == '!bracket':
-        await bracket_handler(message)
 
     elif lower_message.startswith('!profile') or lower_message.startswith('!p ') or lower_message == '!p':
         await profile_handler(db, message, client, context)

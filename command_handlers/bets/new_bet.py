@@ -3,7 +3,7 @@
 import time
 from discord_actions import get_guild
 import constants
-import discord
+import asyncio
 
 from helpers import get_league_emoji_from_team_name
 from league import get_team_color_by_name, get_team_record_string
@@ -149,6 +149,8 @@ async def update_bets(db, channel, client):
         safe_add_field(new_embed_1, "Command to Bet", '!bet '+team_1_name+' [number of tokens]', False)
         await safe_edit_embed(bet_msg_1, new_embed_1)
 
+        await asyncio.sleep(1)
+
         bet_msg_2 = await bet_channel.fetch_message(bet['team_2_msg'])
         new_embed_2 = safe_create_embed(team_2_title+team_2_emoji_string+' '+team_2_name, None, get_team_color_by_name(team_2_name))
         safe_add_field(new_embed_2, "Total Tokens Bet On Team", "🪙 "+str(team_2_total), False)
@@ -156,6 +158,8 @@ async def update_bets(db, channel, client):
         safe_add_field(new_embed_2, "Team Season Record", get_team_record_string(db, team_2_name), False)
         safe_add_field(new_embed_2, "Command to Bet", '!bet '+team_2_name+' [number of tokens]', False)
         await safe_edit_embed(bet_msg_2, new_embed_2)
+
+        await asyncio.sleep(1)
 
 
 

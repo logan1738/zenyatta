@@ -470,4 +470,4 @@ async def team_colors_handler(message):
         team_1_color = override[team_1]
         team_2_color = override[team_2]
 
-    await safe_send(message, f"Team colors for {team_1} vs {team_2}:\n{team_1}: {team_1_color}\n{team_2}: {team_2_color}")
+    await safe_send(message.channel, f"Team colors for {team_1} vs {team_2}:\n{team_1}: {team_1_color}\n{team_2}: {team_2_color}")

@@ -20,16 +20,3 @@ async def member_joined(member, db, client):
             await member.add_roles(role, server_notifs, tourney_notifs, twitch_notifs, league_notifs, registered_role, image_perm_role)
         else:
             await member.add_roles(role, server_notifs, tourney_notifs, twitch_notifs, league_notifs)
-
-    try:
-
-        default_msg = "Welcome to the Spicy Esports Discord Server! I'm *Scovi*, the server's helper bot. "
-        default_msg += '\n\nIf you are interested in joining a team, you can make a post in the team up channel with some info about yourself and what you are looking for in a team:'
-        default_msg += '\n\nOverwatch Team Up Channel: https://discord.com/channels/1130553449491210442/1171266378813149244'
-        default_msg += '\nMarvel Rivals Team Up Channel: https://discord.com/channels/1130553449491210442/1316625582825541644'
-        default_msg += '\n\nIf you cannot see the channels above, make sure sure to select your game roles here: https://discord.com/channels/1130553449491210442/1316612922985811968'
-        default_msg += '\n\nThank you for joining! If you have any questions, feel free to ask our friendly staff here: https://discord.com/channels/1130553449491210442/1202441473027477504'
-
-        await safe_dm(member, default_msg)
-    except Exception:
-        print('Could not DM user.')

@@ -43,7 +43,7 @@ async def process_gift(db, current_time, existing_user, message):
             message_string += "🪙 **YOU FOUND 100 TOKENS!!** 🪙"
         elif prize_index <= 20:
             await change_pickaxes(db, existing_user, 1)
-            message_string += "⛏️ You found a **Pickaxe!** ⛏️ Use it in the Mineshaft!"
+            message_string += "⛏️ You found a **Pickaxe!** ⛏️ Use it in the Mineshaft! https://discord.com/channels/1130553449491210442/1157026865177960548"
         elif prize_index <= 30:
             message_part = await give_gem(db, existing_user)
             message_string += message_part

@@ -330,7 +330,7 @@ RIVALS_TEAM_LIST = ['Angels', 'Celestials', 'Deadlock', 'Evergreen', 'Fresas', '
 
 VALORANT_TEAM_LIST = ['Deadlock', 'Guardians', 'Horizon', 'Hunters', 'Lotus', 'Polar', 'Ragu', 'Saviors']
 
-DBD_TEAM_LIST = ['Ragu', 'Hunters']
+DBD_TEAM_LIST = ['Ragu', 'Hunters', 'Fresas', 'Lotus', 'Frogs', 'Monarchs', 'Guardians', 'Deadlock', 'Eclipse']
 
 LOWERCASE_HERO_NAMES = ['ana', 'ashe', 'baptiste', 'bastion', 'brigitte', 'cassidy', 'dva', 'doomfist', 'echo', 'genji', 'hanzo', 'illari', 
                         'junker queen', 'junkrat', 'juno', 'kiriko', 'lifeweaver', 'lucio', 'mauga', 'mei', 'mercy', 'moira', 'orisa', 'ramattra', 'reaper', 

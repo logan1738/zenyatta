@@ -3,6 +3,7 @@ import random
 import time
 from admin_handlers.free import free_handler
 from admin_handlers.give_vouchers import give_vouchers
+from admin_handlers.league_buy_coins import league_buy_coins
 from admin_handlers.reset_token_tracker import reset_token_tracker_handler
 from admin_handlers.set_desc import set_desc_handler
 from admin_handlers.slowmode import slowmode_handler
@@ -1667,6 +1668,9 @@ async def handle_message(message, db, client):
 
     elif lower_message.startswith('!takevouchers ') and is_admin:
         await take_vouchers(client, db, message)
+
+    elif lower_message.startswith('!leaguebuycoins ') and is_admin:
+        await league_buy_coins(db, message)
 
     elif lower_message.startswith('!donatevouchers '):
         await donate_vouchers(db, message, context)

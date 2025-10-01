@@ -28,7 +28,3 @@ async def league_buy_coins(db, message):
     set_constant_value(db, 'free_vouchers', free_vouchers)
 
     await safe_send(message.channel, f'Successfully recorded that the league purchased {num_coins} coins from the market.')
-
-    
-
-    

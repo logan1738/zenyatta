@@ -75,48 +75,6 @@ def get_team_color_by_name(team_name):
     return discord.Colour(0xFFFFFF)
 
 
-TEAM_NAME_TO_TEAM_LOGO = {
-    'Polar': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725044418/Polar_rmvnhc.png',
-    'Olympians': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725045969/Olympians_gyfg6t.png',
-    'Eclipse': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725045969/Eclipse_kzs5us.png',
-    'Saviors': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725046016/Saviors_dxlwwp.png',
-    'Ragu': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1723413292/Ragu_zewfly.png',
-    'Instigators': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725046014/Instigators_kxmca7.png',
-    'Guardians': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725046055/Guardians_kuftxa.png',
-    'Phoenix': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725045969/Phoenix_ofiart.png',
-    'Fresas': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725046015/Fresas_cyy8jr.png',
-    'Outliers': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725046014/Outliers_i6r7wp.png',
-    'Celestials': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725046055/Celestials_vdiudm.png',
-    'Saturn': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725046054/Saturn_nmx1pr.png',
-    'Evergreen': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725046015/Evergreen_svlg1g.png',
-    'Misfits': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725045999/Misfits_af9iur.png',
-    'Hunters': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725045970/Hunters_qlenfv.png',
-    'Angels': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1722880276/Angels_xsl8cj.png',
-    'Diamonds': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725381856/Diamonds_mg3ter.png',
-    'Phantoms': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1723919677/Phantoms_pffpsp.png',
-    'Sentinels': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1724962139/Sentinels_a6ndm4.png',
-    'Legion': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725049269/Legion_v1kzyb.png',
-    'Lotus': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1729704776/Lotus_yjrz8x.png',
-    'Deadlock': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1729637115/Deadlock_ejk1ro.png',
-    'Horizon': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1731283566/Horizon_lseweb.png',
-    'Monarchs': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1731283566/Monarchs_zfeaxw.png',
-    'Aces': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1741559142/Aces_fyerrj.png',
-    'Mantas': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1741564906/Mantas_muwpwd.png',
-    'Penguins': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1756256399/Penguins_j8xoep.png',
-    'Tsunami': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1756256399/Tsunami_yuz1by.png',
-    
-}
-
-DEFAULT_TEAM_LOGO_URL = 'https://res.cloudinary.com/dc8euoeya/image/upload/v1740178566/Spicy_Default_pk1yu8.png'
-
-def get_team_logo_by_name(team_name):
-
-    if team_name in TEAM_NAME_TO_TEAM_LOGO:
-        return TEAM_NAME_TO_TEAM_LOGO[team_name]
-    
-    return DEFAULT_TEAM_LOGO_URL
-
-
 def make_team_description(team):
 
     if len(team['allies']) == 0 and len(team['rivals']) == 0:

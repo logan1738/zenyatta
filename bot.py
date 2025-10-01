@@ -3,7 +3,7 @@ import random
 import time
 from admin_handlers.free import free_handler
 from admin_handlers.give_vouchers import give_vouchers
-from admin_handlers.leauge_buy_coins import league_buy_coins
+from admin_handlers.league_buy_coins import league_buy_coins
 from admin_handlers.reset_token_tracker import reset_token_tracker_handler
 from admin_handlers.set_desc import set_desc_handler
 from admin_handlers.slowmode import slowmode_handler

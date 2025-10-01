@@ -6,7 +6,7 @@ from safe_send import safe_send
 
 async def league_buy_coins(db, message):
 
-    valid_params, params = valid_number_of_params(message.content, 2)
+    valid_params, params = valid_number_of_params(message, 2)
     if not valid_params:
         await safe_send(message.channel, "Usage: !leaguebuycoins <number_of_coins>")
         return

@@ -110,11 +110,7 @@ async def league_accept_handler(db, message, client, context):
 
     league_team_field = get_league_team_field_from_context(context)
     update_obj = {league_team_field: real_team_name, teams_joined_this_season_constant: teams_joined_this_season}
-    # if season_active:
-    #     if div_joined != 0:
-    #         update_obj = {"league_team": real_team_name, 'team_swaps': team_swaps - 1, 'user_div': div_joined}
-    #     else:
-    #         update_obj = {"league_team": real_team_name, 'team_swaps': team_swaps - 1}
+
 
     users.update_one({"discord_id": user['discord_id']}, {"$set": update_obj})
 

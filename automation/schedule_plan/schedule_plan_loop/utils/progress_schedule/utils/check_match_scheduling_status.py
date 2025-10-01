@@ -57,6 +57,7 @@ def write_matchups_to_schedule(db, schedule_plan, all_matchups):
     this_season_schedule = schedule_db.find_one({'context': schedule_plan['context'], 'season': schedule_plan['season']})
     week_index = schedule_plan['current_week']
 
+    matchup_index = 0
     for matchup in all_matchups:
         if (not matchup['added_to_schedule']) and matchup['timeslot'] != 'NONE':
 
@@ -70,6 +71,11 @@ def write_matchups_to_schedule(db, schedule_plan, all_matchups):
             match_epoch = make_epoch_for_match(this_season_schedule['weeks'][week_index]['days'][timeslot_day_index]['date'], timeslot_pm_time_est)
     
             matchups.update_one({'_id': matchup['_id']}, {'$set': {'added_to_schedule': True, 'match_epoch': match_epoch}})
+
+            all_matchups[matchup_index]['match_epoch'] = match_epoch
+
+        matchup_index += 1
+
             
     if schedule_edited:
         schedule_db.update_one({'_id': this_season_schedule['_id']}, {'$set': {'weeks': this_season_schedule['weeks']}})
@@ -94,7 +100,6 @@ async def check_match_scheduling_status(client, message, db, schedule_plans, sch
         schedule['weeks'][week_index]['status'] = 'MATCHES'
         schedule_plans.update_one({"_id": schedule['_id']}, {"$set": {"weeks": schedule['weeks']}})
         await safe_send(message.channel, f'Match scheduling is complete for week {actual_week} of season {schedule["season"]} of league {schedule["context"]}.')
-
 
         if schedule['context'] == 'OW':
 

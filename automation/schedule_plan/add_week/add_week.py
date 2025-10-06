@@ -24,13 +24,16 @@ from time_helpers import year_month_day_to_datetime
 ADD_WEEK_CONFIG = {
 
     'start_day_info': {
-        'day': 29,
-        'month': 9,
+        'day': 6,
+        'month': 10,
         'year': 2025
     },
-    'season': 1,
+    'season': 7,
     'match_pairs': [
-        ['Ragu', 'Lotus'],
+        ['Polar', 'Instigators'],
+        ['Diamonds', 'Hunters'],
+        ['Olympians', 'Aces'],
+        ['Angels', 'Horizon'],
     ]
 
 }

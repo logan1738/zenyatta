@@ -8,22 +8,10 @@ import constants
 from safe_send import safe_send
 from time_helpers import get_current_day_est
 
-async def start_auction_handler(db, message, client):
 
-    word_parts = message.content.split()
-    if len(word_parts) < 2:
-        await invalid_number_of_params(message)
-        return
+async def start_auction(client, db, item_name):
 
     auction = db['auction']
-    data = auction.find_one({'auction_id': 1})
-
-    if data['is_open']:
-        await safe_send(message.channel, 'An auction is currently open. Please end the current auction first.')
-        return
-    
-    item_name = make_string_from_word_list(word_parts, 1)
-    
 
     auction.update_one({"auction_id": 1}, {"$set": 
         {
@@ -49,6 +37,25 @@ async def start_auction_handler(db, message, client):
 
     await safe_send(auction_channel, final_string)
 
+async def start_auction_handler(db, message, client):
+
+    word_parts = message.content.split()
+    if len(word_parts) < 2:
+        await invalid_number_of_params(message)
+        return
+
+    auction = db['auction']
+    data = auction.find_one({'auction_id': 1})
+
+    if data['is_open']:
+        await safe_send(message.channel, 'An auction is currently open. Please end the current auction first.')
+        return
+    
+    item_name = make_string_from_word_list(word_parts, 1)
+
+    await start_auction(client, db, item_name)
+    
     await safe_send(message.channel, 'Auction started.')
+    
 
 

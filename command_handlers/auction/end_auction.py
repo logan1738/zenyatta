@@ -1,6 +1,8 @@
 
 
+import asyncio
 from api import get_member
+from command_handlers.auction.start_auction import start_auction
 from discord_actions import get_guild
 
 import constants
@@ -33,7 +35,9 @@ async def end_auction(db, client):
         if member:
             user = user_exists(db, member.id)
             if user:
-                await change_tokens(db, user, int(user_bid * -1), 'daily-auction')
+
+                users = db['users']
+                users.update_one({'discord_id': user['discord_id']}, {"$set": {'tokens': user['tokens'] - user_bid, 'vouchers': user['vouchers'] + 20}})
 
     final_string = '--------------------------------\n'
     final_string += 'Auction Ended!\n'
@@ -41,6 +45,10 @@ async def end_auction(db, client):
 
     await safe_send(redemptions_channel, won_string)
     await safe_send(auction_channel, final_string)
+
+    await asyncio.sleep(5)
+
+    await start_auction(client, db, '<:spicy_voucher:1371334935557963910> **20 Vouchers** <:spicy_voucher:1371334935557963910>')
 
 
 async def end_auction_handler(db, message, client):

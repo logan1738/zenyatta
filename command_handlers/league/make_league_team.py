@@ -58,29 +58,6 @@ DEFAULT_MR_LINEUP = {
     },
 }
 
-DEFAULT_VL_LINEUP = {
-    'player1': {
-        'role': 'player',
-        'user_id': 0
-    },
-    'player2': {
-        'role': 'player',
-        'user_id': 0
-    },
-    'player3': {
-        'role': 'player',
-        'user_id': 0
-    },
-    'player4': {
-        'role': 'player',
-        'user_id': 0
-    },
-    'player5': {
-        'role': 'player',
-        'user_id': 0
-    },
-}
-
 DEFAULT_DB_LINEUP = {
     'survivor1': {
         'role': 'survivor',
@@ -111,8 +88,6 @@ def get_default_lineup_from_context(context):
         return DEFAULT_OW_LINEUP
     elif context == 'MR':
         return DEFAULT_MR_LINEUP
-    elif context == 'VL':
-        return DEFAULT_VL_LINEUP
     elif context == 'DB':
         return DEFAULT_DB_LINEUP
     else:

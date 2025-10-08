@@ -352,16 +352,6 @@ def test_get_fan_of_with_context():
     }
     assert user_module.get_fan_of_with_context(test_user, 'MR') == 'None'
 
-    test_user = {
-        'fan_of_valorant': 'Polar'
-    }
-    assert user_module.get_fan_of_with_context(test_user, 'VL') == 'Polar'
-
-    test_user = {
-        'field': 1
-    }
-    assert user_module.get_fan_of_with_context(test_user, 'VL') == 'None'
-
 
 def test_get_rival_of_with_context():
 
@@ -384,16 +374,6 @@ def test_get_rival_of_with_context():
         'field': 1
     }
     assert user_module.get_rival_of_with_context(test_user, 'MR') == 'None'
-
-    test_user = {
-        'rival_of_valorant': 'Polar'
-    }
-    assert user_module.get_rival_of_with_context(test_user, 'VL') == 'Polar'
-
-    test_user = {
-        'field': 1
-    }
-    assert user_module.get_rival_of_with_context(test_user, 'VL') == 'None'
 
 
 def test_last_token_shop():

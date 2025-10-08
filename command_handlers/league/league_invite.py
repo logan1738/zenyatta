@@ -25,8 +25,6 @@ async def league_invite_handler(db, message, context):
             await safe_send(message.channel, 'That user is not registered yet. They can register using the command **!battle BattleTagHere#1234**')
         elif context == 'MR':
             await safe_send(message.channel, 'That user is not registered yet. They can register using the command **!username MarvelRivalsUsername**')
-        elif context == 'VL':
-            await safe_send(message.channel, 'That user is not registered yet. They can register using the command **!riot RiotID#1234**')
         elif context == 'DB':
             await safe_send(message.channel, 'That user is not registered yet. They can register using the command **!username UsernameHere#1234**')
         return

@@ -116,7 +116,7 @@ def get_league_emoji_from_team_name(team_name):
 
 def is_bot_commands_channel(channel):
 
-    return (channel.id == constants.BOT_CHANNEL) or (channel.id == constants.RIVALS_BOT_CHANNEL) or (channel.id == constants.VALORANT_BOT_CHANNEL)
+    return (channel.id == constants.BOT_CHANNEL) or (channel.id == constants.RIVALS_BOT_CHANNEL)
 
 
 def is_valid_hex_code(s):

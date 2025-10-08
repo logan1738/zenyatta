@@ -55,7 +55,7 @@ from automation.process_trophy_rewards.process_trophy_rewards import process_tro
 from automation.schedule_plan.add_week.add_week import add_week
 from automation.schedule_plan.make_schedule_plan import make_schedule_plan
 from automation.schedule_plan.schedule_plan_loop.schedule_plan_loop import schedule_plan_loop
-from automation.update_team_avatars import update_dbd_team_avatars, update_overwatch_team_avatars, update_rivals_team_avatars, update_valorant_team_avatars
+from automation.update_team_avatars import update_dbd_team_avatars, update_overwatch_team_avatars, update_rivals_team_avatars
 from automation.update_top_subs_avatars import update_top_subs_avatars
 from card_automation import make_all_cards_from_data, make_all_cards_from_db
 from card_games.automation.clear_expired_battles import clear_expired_battles
@@ -271,7 +271,6 @@ from route_messages.dbd_message.route_dbd_message import route_dbd_message
 from route_messages.dm_messages.route_dm_message import route_dm_message
 from route_messages.rivals_message.route_rivals_message import route_rivals_message
 from route_messages.utils.get_context import get_context
-from route_messages.valorant_message.route_rivals_message import route_valorant_message
 from safe_send import safe_reply, safe_send, safe_send_test
 from savage_scovi import savage_scovi
 from server_level import sub_points_handler
@@ -1789,9 +1788,6 @@ async def handle_message(message, db, client):
     elif context == 'MR':
         await route_rivals_message(client, db, message, lower_message)
 
-    elif context == 'VL':
-        await route_valorant_message(client, db, message, lower_message)
-
     elif context == 'DB':
         await route_dbd_message(client, db, message, lower_message)
 
@@ -1885,10 +1881,6 @@ def run_discord_bot(db, is_smoke_test=False):
             guild = await get_guild(client)
             role = guild.get_role(constants.MARVEL_RIVALS_ROLE)
             await give_role(member, role, 'Raw Reaction Add')
-        elif message_id ==  constants.VALORANT_MSG:
-            guild = await get_guild(client)
-            role = guild.get_role(constants.VALORANT_ROLE)
-            await give_role(member, role, 'Raw Reaction Add')
         elif message_id ==  constants.DBD_MSG:
             guild = await get_guild(client)
             role = guild.get_role(constants.DBD_ROLE)
@@ -1975,10 +1967,6 @@ def run_discord_bot(db, is_smoke_test=False):
         elif message_id == constants.OVERWATCH_MSG:
             member = get_member(guild, user_id, 'Raw Reaction Remove')
             role = guild.get_role(constants.OVERWATCH_ROLE)
-            await remove_role(member, role, 'Notifs Settings')
-        elif message_id == constants.VALORANT_MSG:
-            member = get_member(guild, user_id, 'Raw Reaction Remove')
-            role = guild.get_role(constants.VALORANT_ROLE)
             await remove_role(member, role, 'Notifs Settings')
         elif message_id == constants.DBD_MSG:
             member = get_member(guild, user_id, 'Raw Reaction Remove')

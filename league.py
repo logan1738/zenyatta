@@ -110,7 +110,6 @@ def make_team_description(team):
 CONTEXT_TO_DEFAULT_USER_ID = {
     'OW': '[Battle Tag Not Found]',
     'MR': '[Username Not Found]',
-    'VL': '[Riot ID Not Found]',
     'DB': '[Dead by Daylight Username Not Found]',
 }
 
@@ -126,11 +125,6 @@ def make_member_game_id(db, member, context):
                 member_id = user['battle_tag'].split('#')[0]
             except Exception as e:
                 raise Exception('Could not find a battle tag for user with id '+str(member['discord_id']))
-        elif context == 'VL':
-            try:
-                member_id = user['riot_id']
-            except Exception as e:
-                raise Exception('Could not find a riot id for user with id '+str(member['discord_id']))
         elif context == 'DB':
             try:
                 member_id = user['dbd_username']
@@ -191,9 +185,6 @@ def has_username_for_game(user, context):
             return True
     elif context == 'MR':
         if 'rivals_username' in user:
-            return True
-    elif context == 'VL':
-        if 'riot_id' in user:
             return True
     elif context == 'DB':
         if 'dbd_username' in user:

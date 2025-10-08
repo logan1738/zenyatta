@@ -51,11 +51,6 @@ async def update_rivals_team_avatars(guild, db, message):
     await update_team_avatars(guild, db, message, 'MR')
 
 
-async def update_valorant_team_avatars(guild, db, message):
-    
-    await update_team_avatars(guild, db, message, 'VL')
-
-
 async def update_dbd_team_avatars(guild, db, message):
 
     await update_team_avatars(guild, db, message, 'DB')

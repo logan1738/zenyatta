@@ -92,8 +92,6 @@ async def league_accept_handler(db, message, client, context):
             await safe_send(message.channel, 'Please link your battle tag before joining an Overwatch team. Use the command **!battle BattleTagHere#1234** to do this.')
         elif context == 'MR':
             await safe_send(message.channel, 'Please link your Marvel Rivals username before joining a Marvel Rivals team. Use the command **!username UsernameHere** to do this.')
-        elif context == 'VL':
-            await safe_send(message.channel, 'Please link your Riot ID before joining a Valorant team. Use the command **!riot RiotID#1234** to do this.')
         elif context == 'DB':
             await safe_send(message.channel, 'Please link your Dead by Daylight username before joining a Dead by Daylight team. Use the command **!username UsernameHere#1234** to do this.')
         return

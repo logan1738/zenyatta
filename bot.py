@@ -1774,7 +1774,6 @@ async def handle_message(message, db, client):
 
         await update_overwatch_team_avatars(guild, db, message)
         await update_rivals_team_avatars(guild, db, message)
-        await update_valorant_team_avatars(guild, db, message)
         await update_dbd_team_avatars(guild, db, message)
 
         await supporter_role_loop(db, message, client)

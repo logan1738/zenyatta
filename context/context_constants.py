@@ -80,7 +80,6 @@ CONTEXT_TO_LEAGUE_URL = {
 CONTEXT_TO_TEAM_LIST = {
     'OW': constants.TEAM_LIST,
     'MR': constants.RIVALS_TEAM_LIST,
-    'VL': constants.VALORANT_TEAM_LIST,
     'DB': constants.DBD_TEAM_LIST,
 }
 

@@ -16,7 +16,7 @@ def user_with_username_exists(db, username):
     return username_user
 
 
-async def username_handler(db, message):
+async def username_handler(client, db, message):
 
     word_parts = message.content.split()
     rivals_username = make_string_from_word_list(word_parts, 1)
@@ -38,4 +38,4 @@ async def username_handler(db, message):
     if user_exists(db, user_id):
         await update_user_username(db, user, message, rivals_username) 
     else:
-        await create_new_user(db, user_id, message, rivals_username)
+        await create_new_user(client, db, user_id, message, rivals_username)

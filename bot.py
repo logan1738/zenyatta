@@ -1788,7 +1788,7 @@ async def handle_message(message, db, client):
         await update_bets(db, message.channel, client)
 
     elif context == 'MR':
-        await route_rivals_message(db, message, lower_message)
+        await route_rivals_message(client, db, message, lower_message)
 
     elif context == 'VL':
         await route_valorant_message(client, db, message, lower_message)

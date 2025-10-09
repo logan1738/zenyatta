@@ -316,7 +316,7 @@ TEAM_LIST = ['Olympians', 'Polar', 'Eclipse', 'Saviors', 'Ragu', 'Instigators', 
              'Celestials', 'Saturn', 'Evergreen', 'Misfits', 'Hunters', 'Legion', 'Diamonds', 'Angels', 'Phantoms', 'Sentinels',
              'Lotus', 'Deadlock', 'Horizon', 'Monarchs', 'Aces', 'Mantas', 'Penguins', 'Tsunami']
 
-RIVALS_TEAM_LIST = ['Angels', 'Celestials', 'Deadlock', 'Evergreen', 'Fresas', 'Hunters', 'Lotus', 'Misfits']
+RIVALS_TEAM_LIST = ['Angels', 'Celestials', 'Deadlock', 'Eclipse', 'Evergreen', 'Fresas', 'Hunters', 'Legion', 'Lotus', 'Misfits']
 
 DBD_TEAM_LIST = ['Ragu', 'Hunters', 'Fresas', 'Lotus', 'Frogs', 'Monarchs', 'Legion', 'Deadlock', 'Eclipse']
 

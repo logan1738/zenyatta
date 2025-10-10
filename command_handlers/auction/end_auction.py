@@ -8,7 +8,7 @@ from discord_actions import get_guild
 import constants
 from rewards import change_tokens
 from safe_send import safe_send
-from user.user import user_exists
+from user.user import get_user_vouchers, user_exists
 
 
 async def end_auction(db, client):
@@ -37,7 +37,8 @@ async def end_auction(db, client):
             if user:
 
                 users = db['users']
-                users.update_one({'discord_id': user['discord_id']}, {"$set": {'tokens': user['tokens'] - user_bid, 'vouchers': user['vouchers'] + 20}})
+                user_vouchers = get_user_vouchers(user)
+                users.update_one({'discord_id': user['discord_id']}, {"$set": {'tokens': user['tokens'] - user_bid, 'vouchers': user_vouchers + 20}})
 
     final_string = '--------------------------------\n'
     final_string += 'Auction Ended!\n'

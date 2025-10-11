@@ -1,7 +1,6 @@
 
 
-from random import random
-
+import random
 from safe_send import safe_send
 
 

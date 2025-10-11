@@ -453,7 +453,7 @@ async def handle_message(message, db, client):
         await gift_handler(db, message, is_admin)
 
     elif lower_message.startswith('!coinflip'):
-        await coinflip_handler(db, message)
+        await coinflip_handler(message)
 
     elif lower_message == "!hello":
         await hello_handler(message)

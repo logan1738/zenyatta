@@ -89,6 +89,7 @@ from command_handlers.bracket import bracket_handler
 from command_handlers.buy_ticket import buy_ticket_handler
 from command_handlers.card_page import card_page
 from command_handlers.card_search import card_search_handler
+from command_handlers.coinflip import coinflip_handler
 from command_handlers.deny_gem_trade import deny_gem_trade_handler
 from command_handlers.donate import donate_handler
 from command_handlers.donate_gems import donate_gems
@@ -450,6 +451,9 @@ async def handle_message(message, db, client):
 
     elif lower_message == '!dailygift' or lower_message == '!gift':
         await gift_handler(db, message, is_admin)
+
+    elif lower_message.startswith('!coinflip'):
+        await coinflip_handler(message)
 
     elif lower_message == "!hello":
         await hello_handler(message)

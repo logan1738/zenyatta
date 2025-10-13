@@ -180,6 +180,11 @@ TEAM_DEFAULT_COLORS = {
         'primary': AQUA,
         'secondary': BLUE
     },
+
+    'Frogs': {
+        'primary': LIME_GREEN,
+        'secondary': GREEN
+    }
 }
 
 
@@ -203,6 +208,11 @@ COLOR_OVERRIDES = {
     'Aces-Ragu': {
         'Aces': PURPLE,
         'Ragu': RED
+    },
+
+    'Angels-Frogs': {
+        'Angels': YELLOW,
+        'Frogs': GREEN
     },
 
     'Angels-Misfits': {
@@ -278,6 +288,16 @@ COLOR_OVERRIDES = {
     'Fresas-Ragu': {
         'Fresas': LIME_GREEN,
         'Ragu': RED
+    },
+
+    'Frogs-Misfits': {
+        'Frogs': GREEN,
+        'Misfits': LIME_GREEN
+    },
+
+    'Frogs-Olympians': {
+        'Frogs': GREEN,
+        'Olympians': GOLD
     },
 
     'Guardians-Lotus': {

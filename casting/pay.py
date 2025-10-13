@@ -24,4 +24,4 @@ async def pay_handler(db, message):
     new_balance = pay_user['balance'] + bal_to_pay
     production_crew.update_one({"lower_username": username_lower}, {"$set": {"balance": new_balance}})
 
-    await safe_send(message.channel, f"Paid {bal_to_pay} to {pay_user['username']}. New balance: {new_balance}")
+    await safe_send(message.channel, f"Paid {bal_to_pay} to {pay_user['username']}. New balance: {round(new_balance, 2)}")

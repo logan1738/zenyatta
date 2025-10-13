@@ -3,6 +3,7 @@
 from command_handlers.twitch_api.twitch_helpers import get_broadcaster_id_from_channel, get_client_id, get_twitch_token
 import requests
 
+from constants import STAFF_PING
 from safe_send import safe_send
 
 def run_ad_twitch_call(headers, data):
@@ -38,8 +39,10 @@ async def respond_based_on_result(message, result):
     elif status_code == 400:
         await safe_send(message.channel, 'This channel is not currently live, so ads cannot be run.')
         return
+    
+    error_message = str(result.json())
 
-    await safe_send(message.channel, 'Something went wrong...')
+    await safe_send(message.channel, 'Something went wrong...\n\nStatus code: '+str(status_code)+'\n\nError message: '+error_message+' ' +STAFF_PING)
 
 
 async def run_ad(db, message, channel_name):

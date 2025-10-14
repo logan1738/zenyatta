@@ -51,3 +51,5 @@ async def track_team_handler(db, message, client, context):
 
     # update constant in db
     set_constant_value(db, 'team_info', team_info)
+
+    await safe_send(message.channel, f'Team {team_name_normalized} is now being tracked in context {context}.')

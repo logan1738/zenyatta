@@ -127,6 +127,7 @@ from command_handlers.league.score_match import score_match_handler
 from command_handlers.league.sol_week_end import sol_week_end
 from command_handlers.league.swiss_matchups import swiss_matchups_handler
 from command_handlers.league.timeslot import timeslot_handler
+from command_handlers.league.track_team import track_team_handler
 from command_handlers.league.unschedule import unschedule_handler
 from command_handlers.league.weekly_roster_reset import weekly_roster_reset
 from command_handlers.league.sol_weekly_pay import sol_weekly_pay
@@ -815,6 +816,9 @@ async def handle_message(message, db, client):
 
     elif lower_message.startswith('!updateteam ') and is_admin:
         await update_team_handler(db, message, client, context)
+
+    elif lower_message.startswith('!trackteam ') and is_admin:
+        await track_team_handler(db, message, client, context)
 
     elif lower_message.startswith('!giveteamtokens ') and is_admin:
         await give_team_tokens_handler(db, message)

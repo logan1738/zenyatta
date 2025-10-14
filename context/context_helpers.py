@@ -38,6 +38,11 @@ def get_league_announcements_channel_from_context(client, context):
     league_announcements_channel = constants.CONTEXT_TO_LEAGUE_ANNOUNCEMENTS_CHANNEL[context]
     return client.get_channel(league_announcements_channel)
 
+def get_team_info_channel_from_context(client, context):
+
+    team_info_channel = constants.CONTEXT_TO_TEAM_INFO_CHANNEL[context]
+    return client.get_channel(team_info_channel)
+
 def get_league_url_from_context(context):
 
     return constants.CONTEXT_TO_LEAGUE_URL[context]

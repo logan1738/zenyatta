@@ -1,8 +1,8 @@
 
 from context.context_helpers import get_league_team_field_from_context, get_league_teams_collection_from_context
 from discord_actions import get_guild
-from league import update_team_info
 import discord
+from safe_send import safe_send
 from user.user import user_exists
 
 
@@ -35,7 +35,6 @@ async def update_team(db, team_name, client, context):
             users.update_one({"discord_id": user_id}, {"$set": {league_team_field: 'None'}})
 
     team_object['members'] = final_team_members
-    await update_team_info(client, team_object, db, context)
 
 
 
@@ -45,4 +44,4 @@ async def update_team_handler(db, message, client, context):
 
     await update_team(db, team_name, client, context)
 
-    await message.channel.send('Team details updated.')
+    await safe_send(message.channel, 'Team details updated.')

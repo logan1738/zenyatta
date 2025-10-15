@@ -1,6 +1,7 @@
 from common_messages import not_registered_response
 from discord_actions import get_guild, member_has_role
 from rewards import change_pickaxes, change_tokens
+from safe_send import safe_send
 from time_helpers import get_current_time, long_enough_for_gift, time_to_gift
 from user.user import get_user_gems, user_exists
 import random
@@ -42,7 +43,7 @@ async def process_gift(db, current_time, existing_user, message):
             message_string += "🪙 **YOU FOUND 100 TOKENS!!** 🪙"
         elif prize_index <= 20:
             await change_pickaxes(db, existing_user, 1)
-            message_string += "⛏️ You found a **Pickaxe!** ⛏️ Use it in the Mineshaft!"
+            message_string += "⛏️ You found a **Pickaxe!** ⛏️ Use it in the Mineshaft! https://discord.com/channels/1130553449491210442/1157026865177960548"
         elif prize_index <= 30:
             message_part = await give_gem(db, existing_user)
             message_string += message_part
@@ -76,7 +77,7 @@ async def process_gift(db, current_time, existing_user, message):
     if total_tokens_to_give > 0:
         await change_tokens(db, existing_user, total_tokens_to_give, 'gift')
 
-    await message.channel.send(message_string)
+    await safe_send(message.channel, message_string)
 
 
 
@@ -95,7 +96,7 @@ async def gift_handler(db, message, is_admin):
         if long_enough or is_admin:
             await process_gift(db, current_time, existing_user, message)
         else:
-            await message.channel.send(message.author.mention+" Your gift is not ready yet. Next gift in **"+time_to_gift(diff_in_time)+"**")
+            await safe_send(message.channel, message.author.mention+" Your gift is not ready yet. Next gift in **"+time_to_gift(diff_in_time)+"**")
 
     else:
         await process_gift(db, current_time, existing_user, message)

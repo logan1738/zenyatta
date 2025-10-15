@@ -1,13 +1,13 @@
 
 
-from api import send_msg
 from marvel_rivals.base_commands.username.username import username_handler
+from safe_send import safe_send
 
 
-async def route_rivals_message(db, message, lower_message):
+async def route_rivals_message(client, db, message, lower_message):
 
     if lower_message.startswith('!username'):
-        await username_handler(db, message)
+        await username_handler(client, db, message)
 
     else:
-        await send_msg(message.channel, 'Invalid command. Please see **!help** for a list of commands.', 'Invalid Command')
+        await safe_send(message.channel, 'Invalid command. Please see **!help** for a list of commands.')

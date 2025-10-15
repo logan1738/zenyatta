@@ -4,7 +4,9 @@ import pytz
 from automation.schedule_plan.notif_helpers.notify_team_owners_of_schedule import notify_team_owners_of_schedule
 from automation.schedule_plan.schedule_plan_loop.utils.progress_schedule.utils.get_all_matchups import get_all_matchups
 from automation.schedule_plan.schedule_plan_loop.utils.progress_schedule.utils.not_scheduled_action import not_scheduled_action
-
+from command_handlers.bets.new_bet import new_bet
+from safe_send import safe_send
+import time
 
 def do_all_matchups_have_timeslot(all_matchups):
 
@@ -55,6 +57,7 @@ def write_matchups_to_schedule(db, schedule_plan, all_matchups):
     this_season_schedule = schedule_db.find_one({'context': schedule_plan['context'], 'season': schedule_plan['season']})
     week_index = schedule_plan['current_week']
 
+    matchup_index = 0
     for matchup in all_matchups:
         if (not matchup['added_to_schedule']) and matchup['timeslot'] != 'NONE':
 
@@ -68,6 +71,11 @@ def write_matchups_to_schedule(db, schedule_plan, all_matchups):
             match_epoch = make_epoch_for_match(this_season_schedule['weeks'][week_index]['days'][timeslot_day_index]['date'], timeslot_pm_time_est)
     
             matchups.update_one({'_id': matchup['_id']}, {'$set': {'added_to_schedule': True, 'match_epoch': match_epoch}})
+
+            all_matchups[matchup_index]['match_epoch'] = match_epoch
+
+        matchup_index += 1
+
             
     if schedule_edited:
         schedule_db.update_one({'_id': this_season_schedule['_id']}, {'$set': {'weeks': this_season_schedule['weeks']}})
@@ -76,6 +84,8 @@ def write_matchups_to_schedule(db, schedule_plan, all_matchups):
 
 
 async def check_match_scheduling_status(client, message, db, schedule_plans, schedule, week, week_index):
+
+    await safe_send(message.channel, f'Checking match scheduling status for league with context {schedule["context"]}')
 
     actual_week = schedule['current_week'] + 1
 
@@ -89,10 +99,24 @@ async def check_match_scheduling_status(client, message, db, schedule_plans, sch
 
         schedule['weeks'][week_index]['status'] = 'MATCHES'
         schedule_plans.update_one({"_id": schedule['_id']}, {"$set": {"weeks": schedule['weeks']}})
-        await message.channel.send(f'Match scheduling is complete for week {actual_week} of season {schedule["season"]} of league {schedule["context"]}.')
+        await safe_send(message.channel, f'Match scheduling is complete for week {actual_week} of season {schedule["season"]} of league {schedule["context"]}.')
+
+        if schedule['context'] == 'OW':
+
+            for matchup in all_matchups:
+
+                team1 = matchup['team1']
+                team2 = matchup['team2']
+
+                bet_title = (f'{team1} vs {team2}').upper()
+
+                await new_bet(client, db, bet_title, team1, team2, False, matchup['match_epoch'])
+                time.sleep(1)
+
         return
     
     await not_scheduled_action(client, db, schedule_plans, schedule, week, week_index, all_matchups)
+    await safe_send(message.channel, f'Match scheduling is not complete for week {actual_week} of season {schedule["season"]} of league {schedule["context"]}.')
 
 
 

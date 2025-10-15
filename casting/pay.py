@@ -1,26 +1,27 @@
 
 
 from helpers import valid_number_of_params
+from safe_send import safe_send
 
 
 async def pay_handler(db, message):
 
     valid_params, params = valid_number_of_params(message, 3)
     if not valid_params:
-        await message.channel.send("Invalid number of parameters. Please provide a valid command.")
+        await safe_send(message.channel, "Invalid number of parameters. Please provide a valid command.")
         return
 
     production_crew = db['production_crew']
 
-    username = params[1]
-    pay_user = production_crew.find_one({"username": username})
+    username_lower = params[1].lower()
+    pay_user = production_crew.find_one({"lower_username": username_lower})
     if not pay_user:
-        await message.channel.send(f"User {username} not found in the production crew.")
+        await safe_send(message.channel, f"User {params[1]} not found in the production crew.")
         return
 
     bal_to_pay = float(params[2])
 
     new_balance = pay_user['balance'] + bal_to_pay
-    production_crew.update_one({"username": username}, {"$set": {"balance": new_balance}})
+    production_crew.update_one({"lower_username": username_lower}, {"$set": {"balance": new_balance}})
 
-    await message.channel.send(f"Paid {bal_to_pay} to {username}. New balance: {new_balance}")
+    await safe_send(message.channel, f"Paid {bal_to_pay} to {pay_user['username']}. New balance: {round(new_balance, 2)}")

@@ -1,6 +1,7 @@
 
 
 from command_handlers.league.match_end import calculate_team_points
+from safe_send import safe_send
 
 
 def make_blank_standings(teams):
@@ -16,6 +17,7 @@ def make_blank_standings(teams):
             'losses': 0,
             'map_wins': 0,
             'map_losses': 0,
+            'forfeits': 0,
             'points': 0,
         }
 
@@ -54,14 +56,14 @@ async def fix_standings_handler(db, message, context):
 
     schedule_plan = schedule_plans.find_one({'context': context, 'status': 'IN PROGRESS'})
     if not schedule_plan:
-        await message.channel.send(f'No in progress schedule found for the context {context}')
+        await safe_send(message.channel, f'No in progress schedule found for the context {context}')
         return
     season_number = schedule_plan['season']
     
     standings = db['standings']
     season_standings = standings.find_one({'context': context, 'season': season_number})
     if not season_standings:
-        await message.channel.send(f'No standings found for the context {context} and season {season_number}')
+        await safe_send(message.channel, f'No standings found for the context {context} and season {season_number}')
         return
     
     new_standings = make_blank_standings(schedule_plan['season_teams'])
@@ -72,13 +74,21 @@ async def fix_standings_handler(db, message, context):
     for matchup in all_matchups_in_season:
         new_standings = apply_matchup_to_standings(new_standings, matchup)
 
+    # apply forfeits to standings
+    forfeits_dict = season_standings.get('forfeits', {})
+
     # Calculate points based on wins and losses
     for team_name in new_standings:
+        
         team = new_standings[team_name]
-        team['points'] = calculate_team_points(team)
+        base_team_points = calculate_team_points(team)
+
+        num_forfeits = forfeits_dict.get(team_name, 0)
+        team['forfeits'] = num_forfeits
+        team['points'] = base_team_points - (num_forfeits * 5)
 
     print('new standings', new_standings)
 
     standings.update_one({'context': context, 'season': season_number}, {'$set': {'teams': new_standings}})
 
-    await message.channel.send(f'Fixed standings for {context} season {season_number}')
+    await safe_send(message.channel, f'Fixed standings for {context} season {season_number}')

@@ -352,16 +352,6 @@ def test_get_fan_of_with_context():
     }
     assert user_module.get_fan_of_with_context(test_user, 'MR') == 'None'
 
-    test_user = {
-        'fan_of_valorant': 'Polar'
-    }
-    assert user_module.get_fan_of_with_context(test_user, 'VL') == 'Polar'
-
-    test_user = {
-        'field': 1
-    }
-    assert user_module.get_fan_of_with_context(test_user, 'VL') == 'None'
-
 
 def test_get_rival_of_with_context():
 
@@ -384,16 +374,6 @@ def test_get_rival_of_with_context():
         'field': 1
     }
     assert user_module.get_rival_of_with_context(test_user, 'MR') == 'None'
-
-    test_user = {
-        'rival_of_valorant': 'Polar'
-    }
-    assert user_module.get_rival_of_with_context(test_user, 'VL') == 'Polar'
-
-    test_user = {
-        'field': 1
-    }
-    assert user_module.get_rival_of_with_context(test_user, 'VL') == 'None'
 
 
 def test_last_token_shop():
@@ -459,46 +439,6 @@ def test_user_for_sale_cards():
     assert user_module.get_user_for_sale_cards(test_user) == []
 
 
-def test_get_user_ranks():
-
-    example_ranks = {
-        'tank': {
-            'tier': 'Rank_Platinum',
-            'div': 'Division_5'
-        },
-        'offense': {
-            'tier': 'Rank_Platinum',
-            'div': 'Division_3'
-        },
-        'support': {
-            'tier': 'Rank_Platinum',
-            'div': 'Division_1'
-        }
-    }
-    test_user = {
-        'ranks': example_ranks
-    }
-    assert user_module.get_user_ranks(test_user) == example_ranks
-
-    test_user = {
-        'field': 1
-    }
-    assert user_module.get_user_ranks(test_user) == {
-        'tank': {
-            'tier': 'none',
-            'div': 'none'
-        },
-        'offense': {
-            'tier': 'none',
-            'div': 'none'
-        },
-        'support': {
-            'tier': 'none',
-            'div': 'none'
-        },
-    }
-
-
 def test_get_user_wlt():
 
     test_user = {
@@ -547,19 +487,6 @@ def test_get_user_mr_wlt():
         'l': 0,
         't': 0
     }
-
-
-def test_get_user_rivals_rank():
-
-    test_user = {
-        'rivals_rank': 'ExampleRank'
-    }
-    assert user_module.get_user_rivals_rank(test_user) == 'ExampleRank'
-
-    test_user = {
-        'field': 1
-    }
-    assert user_module.get_user_rivals_rank(test_user) is None
 
 
 def test_get_user_bets():

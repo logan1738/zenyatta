@@ -1,7 +1,7 @@
 
 
 import pytest
-from command_handlers.profile.profile import get_fan_of_string, get_generic_profile_data, get_league_team_string, get_rival_of_string, get_team_display_string, make_gem_string, overwatch_profile, rivals_profile, valorant_profile, verify_overwatch_user, verify_rivals_user, verify_valorant_user
+from command_handlers.profile.profile import get_fan_of_string, get_generic_profile_data, get_league_team_string, get_rival_of_string, get_team_display_string, make_gem_string, overwatch_profile, rivals_profile, verify_overwatch_user, verify_rivals_user
 from exceptions import CommandError
 from pytest_utils import MOCK_GEMS
 
@@ -12,17 +12,15 @@ MOCK_USER = {
 
     'league_team': 'Polar',
     'rivals_league_team': 'Olympians',
-    'valorant_league_team': 'Instigators',
     'fan_of': 'Saturn',
     'fan_of_rivals': 'Misfits',
-    'fan_of_valorant': 'Guardians',
     'rival_of': 'Olympians',
     'rival_of_rivals': 'Eclipse',
-    'rival_of_valorant': 'Phoenix',
     'tokens': 100,
     'pickaxes': 5,
     'packs': 10,
     'trophies': 100,
+    'vouchers': 0,
     'drop_boxes': 15,
     'gems': MOCK_GEMS,
     'twitch': 'test_user',
@@ -34,7 +32,7 @@ def test_overwatch_profile():
     with open("command_handlers/profile/mocks/overwatch_profile.txt", encoding="utf-8") as f:
         expected_profile = f.read()
 
-    assert overwatch_profile(MOCK_USER) == expected_profile
+    assert overwatch_profile(MOCK_USER, 0) == expected_profile
 
 
 def test_rivals_profile():
@@ -42,35 +40,32 @@ def test_rivals_profile():
     with open("command_handlers/profile/mocks/rivals_profile.txt", encoding="utf-8") as f:
         expected_profile = f.read()
 
-    assert rivals_profile(MOCK_USER) == expected_profile
-
-
-def test_valorant_profile():
-
-    with open("command_handlers/profile/mocks/valorant_profile.txt", encoding="utf-8") as f:
-        expected_profile = f.read()
-
-    print(valorant_profile(MOCK_USER))
-    assert valorant_profile(MOCK_USER) == expected_profile
+    assert rivals_profile(MOCK_USER, 0) == expected_profile
 
 
 def test_get_league_team_string():
 
-    assert get_league_team_string('FakeTeam') == 'League Team: **FakeTeam**\n'
+    assert get_league_team_string('None') == 'League Team: **None**\n'
+
+    assert get_league_team_string('FakeTeam') == 'League Team: **<:spicyesports:1344813172342788177> FakeTeam**\n'
 
     assert get_league_team_string('Polar') == 'League Team: **<:polar:1173786406238298242> Polar**\n'
 
 
 def test_get_fan_of_string():
 
-    assert get_fan_of_string('FakeTeam') == 'Fan of Team: **FakeTeam**\n'
+    assert get_fan_of_string('None') == 'Fan of Team: **None**\n'
+
+    assert get_fan_of_string('FakeTeam') == 'Fan of Team: **<:spicyesports:1344813172342788177> FakeTeam**\n'
 
     assert get_fan_of_string('Polar') == 'Fan of Team: **<:polar:1173786406238298242> Polar**\n'
 
 
 def test_get_rival_of_string():
 
-    assert get_rival_of_string('FakeTeam') == 'Rival of Team: **FakeTeam**\n'
+    assert get_rival_of_string('None') == 'Rival of Team: **None**\n'
+
+    assert get_rival_of_string('FakeTeam') == 'Rival of Team: **<:spicyesports:1344813172342788177> FakeTeam**\n'
 
     assert get_rival_of_string('Polar') == 'Rival of Team: **<:polar:1173786406238298242> Polar**\n'
 
@@ -86,11 +81,13 @@ def test_get_generic_profile_data():
         'pickaxes': 5,
         'packs': 10,
         'trophies': 100,
+        'vouchers': 0,
         'drops': 15,
         'gems': MOCK_GEMS,
-        'twitch_username': 'test_user'
+        'twitch_username': 'test_user',
+        'value_of_vouchers': 0
     }
-    assert get_generic_profile_data(MOCK_USER, context) == expected_result
+    assert get_generic_profile_data(MOCK_USER, context, 0) == expected_result
 
     context = 'MR'
     expected_result = {
@@ -101,31 +98,19 @@ def test_get_generic_profile_data():
         'pickaxes': 5,
         'packs': 10,
         'trophies': 100,
+        'vouchers': 0,
         'drops': 15,
         'gems': MOCK_GEMS,
-        'twitch_username': 'test_user'
+        'twitch_username': 'test_user',
+        'value_of_vouchers': 0
     }
-    assert get_generic_profile_data(MOCK_USER, context) == expected_result
-
-    context = 'VL'
-    expected_result = {
-        'league_team': 'Instigators',
-        'fan_of': 'Guardians',
-        'rival_of': 'Phoenix',
-        'tokens': 100,
-        'pickaxes': 5,
-        'packs': 10,
-        'trophies': 100,
-        'drops': 15,
-        'gems': MOCK_GEMS,
-        'twitch_username': 'test_user'
-    }
-    assert get_generic_profile_data(MOCK_USER, context) == expected_result
-
+    assert get_generic_profile_data(MOCK_USER, context, 0) == expected_result
 
 def test_get_team_display_string():
 
-    assert get_team_display_string('FakeTeam') == 'FakeTeam'
+    assert get_team_display_string('None') == 'None'
+
+    assert get_team_display_string('FakeTeam') == '<:spicyesports:1344813172342788177> FakeTeam'
 
     assert get_team_display_string('Polar') == '<:polar:1173786406238298242> Polar'
 
@@ -164,17 +149,3 @@ def test_verify_rivals_user():
     }
     with pytest.raises(CommandError, match='This is a Marvel Rivals channel. I do not see a Marvel Rivals username in that profile.'):
         verify_rivals_user(test_user)
-
-
-def test_verify_valorant_user():
-
-    test_user = {
-        'riot_id': 'TestUser#1234'
-    }
-    verify_valorant_user(test_user)
-
-    test_user = {
-        'field': 1
-    }
-    with pytest.raises(CommandError, match='This is a Valorant channel. I do not see a Riot ID in that profile.'):
-        verify_valorant_user(test_user)

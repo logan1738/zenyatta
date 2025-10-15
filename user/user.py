@@ -5,16 +5,17 @@ import constants
 import time
 
 from context.context_helpers import get_fan_of_field_from_context, get_league_invites_field, get_league_team_field_from_context, get_rival_of_field_from_context
+from safe_send import safe_dm, safe_send
 
 # DISCORD API FUNCTIONS
 
 async def notify_user_of_gift(member, bot_coms_channel):
     try:
         # Try to send a DM
-        await member.send('Your gift is ready in the Spicy Esports server! Just say **!gift** here to claim! '+bot_coms_channel.jump_url)
+        await safe_dm(member, 'Your gift is ready in the Spicy Esports server! Just say **!gift** here to claim! '+bot_coms_channel.jump_url)
     except discord.Forbidden:
         # If DM can't be sent, mention the member in the channel
-        await bot_coms_channel.send(f'Your gift is ready, {member.mention}! (I tried to DM you but your privacy settings did not allow me to)')
+        await safe_send(bot_coms_channel, (f'Your gift is ready, {member.mention}! (I tried to DM you but your privacy settings did not allow me to)'))
 
 # MONGO
 
@@ -316,33 +317,6 @@ def get_user_for_sale_cards(user):
     
     return []
 
-def get_user_ranks(user):
-
-    if 'ranks' in user:
-        return user['ranks']
-    
-    return {
-        'tank': {
-            'tier': 'none',
-            'div': 'none'
-        },
-        'offense': {
-            'tier': 'none',
-            'div': 'none'
-        },
-        'support': {
-            'tier': 'none',
-            'div': 'none'
-        },
-    }
-
-def get_user_rivals_rank(user):
-
-    if 'rivals_rank' in user:
-        return user['rivals_rank']
-    
-    return None
-
 def get_user_wlt(user):
 
     if 'wlt' in user:
@@ -407,6 +381,13 @@ def get_user_trophies(user):
 
     if 'trophies' in user:
         return user['trophies']
+    
+    return 0
+
+def get_user_vouchers(user):
+
+    if 'vouchers' in user:
+        return user['vouchers']
     
     return 0
 

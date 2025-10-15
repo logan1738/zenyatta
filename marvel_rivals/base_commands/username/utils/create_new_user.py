@@ -1,7 +1,10 @@
+from api import get_member, give_role
 import constants
 import copy
 
-async def create_new_user(db, user_id, message, rivals_username):
+from safe_send import safe_send
+
+async def create_new_user(client, db, user_id, message, rivals_username):
     
     users = db['users']
 
@@ -14,4 +17,11 @@ async def create_new_user(db, user_id, message, rivals_username):
 
     users.insert_one(new_user)
 
-    await message.channel.send("You've successfully added your Marvel Rivals username to your discord account.")
+    guild = client.get_guild(constants.GUILD_ID)
+    reg_role = guild.get_role(constants.REGISTERED_ROLE)
+
+    member = get_member(guild, user_id, 'MR Username Link')
+    if member and reg_role:
+        await give_role(member, reg_role, 'MR Username Link')
+
+    await safe_send(message.channel, "You've successfully added your Marvel Rivals username to your discord account.")

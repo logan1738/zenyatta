@@ -1,7 +1,8 @@
 
-from context.context_helpers import get_league_invites_field, get_league_teams_collection_from_context, get_team_info_channel_from_context
+from context.context_helpers import get_league_invites_field, get_league_teams_collection_from_context
 from discord_actions import get_guild
 from helpers import get_constant_value, get_league_emoji_from_team_name
+from safe_send import safe_add_field, safe_create_embed, safe_edit_embed, safe_set_footer
 from user.user import get_league_invites_with_context, get_league_team_with_context, user_exists
 import discord
 
@@ -61,7 +62,9 @@ TEAM_NAME_TO_TEAM_COLOR = {
     'Monarchs': discord.Colour(0x955d01),
     'Aces': discord.Colour(0xA2A2A2),
     'Mantas': discord.Colour(0x00476a),
-    'Penguins': discord.Colour(0xeb8d00),
+    'Penguins': discord.Colour(0xf7961d),
+    'Tsunami': discord.Colour(0x1b6fa2),
+    'Frogs': discord.Colour(0x15e012)
 }
 
 def get_team_color_by_name(team_name):
@@ -70,45 +73,6 @@ def get_team_color_by_name(team_name):
         return TEAM_NAME_TO_TEAM_COLOR[team_name]
     
     return discord.Colour(0xFFFFFF)
-
-
-TEAM_NAME_TO_TEAM_LOGO = {
-    'Polar': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725044418/Polar_rmvnhc.png',
-    'Olympians': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725045969/Olympians_gyfg6t.png',
-    'Eclipse': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725045969/Eclipse_kzs5us.png',
-    'Saviors': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725046016/Saviors_dxlwwp.png',
-    'Ragu': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1723413292/Ragu_zewfly.png',
-    'Instigators': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725046014/Instigators_kxmca7.png',
-    'Guardians': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725046055/Guardians_kuftxa.png',
-    'Phoenix': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725045969/Phoenix_ofiart.png',
-    'Fresas': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725046015/Fresas_cyy8jr.png',
-    'Outliers': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725046014/Outliers_i6r7wp.png',
-    'Celestials': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725046055/Celestials_vdiudm.png',
-    'Saturn': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725046054/Saturn_nmx1pr.png',
-    'Evergreen': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725046015/Evergreen_svlg1g.png',
-    'Misfits': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725045999/Misfits_af9iur.png',
-    'Hunters': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725045970/Hunters_qlenfv.png',
-    'Angels': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1722880276/Angels_xsl8cj.png',
-    'Diamonds': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725381856/Diamonds_mg3ter.png',
-    'Phantoms': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1723919677/Phantoms_pffpsp.png',
-    'Sentinels': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1724962139/Sentinels_a6ndm4.png',
-    'Legion': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1725049269/Legion_v1kzyb.png',
-    'Lotus': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1729704776/Lotus_yjrz8x.png',
-    'Deadlock': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1729637115/Deadlock_ejk1ro.png',
-    'Horizon': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1731283566/Horizon_lseweb.png',
-    'Monarchs': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1731283566/Monarchs_zfeaxw.png',
-    'Aces': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1741559142/Aces_fyerrj.png',
-    'Mantas': 'https://res.cloudinary.com/dc8euoeya/image/upload/v1741564906/Mantas_muwpwd.png'
-}
-
-DEFAULT_TEAM_LOGO_URL = 'https://res.cloudinary.com/dc8euoeya/image/upload/v1740178566/Spicy_Default_pk1yu8.png'
-
-def get_team_logo_by_name(team_name):
-
-    if team_name in TEAM_NAME_TO_TEAM_LOGO:
-        return TEAM_NAME_TO_TEAM_LOGO[team_name]
-    
-    return DEFAULT_TEAM_LOGO_URL
 
 
 def make_team_description(team):
@@ -146,7 +110,7 @@ def make_team_description(team):
 CONTEXT_TO_DEFAULT_USER_ID = {
     'OW': '[Battle Tag Not Found]',
     'MR': '[Username Not Found]',
-    'VL': '[Riot ID Not Found]',
+    'DB': '[Dead by Daylight Username Not Found]',
 }
 
 def make_member_game_id(db, member, context):
@@ -161,68 +125,16 @@ def make_member_game_id(db, member, context):
                 member_id = user['battle_tag'].split('#')[0]
             except Exception as e:
                 raise Exception('Could not find a battle tag for user with id '+str(member['discord_id']))
-        elif context == 'VL':
+        elif context == 'DB':
             try:
-                member_id = user['riot_id'].split('#')[0]
+                member_id = user['dbd_username']
             except Exception as e:
-                raise Exception('Could not find a riot id for user with id '+str(member['discord_id']))
+                raise Exception('Could not find a dead by daylight username for user with id '+str(member['discord_id']))
         else:
             if 'rivals_username' in user:
                 member_id = user['rivals_username']
 
     return member_id
-
-async def update_team_info(client, team, db, context='OW'):
-
-    team_message_id = team['team_info_msg_id']
-    team_info_channel = get_team_info_channel_from_context(client, context)
-
-    info_message = await team_info_channel.fetch_message(team_message_id)
-
-    guild = await get_guild(client)
-
-    available_tpp = 100
-    num_members_on_team = str(len(team['members']))
-
-    team_name = team['team_name']
-    team_color = get_team_color_by_name(team_name)
-    team_image_url = get_team_logo_by_name(team_name)
-
-    embed_description = make_team_description(team)
-    embed = discord.Embed(title=team_name.upper()+' TEAM DETAILS ('+num_members_on_team+'/25)', color=team_color, description=embed_description)
-    embed.set_thumbnail(url=team_image_url)
-
-    for member in team['members']:
-
-        try:
-            guild_member = await guild.fetch_member(member['discord_id'])
-        except discord.NotFound:
-            guild_member = None
-
-        member_mention = '[User not found]'
-        if guild_member:
-            member_mention = guild_member.mention
-
-        member_game_id = make_member_game_id(db, member, context)
-
-        name_string = member_game_id+' - '+member['role']
-
-        value_string = ''
-        if member['is_owner']:
-            value_string = '👑 | '
-        elif member['is_admin']:
-            value_string = '🛡️ | '
-
-        value_string += member_mention+' | '+str(member['TPP'])+' TPP'
-
-        available_tpp -= member['TPP']
-
-        embed.add_field(name=name_string, value=value_string, inline=False)
-
-    embed.set_footer(text='Available TPP: '+str(available_tpp))
-
-    await info_message.edit(embed=embed, content='')
-
 
 def remove_league_invite(user, team_name, db, context='OW'):
 
@@ -274,8 +186,8 @@ def has_username_for_game(user, context):
     elif context == 'MR':
         if 'rivals_username' in user:
             return True
-    elif context == 'VL':
-        if 'riot_id' in user:
+    elif context == 'DB':
+        if 'dbd_username' in user:
             return True
 
     return False

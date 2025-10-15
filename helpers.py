@@ -116,7 +116,7 @@ def get_league_emoji_from_team_name(team_name):
 
 def is_bot_commands_channel(channel):
 
-    return (channel.id == constants.BOT_CHANNEL) or (channel.id == constants.RIVALS_BOT_CHANNEL) or (channel.id == constants.VALORANT_BOT_CHANNEL)
+    return (channel.id == constants.BOT_CHANNEL) or (channel.id == constants.RIVALS_BOT_CHANNEL)
 
 
 def is_valid_hex_code(s):
@@ -151,3 +151,18 @@ def convert_to_int(value):
         return int(value)
     except ValueError:
         raise CommandError(f"Invalid value: {value} is not an integer.")
+    
+
+
+TIMESLOT_PREFIX_TO_DAY = {
+    'W': 'Wednesday',
+    'T': 'Thursday',
+    'F': 'Friday',
+    'S': 'Saturday',
+    'X': 'Sunday',
+}
+
+def timeslot_to_day(timeslot):
+
+    timeslot_day_part = timeslot.split('-')[0]
+    return TIMESLOT_PREFIX_TO_DAY.get(timeslot_day_part, 'NONE')

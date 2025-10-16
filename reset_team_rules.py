@@ -1,4 +1,4 @@
-async def reset_team_rules_handler(db, message):
+async def reset_team_rules_handler(db):
     users = db['users']
     all_users = users.find()
 

@@ -299,6 +299,8 @@ from list_ids import list_ids_handler
 from say import say_handler
 from win import win_handler
 from no_showc import no_show_handler
+from raffle_winner import raffle_winner_handler
+from init_auction import init_auction_handler
 
 def is_valid_channel(message, lower_message, is_helper, is_push_bot, is_tourney_admin):
 
@@ -821,26 +823,7 @@ async def handle_message(message, db, client):
         await redeem_code(db, message)
 
     elif lower_message == '!resetteamrules' and is_admin:
-
-        users = db['users']
-        all_users = users.find()
-
-        for user in all_users:
-
-            changes_made = False
-            set_array = {}
-
-            if 'team_swaps' in user:
-                changes_made = True
-                set_array['team_swaps'] = 3
-
-            if 'user_div' in user:
-                changes_made = True
-                set_array['user_div'] = 0
-
-            if changes_made:
-                users.update_one({'discord_id': user['discord_id']}, {'$set': set_array})
-        await reset_team_rules_handler(db, message)
+        await reset_team_rules_handler(db)
 
     elif lower_message.startswith('!setleagueteam ') and is_admin:
         # !setleagueteam [user_id] [team name]
@@ -1206,36 +1189,13 @@ async def handle_message(message, db, client):
         await both_no_show(message, db, guild, client)
 
     elif lower_message == '!rafflewinner' and is_admin:
-
-        giant_array = []
-
-        users = db['users']
-        all_users = users.find()
-
-        for user in all_users:
-            if 'tickets' in user:
-                for i in range(user['tickets']):
-                    giant_array.append(user['battle_tag'])
-
-        lucky_winner = random.choice(giant_array)
-
-        await safe_send(message.channel, 'The winner of the raffle is the user with the battle tag: '+lucky_winner)
+        await raffle_winner_handler(db, message)
 
     elif lower_message == '!initstandings' and is_admin:
         await init_standings(db, message)
 
     elif lower_message == '!initauction' and is_admin:
-
-        auction = db['auction']
-        new_auction = {
-            'auction_id': 1,
-            'is_open': False,
-            'item_name': 'NONE',
-            'highest_bid': 0,
-            'highest_bidder_id': 0
-        }
-        auction.insert_one(new_auction)
-        await safe_send(message.channel, 'auction data initated')
+        await init_auction_handler(db, message)
 
     elif lower_message == '!testgetconstant' and is_admin:
         constant_val = get_constant_value(db, 'test_constant')

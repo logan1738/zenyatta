@@ -1,4 +1,7 @@
-async def fix_mr_lineup_hander(db, message):
+from safe_send import safe_send
+
+async def fix_mr_lineup_handler(db, message):
+    
     rivals_league_teams = db['rivals_leagueteams']
     all_teams = rivals_league_teams.find()
     for team in all_teams:
@@ -30,5 +33,5 @@ async def fix_mr_lineup_hander(db, message):
         }
 
         rivals_league_teams.update_one({'team_name': team['team_name']}, {'$set': {'lineup': team['lineup']}})
-        
-    await message.channel.send('All teams have been reset to have no players in their lineup.')
+
+        await safe_send(message.channel, 'All teams have been reset to have no players in their lineup.')

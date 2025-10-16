@@ -1,8 +1,8 @@
 from user.user import user_exists, get_lvl_info
-from api import send_msg
+from safe_send import safe_send
 
 
-async def give_all_boxes_hander(db, message, client):
+async def give_all_boxes_handler(db, message, client):
         users = db['users']
 
         for member in client.get_all_members():
@@ -18,4 +18,4 @@ async def give_all_boxes_hander(db, message, client):
 
             users.update_one({"discord_id": user['discord_id']}, {"$set": {"lootboxes": user_boxes}})
 
-        await send_msg(message.channel, 'boxes given', '!giveallboxes')    
+        await safe_send(message.channel, 'boxes given')  

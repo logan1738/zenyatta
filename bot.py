@@ -289,17 +289,89 @@ from xp_battles import add_to_battle, how_many_handler, remove_from_battle
 from wipe_bracket import wipe_bracket_handler
 from switch_matches import switch_matches_handler
 from gen_tourney import gen_tourney_handler
+from bot_validity import is_valid_channel
 from reset_team_rules import reset_team_rules_handler
-from fix_mr_lineups import fix_mr_lineup_hander
+from fix_mr_lineups import fix_mr_lineup_handler
 from league_admin_role_fix import league_admin_role_fix_handler
 from reset_raffle import reset_raffle_handler
-from remove_passes import remove_passes_handler
-from give_all_boxes import give_all_boxes_hander
+from give_all_boxes import give_all_boxes_handler
 from list_ids import list_ids_handler
 from say import say_handler
 from win import win_handler
 from no_showc import no_show_handler
-from bot_validity import is_valid_channel
+
+def is_valid_channel(message, lower_message, is_helper, is_push_bot, is_tourney_admin):
+
+    if is_helper or is_push_bot or is_tourney_admin:
+        return True, None
+    
+    if lower_message == '!p' or lower_message == '!hello' or lower_message == '!gg ez' or lower_message.startswith('!help') or lower_message.startswith('!whichteam'):
+        return True, None
+
+    if is_bot_commands_channel(message.channel):
+
+        if lower_message.startswith('!wager'):
+            return False, 'Please only use the wager command in the Roulette Channel.'
+        elif lower_message.startswith('!blackjack'):
+            return False, 'Please only use the blackjack command in the Blackjack Channel.'
+        elif lower_message.startswith('!mine'):
+            return False, 'Please only use the mine command in the Mineshaft Channel.'
+        elif lower_message.startswith('!openpack'):
+            return False, 'Please only open packs in the openening packs channel: https://discord.com/channels/1130553449491210442/1233596350306713600'
+        elif lower_message.startswith('!opendrop'):
+            return False, 'Please only open drops in the opening drops channel: https://discord.com/channels/1130553449491210442/1332055598057001021'
+        else:
+            return True, None
+        
+    elif message.channel.id == constants.CASINO_CHANNEL:
+
+        if lower_message.startswith('!wager') or lower_message.startswith('!tokens') or lower_message.startswith('!help'):
+            return True, None
+        else:
+            return False, 'Only these commands are allowed in the Roulette Channel: !wager, !tokens, !helpcasino, !help'
+        
+    elif message.channel.id == constants.BLACKJACK_CHANNEL:
+
+        if lower_message.startswith('!blackjack') or lower_message.startswith('!tokens') or lower_message.startswith('!help'):
+            return True, None
+        else:
+            return False, 'Only these commands are allowed in the Blackjack Channel: !blackjack, !tokens, !helpcasino'
+        
+    elif message.channel.id == constants.MINE_CHANNEL:
+
+        if lower_message.startswith('!mine') or lower_message.startswith('!tokens') or lower_message.startswith('!pickaxes') or lower_message.startswith('!gems') or lower_message.startswith('!sellgems') or lower_message.startswith('!tradegemset') or lower_message.startswith('!help'):
+            return True, None
+        else:
+            return False, 'Only these commands are allowed in the Mineshaft Channel: !mine, !tokens, !pickaxes, !gems, !helpcasino'
+        
+    elif message.channel.id == constants.RPS_CHANNEL:
+
+        if lower_message.startswith('!rps') or lower_message.startswith('!tokens') or lower_message.startswith('!help'):
+            return True, None
+        else:
+            return False, 'Only these commands are allowed in the RPS Channel: !rps, !tokens, !helpcasino'
+        
+    elif message.channel.id == constants.GEM_TRADING_CHANNEL:
+
+        if lower_message.startswith('!help') or lower_message.find('gem') != -1:
+            return True, None
+        else:
+            return False, 'Only gem related commands are allowed in the Gem Trading channel.'
+        
+    elif (message.channel.id == constants.CARD_TRADING_CHANNEL) or (message.channel.id == constants.PACK_OPEN_CHANNEL):
+
+        if lower_message.find('card') != -1 or lower_message.find('pack') != -1 or lower_message.find('token') != -1 or lower_message.find('donate') != -1 or lower_message.find('gallery') != -1:
+            return True, None
+        
+    elif (message.channel.id == constants.OPENING_DROPS_CHANNEL):
+        if lower_message.find('drop') != -1:
+            return True, None
+        
+    elif (message.channel.id == constants.TEAM_OWNERS_CHANNEL or message.channel.id == constants.RIVALS_TEAM_OWNERS_CHANNEL):
+        if lower_message.startswith('!setlineup') or lower_message.startswith('!timeslot') or lower_message.startswith('!unschedule'):
+            return True, None
+    
+    return False, 'Please only use commands in a valid channel'
 
 
 
@@ -577,40 +649,8 @@ async def handle_message(message, db, client):
         await make_league_team_handler(db, message, client, context)
 
     elif lower_message == '!fixmrlineups' and is_admin:
+        await fix_mr_lineup_handler(db, message)
         
-        rivals_league_teams = db['rivals_leagueteams']
-        all_teams = rivals_league_teams.find()
-        for team in all_teams:
-            team['lineup'] = {
-                'player1': {
-                    'role': 'player',
-                    'user_id': 0
-                },
-                'player2': {
-                    'role': 'player',
-                    'user_id': 0
-                },
-                'player3': {
-                    'role': 'player',
-                    'user_id': 0
-                },
-                'player4': {
-                    'role': 'player',
-                    'user_id': 0
-                },
-                'player5': {
-                    'role': 'player',
-                    'user_id': 0
-                },
-                'player6': {
-                    'role': 'player',
-                    'user_id': 0
-                },
-            }
-
-            rivals_league_teams.update_one({'team_name': team['team_name']}, {'$set': {'lineup': team['lineup']}})
-        
-        await message.channel.send('All teams have been reset to have no players in their lineup.')
 
     elif lower_message.startswith('!changeteamowner') and is_tier_3_mod:
         # !changeteamowner @player team name
@@ -633,23 +673,7 @@ async def handle_message(message, db, client):
         await make_team_admin_handler(db, message, client, context)
 
     elif lower_message == '!leagueadminrolefix' and is_admin:
-
-        admin_role_id = 1353487134895378582
-        admin_role = await get_role_by_id(client, admin_role_id)
-
-        guild = await get_guild(client)
-
-        league_teams = db['rivals_leagueteams']
-        all_teams = league_teams.find()
-        for team in all_teams:
-            members = team['members']
-            for member in members:
-                if member['is_admin']:
-                    member_id = member['discord_id']
-                    member_obj = get_member(guild, member_id, 'league_admin_role_fix')
-                    await member_obj.add_roles(admin_role)
-
-        await message.channel.send('done')
+        await league_admin_role_fix_handler(db, message, client)
 
 
     elif lower_message.startswith('!removeteamadmin'):
@@ -859,24 +883,6 @@ async def handle_message(message, db, client):
         # !addevent|[event id]|[event name]|[max participants]|[0 for no pass, 1 for pass, 2 for subs]|[team size]|[event role id]|[event channel id]
         await add_event_handler(db, message)
 
-    elif lower_message.startswith("!removepasses") and is_admin:
-
-        users = db['users']
-        all_users = users.find()
-        users_affected = 0
-        for user in all_users:
-            if 'passes' in user and 'tokens' in user:
-                num_passes = user['passes']
-                if num_passes > 0:
-                    tokens_to_give = num_passes * 10
-                    new_tokens = user['tokens'] + tokens_to_give
-                    users.update_one({'discord_id': user['discord_id']}, {'$set': {'tokens': new_tokens, 'passes': 0}})
-                    users_affected += 1
-
-        await message.channel.send(f'All users have had their passes removed and received 10 tokens for each pass they had. {users_affected} users were affected.')
-        
-
-
     elif lower_message.startswith("!delevent") and is_admin:
         # !delevent [event id]
         await delete_event_handler(db, message)
@@ -884,7 +890,6 @@ async def handle_message(message, db, client):
     elif lower_message.startswith('!pruneteamevent') and is_admin:
         await prune_team_event_handler(db, message, client)
         
-
     elif lower_message.startswith("!genbracket ") and is_admin:
         # !genbracket [event id]
         await gen_bracket_handler(db, message)
@@ -1184,38 +1189,15 @@ async def handle_message(message, db, client):
         await card_page(db, message)
 
     elif lower_message == '!resetraffle' and is_admin:
-        db_constants = db['constants']
-        db_constants.update_one({"name": 'raffle_total'}, {"$set": {"value": 0}})
-
-        users = db['users']
-        all_users = users.find()
-
-        for user in all_users:
-            if 'tickets' in user:
-                users.update_one({"discord_id": user['discord_id']}, {"$set": {"tickets": 0}})
-
-        await message.channel.send('Raffle reset')
-
+        await reset_raffle_handler(db, message)
 
     elif lower_message.startswith('!win ') and is_tourney_admin:
         # !win [winner 1 or 2]
-        word_list = message.content.split()
-        if len(word_list) == 2:
-            guild = client.get_guild(constants.GUILD_ID)
-            await won_match(int(word_list[1]), message, db, guild, client)
-        else:
-            await message.channel.send("Invalid number of arguments.")
+        await win_handler(db, message, client)
 
     elif lower_message.startswith('!noshow ') and is_tourney_admin:
-        
         # !noshow [loser 1 or 2]
         await no_show_handler(db, message, client)
-        word_list = message.content.split()
-        if len(word_list) == 2:
-            guild = client.get_guild(constants.GUILD_ID)
-            await no_show(int(word_list[1]), message, db, guild, client)
-        else:
-            await safe_send(message.channel, "Invalid number of arguments.")
 
     elif lower_message == '!bothnoshow' and is_tourney_admin:
 
@@ -1463,23 +1445,7 @@ async def handle_message(message, db, client):
         await give_twitch_lootbox_handler(db, message, client)
 
     elif lower_message.startswith('!giveallboxes') and is_admin:
-
-        users = db['users']
-
-        for member in client.get_all_members():
-            user = user_exists(db, member.id)
-            if not user:
-                continue
-            user_boxes = []
-            level, _ = get_lvl_info(user)
-            increase_int = 2
-            while level >= increase_int:
-                user_boxes.append(increase_int)
-                increase_int += 1
-
-            users.update_one({"discord_id": user['discord_id']}, {"$set": {"lootboxes": user_boxes}})
-
-        await send_msg(message.channel, 'boxes given', '!giveallboxes')
+        await give_all_boxes_handler(db, message, client)
 
     elif lower_message == '!givesubboxes' and is_admin:
         await give_sub_boxes_handler(db, message, client)
@@ -1535,11 +1501,7 @@ async def handle_message(message, db, client):
     elif lower_message.startswith('!setstock') and is_admin:
         await set_stock_handler(db, message)
     elif lower_message.startswith('!say') and is_helper:
-        
-        rest = message.content[len("!say "):].strip()
-        guild = await get_guild(client)
-        chat_channel = guild.get_channel(constants.CHAT_CHANNEL)
-        await send_msg(chat_channel, rest, '!say')
+        await say_handler(message, client)
 
     elif lower_message.startswith('!deletebytag ') and is_admin:
         await delete_by_tag_handler(db, message)

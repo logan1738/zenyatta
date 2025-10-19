@@ -13,6 +13,7 @@ from automation.casting.first_pick import first_pick_handler
 from automation.casting.team_colors import team_colors_handler
 from coin.donate_vouchers import donate_vouchers
 from coin.redeem_trophies import redeem_trophies
+from dbd.update_dbd_data import update_dbd_data
 import discord
 import aiohttp
 import uuid
@@ -1792,6 +1793,8 @@ async def handle_message(message, db, client):
         await schedule_plan_loop(db, message, client)
 
         await update_bets(db, message.channel, client)
+
+        await update_dbd_data(db, message.channel)
 
     elif context == 'MR':
         await route_rivals_message(client, db, message, lower_message)

@@ -6,7 +6,7 @@ from dbd_perks.survivor_perk_names import SURVIVOR_PERK_NAMES
 
 class SPIRIT:
 
-    NAME = "The Spirit"
+    NAME = "Spirit"
 
     TIER = 1
 

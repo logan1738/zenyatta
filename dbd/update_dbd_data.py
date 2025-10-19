@@ -27,8 +27,6 @@ def generate_killer_list():
 
 def copy_dbd_data_to_database(db):
 
-    print('This function is not implemented yet')
-
     dbd_data = {
         'killer_list': generate_killer_list()
     }

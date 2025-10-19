@@ -1,0 +1,4 @@
+
+
+TIER1_BANNED_SURVIVOR_PERKS = [
+]

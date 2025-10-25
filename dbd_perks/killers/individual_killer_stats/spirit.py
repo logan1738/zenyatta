@@ -1,7 +1,34 @@
 
 
+from dbd_perks.items import SURVIVOR_ITEM_NAMES, SURVIVOR_ITEM_ADD_ON_NAMES
 from dbd_perks.killer_perk_names import KILLER_PERK_NAMES
+from dbd_perks.maps import MAP_NAMES
+from dbd_perks.offerings import KILLER_OFFERING_NAMES, SURVIVOR_OFFERING_NAMES
 from dbd_perks.survivor_perk_names import SURVIVOR_PERK_NAMES
+
+
+class SPIRIT_ADD_ON_NAMES:
+
+    GIFTED_BAMBOO_COMB = "Gifted Bamboo Comb"
+    ORIGAMI_CRANE = "Origami Crane"
+    SHIWASE_AMULET = "Shiwase Amulet"
+    ZORI = "Zori"
+    JUNIPER_BONSAI = "Juniper Bonsai"
+    KAIUN_TALISMAN = "Kaiun Talisman"
+    MUDDY_SPORTS_DAY_CAP = "Muddy Sports Day Cap"
+    RINS_BROKEN_WATCH = "Rin's Broken Watch"
+    WHITE_HAIR_RIBBON = "White Hair Ribbon"
+    KATANA_TSUBA = "Katana Tsuba"
+    MOTHERS_GLASSES = "Mother's Glasses"
+    RUSTY_FLUTE = "Rusty Flute"
+    SENKO_HANABI = "Senko Hanabi"
+    UCHIWA = "Uchiwa"
+    DRIED_CHERRY_BLOSSOM = "Dried Cherry Blossom"
+    FURIN = "Furin"
+    WAKIZASHI_SAYA = "Wakizashi Saya"
+    YAKUYOKE_AMULET = "Yakuyoke Amulet"
+    KINTSUGI_TEACUP = "Kintsugi Teacup"
+    MOTHER_DAUGHTER_RING = "Mother-Daughter Ring"
 
 
 class SPIRIT:
@@ -27,3 +54,34 @@ class SPIRIT:
     BANNED_KILLER_PERKS = [
         KILLER_PERK_NAMES.HUBRIS
     ]
+
+    BANNED_KILLER_ADD_ONS = [
+        SPIRIT_ADD_ON_NAMES.DRIED_CHERRY_BLOSSOM,
+        SPIRIT_ADD_ON_NAMES.FURIN,
+        SPIRIT_ADD_ON_NAMES.MOTHER_DAUGHTER_RING,
+        SPIRIT_ADD_ON_NAMES.WAKIZASHI_SAYA,
+        SPIRIT_ADD_ON_NAMES.YAKUYOKE_AMULET
+    ]
+
+    KILLER_OFFERING = KILLER_OFFERING_NAMES.CUT_COIN
+
+    SURVIVOR_OFFERINGS = [
+        [SURVIVOR_OFFERING_NAMES.SHROUD_OF_BINDING],
+        [SURVIVOR_OFFERING_NAMES.VIGOS_SHROUD],
+        [SURVIVOR_OFFERING_NAMES.ANNOTATED_BLUEPRINT],
+        [SURVIVOR_OFFERING_NAMES.BLOODIED_BLUEPRINT, SURVIVOR_OFFERING_NAMES.TORN_BLUEPRINT]
+    ]
+
+    SURVIVOR_ITEMS = [
+        {
+            'item': SURVIVOR_ITEM_NAMES.RANGER_MED_KIT,
+            'add_ons': [
+                SURVIVOR_ITEM_ADD_ON_NAMES.GEL_DRESSINGS,
+                SURVIVOR_ITEM_ADD_ON_NAMES.BANDAGES
+            ]
+        }
+    ]
+
+    MAP_1 = MAP_NAMES.WRECKERS_YARD
+    MAP_2 = MAP_NAMES.GRIM_PANTRY
+    MAP_3 = MAP_NAMES.DEAD_DAWG_SALOON

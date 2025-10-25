@@ -161,3 +161,8 @@ class SURVIVOR_PERK_NAMES:
     WICKED = "Wicked"
     WINDOWS_OF_OPPORTUNITY = "Windows of Opportunity"
     WIRETAP = "Wiretap"
+
+
+def get_all_survivor_perk_names():
+    perk_names = [value for value in vars(SURVIVOR_PERK_NAMES).values() if isinstance(value, str)]
+    return perk_names

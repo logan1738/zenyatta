@@ -8,3 +8,4 @@ def get_survivor_perk_bans_for_tier(killer_tier):
     if killer_tier == 1:
         return TIER1_BANNED_SURVIVOR_PERKS
 
+    return []

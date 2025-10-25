@@ -161,3 +161,12 @@ class SURVIVOR_PERK_NAMES:
     WICKED = "Wicked"
     WINDOWS_OF_OPPORTUNITY = "Windows of Opportunity"
     WIRETAP = "Wiretap"
+
+
+def get_all_survivor_perk_names():
+    perk_names = [
+        getattr(SURVIVOR_PERK_NAMES, attr)
+        for attr in dir(SURVIVOR_PERK_NAMES)
+        if not attr.startswith('_') and isinstance(getattr(SURVIVOR_PERK_NAMES, attr), str)
+    ]
+    return perk_names

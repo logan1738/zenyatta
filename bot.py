@@ -1687,6 +1687,11 @@ async def handle_message(message, db, client):
 
         await schedule_plan_loop(db, message, client)
 
+    elif lower_message == '!forcedbdsync' and is_admin:
+        
+        await update_dbd_data(db, message.channel)
+        await safe_send(message.channel, 'DBD data synced')
+
     elif lower_message == '!getpfplink':
 
         await safe_send(message.channel, message.author.avatar.url)

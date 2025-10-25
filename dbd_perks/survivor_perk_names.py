@@ -164,5 +164,9 @@ class SURVIVOR_PERK_NAMES:
 
 
 def get_all_survivor_perk_names():
-    perk_names = [value for value in vars(SURVIVOR_PERK_NAMES).values() if isinstance(value, str)]
+    perk_names = [
+        getattr(SURVIVOR_PERK_NAMES, attr)
+        for attr in dir(SURVIVOR_PERK_NAMES)
+        if not attr.startswith('_') and isinstance(getattr(SURVIVOR_PERK_NAMES, attr), str)
+    ]
     return perk_names

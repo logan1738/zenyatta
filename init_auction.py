@@ -11,4 +11,4 @@ async def init_auction_handler(db, message):
     }
     auction.insert_one(new_auction)
     
-    await safe_send(message.channel, 'auction data initated')
+    await safe_send(message.channel, 'auction data initiated')

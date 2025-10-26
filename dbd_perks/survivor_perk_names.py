@@ -6,7 +6,7 @@ class SURVIVOR_PERK_NAMES:
     AFTERCARE = "Aftercare"
     ALERT = "Alert"
     ANY_MEANS_NECESSARY = "Any Means Necessary"
-    APPOCOLYPTIC_INGENUITY = "Appocolyptic Ingenuity"
+    APOCALYPTIC_INGENUITY = "Apocalyptic Ingenuity"
     APPRAISAL = "Appraisal"
     AUTODIDACT = "Autodidact"
     BABYSITTER = "Babysitter"

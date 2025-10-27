@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-VERSION = '1.11.58'
+VERSION = '1.11.59'
 
 DBD_DATA_VERSION = '1.1.1'
 

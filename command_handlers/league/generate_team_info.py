@@ -38,7 +38,9 @@ async def generate_team_info_handler(client, db, message, context):
     
     team_info_channel = get_team_info_channel_from_context(client, context)
 
-    for team_name in team_info_context:
+    team_names_sorted_alphabetically = sorted(team_info_context.keys())
+
+    for team_name in team_names_sorted_alphabetically:
         team_embed = create_team_embed(team_name)
         team_info_message = await safe_send_embed(team_info_channel, team_embed)
         team_info_context[team_name]['message_id'] = team_info_message.id

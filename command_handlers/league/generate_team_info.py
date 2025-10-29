@@ -3,7 +3,7 @@
 from context.context_helpers import get_team_info_channel_from_context
 from helpers import get_constant_value, set_constant_value
 from league import get_team_color_by_name
-from safe_send import safe_create_embed, safe_send, safe_send_embed
+from safe_send import safe_create_embed, safe_send, safe_send_embed, safe_set_footer
 
 
 def context_messages_exist(team_info_context):
@@ -19,6 +19,8 @@ def create_team_embed(team_name):
 
     team_embed = safe_create_embed(team_name, color=get_team_color_by_name(team_name))
     team_embed.set_image(url='https://spicyesports.com/static/media/Eclipse.e4cdd239089f8dcec7ee.png')
+    safe_set_footer(team_embed, 'https://spicyesports.com/sol/team/'+team_name.lower())
+
     return team_embed
 
 

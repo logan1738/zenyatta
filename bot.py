@@ -291,8 +291,17 @@ from wipe_bracket import wipe_bracket_handler
 from switch_matches import switch_matches_handler
 from gen_tourney import gen_tourney_handler
 from bot_validity import is_valid_channel
-
-
+from reset_team_rules import reset_team_rules_handler
+from fix_mr_lineups import fix_mr_lineup_handler
+from league_admin_role_fix import league_admin_role_fix_handler
+from reset_raffle import reset_raffle_handler
+from give_all_boxes import give_all_boxes_handler
+from list_ids import list_ids_handler
+from say import say_handler
+from win import win_handler
+from no_showc import no_show_handler
+from raffle_winner import raffle_winner_handler
+from init_auction import init_auction_handler
 
 async def handle_message(message, db, client):
 
@@ -568,40 +577,8 @@ async def handle_message(message, db, client):
         await make_league_team_handler(db, message, client, context)
 
     elif lower_message == '!fixmrlineups' and is_admin:
+        await fix_mr_lineup_handler(db, message)
         
-        rivals_league_teams = db['rivals_leagueteams']
-        all_teams = rivals_league_teams.find()
-        for team in all_teams:
-            team['lineup'] = {
-                'player1': {
-                    'role': 'player',
-                    'user_id': 0
-                },
-                'player2': {
-                    'role': 'player',
-                    'user_id': 0
-                },
-                'player3': {
-                    'role': 'player',
-                    'user_id': 0
-                },
-                'player4': {
-                    'role': 'player',
-                    'user_id': 0
-                },
-                'player5': {
-                    'role': 'player',
-                    'user_id': 0
-                },
-                'player6': {
-                    'role': 'player',
-                    'user_id': 0
-                },
-            }
-
-            rivals_league_teams.update_one({'team_name': team['team_name']}, {'$set': {'lineup': team['lineup']}})
-
-        await safe_send(message.channel, 'All teams have been reset to have no players in their lineup.')
 
     elif lower_message.startswith('!changeteamowner') and is_tier_3_mod:
         # !changeteamowner @player team name
@@ -624,23 +601,7 @@ async def handle_message(message, db, client):
         await make_team_admin_handler(db, message, client, context)
 
     elif lower_message == '!leagueadminrolefix' and is_admin:
-
-        admin_role_id = 1353487134895378582
-        admin_role = await get_role_by_id(client, admin_role_id)
-
-        guild = await get_guild(client)
-
-        league_teams = db['rivals_leagueteams']
-        all_teams = league_teams.find()
-        for team in all_teams:
-            members = team['members']
-            for member in members:
-                if member['is_admin']:
-                    member_id = member['discord_id']
-                    member_obj = get_member(guild, member_id, 'league_admin_role_fix')
-                    await member_obj.add_roles(admin_role)
-
-        await safe_send(message.channel, 'done')
+        await league_admin_role_fix_handler(db, message, client)
 
 
     elif lower_message.startswith('!removeteamadmin'):
@@ -788,25 +749,7 @@ async def handle_message(message, db, client):
         await redeem_code(db, message)
 
     elif lower_message == '!resetteamrules' and is_admin:
-
-        users = db['users']
-        all_users = users.find()
-
-        for user in all_users:
-
-            changes_made = False
-            set_array = {}
-
-            if 'team_swaps' in user:
-                changes_made = True
-                set_array['team_swaps'] = 3
-
-            if 'user_div' in user:
-                changes_made = True
-                set_array['user_div'] = 0
-
-            if changes_made:
-                users.update_one({'discord_id': user['discord_id']}, {'$set': set_array})
+        await reset_team_rules_handler(db)
 
     elif lower_message.startswith('!setleagueteam ') and is_admin:
         # !setleagueteam [user_id] [team name]
@@ -856,7 +799,6 @@ async def handle_message(message, db, client):
     elif lower_message.startswith('!pruneteamevent') and is_admin:
         await prune_team_event_handler(db, message, client)
         
-
     elif lower_message.startswith("!genbracket ") and is_admin:
         # !genbracket [event id]
         await gen_bracket_handler(db, message)
@@ -1156,38 +1098,15 @@ async def handle_message(message, db, client):
         await card_page(db, message)
 
     elif lower_message == '!resetraffle' and is_admin:
-        db_constants = db['constants']
-        db_constants.update_one({"name": 'raffle_total'}, {"$set": {"value": 0}})
-
-        users = db['users']
-        all_users = users.find()
-
-        for user in all_users:
-            if 'tickets' in user:
-                users.update_one({"discord_id": user['discord_id']}, {"$set": {"tickets": 0}})
-
-        await safe_send(message.channel, 'Raffle reset')
-
+        await reset_raffle_handler(db, message)
 
     elif lower_message.startswith('!win ') and is_tourney_admin:
-
         # !win [winner 1 or 2]
-        word_list = message.content.split()
-        if len(word_list) == 2:
-            guild = client.get_guild(constants.GUILD_ID)
-            await won_match(int(word_list[1]), message, db, guild, client)
-        else:
-            await safe_send(message.channel, "Invalid number of arguments.")
+        await win_handler(db, message, client)
 
     elif lower_message.startswith('!noshow ') and is_tourney_admin:
-
         # !noshow [loser 1 or 2]
-        word_list = message.content.split()
-        if len(word_list) == 2:
-            guild = client.get_guild(constants.GUILD_ID)
-            await no_show(int(word_list[1]), message, db, guild, client)
-        else:
-            await safe_send(message.channel, "Invalid number of arguments.")
+        await no_show_handler(db, message, client)
 
     elif lower_message == '!bothnoshow' and is_tourney_admin:
 
@@ -1196,36 +1115,13 @@ async def handle_message(message, db, client):
         await both_no_show(message, db, guild, client)
 
     elif lower_message == '!rafflewinner' and is_admin:
-
-        giant_array = []
-
-        users = db['users']
-        all_users = users.find()
-
-        for user in all_users:
-            if 'tickets' in user:
-                for i in range(user['tickets']):
-                    giant_array.append(user['battle_tag'])
-
-        lucky_winner = random.choice(giant_array)
-
-        await safe_send(message.channel, 'The winner of the raffle is the user with the battle tag: '+lucky_winner)
+        await raffle_winner_handler(db, message)
 
     elif lower_message == '!initstandings' and is_admin:
         await init_standings(db, message)
 
     elif lower_message == '!initauction' and is_admin:
-
-        auction = db['auction']
-        new_auction = {
-            'auction_id': 1,
-            'is_open': False,
-            'item_name': 'NONE',
-            'highest_bid': 0,
-            'highest_bidder_id': 0
-        }
-        auction.insert_one(new_auction)
-        await safe_send(message.channel, 'auction data initated')
+        await init_auction_handler(db, message)
 
     elif lower_message == '!testgetconstant' and is_admin:
         constant_val = get_constant_value(db, 'test_constant')
@@ -1435,23 +1331,7 @@ async def handle_message(message, db, client):
         await give_twitch_lootbox_handler(db, message, client)
 
     elif lower_message.startswith('!giveallboxes') and is_admin:
-
-        users = db['users']
-
-        for member in client.get_all_members():
-            user = user_exists(db, member.id)
-            if not user:
-                continue
-            user_boxes = []
-            level, _ = get_lvl_info(user)
-            increase_int = 2
-            while level >= increase_int:
-                user_boxes.append(increase_int)
-                increase_int += 1
-
-            users.update_one({"discord_id": user['discord_id']}, {"$set": {"lootboxes": user_boxes}})
-
-        await safe_send(message.channel, 'boxes given')
+        await give_all_boxes_handler(db, message, client)
 
     elif lower_message == '!givesubboxes' and is_admin:
         await give_sub_boxes_handler(db, message, client)
@@ -1475,13 +1355,7 @@ async def handle_message(message, db, client):
         await accept_gem_trade_handler(db, message)
 
     elif lower_message == '!listids' and is_admin:
-
-        for member in client.get_all_members():
-
-            user = user_exists(db, member.id)
-            if user:
-
-                print(member.display_name+" : "+str(member.id) + " : "+user['battle_tag'])
+        await list_ids_handler(db, client)
 
     elif lower_message.startswith('!getdetails '):
         # !getdetails [username]
@@ -1513,11 +1387,7 @@ async def handle_message(message, db, client):
     elif lower_message.startswith('!setstock') and is_admin:
         await set_stock_handler(db, message)
     elif lower_message.startswith('!say') and is_helper:
-        
-        rest = message.content[len("!say "):].strip()
-        guild = await get_guild(client)
-        chat_channel = guild.get_channel(constants.CHAT_CHANNEL)
-        await safe_send(chat_channel, rest)
+        await say_handler(message, client)
 
     elif lower_message.startswith('!deletebytag ') and is_admin:
         await delete_by_tag_handler(db, message)

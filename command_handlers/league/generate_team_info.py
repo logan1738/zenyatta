@@ -2,7 +2,7 @@
 
 from context.context_helpers import get_team_info_channel_from_context
 from helpers import get_constant_value, set_constant_value
-from safe_send import safe_send
+from safe_send import safe_create_embed, safe_send, safe_send_embed
 
 
 def context_messages_exist(team_info_context):
@@ -13,6 +13,11 @@ def context_messages_exist(team_info_context):
 
     return False
     
+
+def create_team_embed(team_name):
+
+    team_embed = safe_create_embed(team_name)
+    return team_embed
 
 
 async def generate_team_info_handler(client, db, message, context):
@@ -32,8 +37,8 @@ async def generate_team_info_handler(client, db, message, context):
     team_info_channel = get_team_info_channel_from_context(client, context)
 
     for team_name in team_info_context:
-        team_info_text = team_name
-        team_info_message = await safe_send(team_info_channel, team_info_text)
+        team_embed = create_team_embed(team_name)
+        team_info_message = await safe_send_embed(team_info_channel, team_embed)
         team_info_context[team_name]['message_id'] = team_info_message.id
 
     team_info[context] = team_info_context

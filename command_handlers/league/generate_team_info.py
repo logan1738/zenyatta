@@ -18,7 +18,7 @@ def context_messages_exist(team_info_context):
 def create_team_embed(team_name):
 
     team_embed = safe_create_embed(team_name, color=get_team_color_by_name(team_name))
-    # team_embed.set_image(url='https://example.com/team_image.png')
+    team_embed.set_image(url='https://spicyesports.com/static/media/Eclipse.e4cdd239089f8dcec7ee.png')
     return team_embed
 
 

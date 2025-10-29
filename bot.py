@@ -13,6 +13,7 @@ from automation.casting.first_pick import first_pick_handler
 from automation.casting.team_colors import team_colors_handler
 from coin.donate_vouchers import donate_vouchers
 from coin.redeem_trophies import redeem_trophies
+from command_handlers.league.generate_team_info import generate_team_info_handler
 from dbd.update_dbd_data import update_dbd_data
 import discord
 import aiohttp
@@ -763,6 +764,9 @@ async def handle_message(message, db, client):
 
     elif lower_message.startswith('!trackteam ') and is_admin:
         await track_team_handler(db, message, client, context)
+
+    elif lower_message == '!genteaminfo' and is_admin:
+        await generate_team_info_handler(client, db, message, context)
 
     elif lower_message.startswith('!giveteamtokens ') and is_admin:
         await give_team_tokens_handler(db, message)

@@ -30,7 +30,7 @@ def create_team_embed(db, team_name, league_team, context):
 
     team_embed = safe_create_embed(team_name, color=get_team_color_by_name(team_name))
     team_embed.set_thumbnail(url='https://spicyesports.com/static/media/Eclipse.e4cdd239089f8dcec7ee.png')
-    safe_set_footer(team_embed, 'https://spicyesports.com/sol/team/'+team_name.lower())
+    safe_set_footer(team_embed, '[Team Page for '+team_name+'](https://spicyesports.com/sol/team/'+team_name.lower()+')')
 
     for member in league_team['members']:
         user = user_exists(db, member['discord_id'])

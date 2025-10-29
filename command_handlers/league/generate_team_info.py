@@ -20,7 +20,7 @@ def get_user_display_name_with_context(user, context):
 
     if context == 'OW':
         if 'battle_tag' in user:
-            return user['battle_tag'].spltit('#')[0]
+            return user['battle_tag'].split('#')[0]
         return '[Unknown User]'
 
     return '[Unknown User]'

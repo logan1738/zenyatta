@@ -2,6 +2,7 @@
 
 from context.context_helpers import get_team_info_channel_from_context
 from helpers import get_constant_value, set_constant_value
+from league import get_team_color_by_name
 from safe_send import safe_create_embed, safe_send, safe_send_embed
 
 
@@ -16,7 +17,8 @@ def context_messages_exist(team_info_context):
 
 def create_team_embed(team_name):
 
-    team_embed = safe_create_embed(team_name)
+    team_embed = safe_create_embed(team_name, color=get_team_color_by_name(team_name))
+    # team_embed.set_image(url='https://example.com/team_image.png')
     return team_embed
 
 

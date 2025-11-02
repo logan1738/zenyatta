@@ -75,6 +75,48 @@ def get_team_color_by_name(team_name):
     return discord.Colour(0xFFFFFF)
 
 
+TEAM_NAME_TO_TEAM_LOGO_URL = {
+    'Polar': 'https://spicyesports.com/static/media/Polar.afd2ffc383f5eae45aca.png',
+    'Olympians': 'https://spicyesports.com/static/media/Olympians.1226efdd6e2647ae266e.png',
+    'Eclipse': 'https://spicyesports.com/static/media/Eclipse.e4cdd239089f8dcec7ee.png',
+    'Saviors': 'https://spicyesports.com/static/media/Saviors.5eea71d3e31f461aa2c7.png',
+    'Ragu': 'https://spicyesports.com/static/media/Ragu.aabdb0f398a3662f0379.png',
+    'Instigators': 'https://spicyesports.com/static/media/Instigators.5d6fff76542f1db977a3.png',
+    'Guardians': 'https://spicyesports.com/static/media/Guardians.a78a5aba9ac16ddffe36.png',
+    'Phoenix': 'https://spicyesports.com/static/media/Phoenix.9c4abe3972bc250a4863.png',
+    'Fresas': 'https://spicyesports.com/static/media/Fresas.a4cec89854afb9b9f31f.png',
+    'Outliers': 'https://spicyesports.com/static/media/Outliers.517042f0ddc6d06ea95b.png',
+    'Celestials': 'https://spicyesports.com/static/media/Celestials.162658494da7da5731c4.png',
+    'Saturn': 'https://spicyesports.com/static/media/Saturn.4f4d3be9b96f03273cca.png',
+    'Evergreen': 'https://spicyesports.com/static/media/Evergreen.cfd15d99f789d6a09f5a.png',
+    'Misfits': 'https://spicyesports.com/static/media/Misfits.df89ff417be1b22ceb7a.png',
+    'Hunters': 'https://spicyesports.com/static/media/Hunters.7806accc3f6d19a15006.png',
+    'Angels': 'https://spicyesports.com/static/media/Angels.0209e3f19b850f83d275.png',
+    'Phantoms': 'https://spicyesports.com/static/media/Phantoms.d9163e30e5a04aef0ecd.png',
+    'Sentinels': 'https://spicyesports.com/static/media/Sentinels.131ba5d0ec9f6bb4f34d.png',
+    'Diamonds': 'https://spicyesports.com/static/media/Diamonds.69459c71bbf761812351.png',
+    'Legion': 'https://spicyesports.com/static/media/Legion.6b15cc8e73e5fa47ff39.png',
+    'Lotus': 'https://spicyesports.com/static/media/Lotus.0ffc9685eba5019bfbed.png',
+    'Deadlock': 'https://spicyesports.com/static/media/Deadlock.30821419d7ab5e8f1693.png',
+    'Horizon': 'https://spicyesports.com/static/media/Horizon.f0b44e7955336bd40a16.png',
+    'Monarchs': 'https://spicyesports.com/static/media/Monarchs.78705155f9a7e6f3cf45.png',
+    'Aces': 'https://spicyesports.com/static/media/Aces.4d33616a35f35ff74ec6.png',
+    'Mantas': 'https://spicyesports.com/static/media/Mantas.b4acf814b2c4ed6f7a54.png',
+    'Penguins': 'https://spicyesports.com/static/media/Penguins.d63ee6c8b4325a935814.png',
+    'Tsunami': 'https://spicyesports.com/static/media/Tsunami.9a5f28db18adb2394e04.png',
+    'Frogs': ''
+}
+
+
+def get_team_logo_url_by_name(team_name):
+
+    if team_name in TEAM_NAME_TO_TEAM_LOGO_URL:
+        return TEAM_NAME_TO_TEAM_LOGO_URL[team_name]
+    
+    return ''
+
+
+
 def make_team_description(team):
 
     if len(team['allies']) == 0 and len(team['rivals']) == 0:

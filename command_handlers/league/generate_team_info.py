@@ -2,7 +2,7 @@
 
 from context.context_helpers import get_league_teams_collection_from_context, get_team_info_channel_from_context
 from helpers import get_constant_value, set_constant_value
-from league import get_team_color_by_name
+from league import get_team_color_by_name, get_team_logo_url_by_name
 from safe_send import safe_add_field, safe_create_embed, safe_send, safe_send_embed, safe_set_footer
 from user.user import user_exists
 
@@ -29,7 +29,7 @@ def get_user_display_name_with_context(user, context):
 def create_team_embed(db, team_name, league_team, context):
 
     team_embed = safe_create_embed(team_name, description='[Team Page for '+team_name+'](https://spicyesports.com/sol/team/'+team_name.lower()+')', color=get_team_color_by_name(team_name))
-    team_embed.set_thumbnail(url='https://spicyesports.com/static/media/Eclipse.e4cdd239089f8dcec7ee.png')
+    team_embed.set_thumbnail(url=get_team_logo_url_by_name(team_name))
     # safe_set_footer(team_embed, '')
 
     for member in league_team['members']:

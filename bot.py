@@ -331,7 +331,6 @@ async def handle_message(message, db, client):
     is_helper = (not message.author.bot) and member_has_role(message.author, constants.HELPER_ROLE_ID)
     is_xp_helper = (not message.author.bot) and member_has_role(message.author, constants.XP_HELPER_ROLE_ID)
     is_cp_helper = (not message.author.bot) and member_has_role(message.author, constants.CHANNEL_POINTS_ROLE_ID)
-    is_tp_helper = (not message.author.bot) and member_has_role(message.author, constants.TWITCH_PACKS_ROLE_ID)
     is_tourney_admin = (not message.author.bot) and member_has_role(message.author, constants.TOURNEY_COMMANDS_PERMS_ROLE)
     is_state_captain = (not message.author.bot) and member_has_role(message.author, constants.STATE_CAPTAIN_ROLE)
     has_image_perms = message.author.bot or member_has_role(message.author, constants.IMAGE_PERMS_ROLE)
@@ -1314,7 +1313,7 @@ async def handle_message(message, db, client):
         else:
             await safe_send(message.channel, 'Invalid number of arguments.')
 
-    elif lower_message.startswith('!givepacks ') and (is_admin or is_tp_helper):
+    elif lower_message.startswith('!givepacks ') and (is_admin or is_tier_3_mod):
 
         # !givepacks [winner id] [packs]
         word_list = message.content.split()
@@ -1323,7 +1322,7 @@ async def handle_message(message, db, client):
         else:
             await safe_send(message.channel, 'Invalid number of arguments.')
 
-    elif lower_message.startswith('!gp') and (is_admin or is_tp_helper):
+    elif lower_message.startswith('!gp') and (is_admin or is_tier_3_mod):
         await gp_handler(db, message)
 
     elif lower_message.startswith('!givegems ') and is_admin:

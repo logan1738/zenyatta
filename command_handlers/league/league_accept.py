@@ -98,9 +98,9 @@ async def league_accept_handler(db, message, client, context):
     
     teams_joined_this_season_constant = get_teams_joined_this_season_constant(context)
     teams_joined_this_season = get_teams_joined_this_season(user, teams_joined_this_season_constant)
-    if real_team_name in teams_joined_this_season:
-        await safe_send(message.channel, 'You have already been on the team "'+real_team_name+'" this season. You can only join a specific team once per season. You can still join a different team though.')
-        return
+    # if real_team_name in teams_joined_this_season:
+    #     await safe_send(message.channel, 'You have already been on the team "'+real_team_name+'" this season. You can only join a specific team once per season. You can still join a different team though.')
+    #     return
     teams_joined_this_season.append(real_team_name)
 
     remove_league_invite(user, real_team_name, db, context)

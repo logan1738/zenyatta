@@ -40,10 +40,10 @@ def create_team_embed(db, team_name, league_team, context):
     team_embed.set_thumbnail(url=get_team_logo_url_by_name(team_name))
     # safe_set_footer(team_embed, '')
 
-    user_discord_username = DISCORD_LOGO_EMOJI_STRING + ' ' + get_user_discord_username(user)
-
     for member in league_team['members']:
         user = user_exists(db, member['discord_id'])
+        user_discord_username = DISCORD_LOGO_EMOJI_STRING + ' ' + get_user_discord_username(user)
+
         safe_add_field(team_embed, get_user_display_name_with_context(user, context), user_discord_username, inline=False)
 
     return team_embed

@@ -1,5 +1,6 @@
 
 
+from constants import DISCORD_LOGO_EMOJI_STRING
 from context.context_helpers import get_league_teams_collection_from_context, get_team_info_channel_from_context
 from helpers import get_constant_value, set_constant_value
 from league import get_team_color_by_name, get_team_logo_url_by_name
@@ -26,15 +27,24 @@ def get_user_display_name_with_context(user, context):
     return '[Unknown User]'
 
 
+def get_user_discord_username(user):
+
+    if 'discord_username' in user:
+        return user['discord_username']
+
+    return '[Unknown Discord]'
+
 def create_team_embed(db, team_name, league_team, context):
 
     team_embed = safe_create_embed(team_name, description='[Team Page for '+team_name+'](https://spicyesports.com/sol/team/'+team_name.lower()+')', color=get_team_color_by_name(team_name))
     team_embed.set_thumbnail(url=get_team_logo_url_by_name(team_name))
     # safe_set_footer(team_embed, '')
 
+    user_discord_username = DISCORD_LOGO_EMOJI_STRING + ' ' + get_user_discord_username(user)
+
     for member in league_team['members']:
         user = user_exists(db, member['discord_id'])
-        safe_add_field(team_embed, get_user_display_name_with_context(user, context), 'Value', inline=False)
+        safe_add_field(team_embed, get_user_display_name_with_context(user, context), user_discord_username, inline=False)
 
     return team_embed
 

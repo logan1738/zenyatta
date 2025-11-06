@@ -1,6 +1,6 @@
 
 
-from constants import BATTLE_LOGO_EMOJI_STRING, DISCORD_LOGO_EMOJI_STRING
+from constants import BATTLE_LOGO_EMOJI_STRING, DBD_LOGO_EMOJI_STRING, DISCORD_LOGO_EMOJI_STRING, RIVALS_LOGO_EMOJI_STRING
 from context.context_helpers import get_league_teams_collection_from_context, get_team_info_channel_from_context
 from helpers import get_constant_value, set_constant_value
 from league import get_team_color_by_name, get_team_logo_url_by_name
@@ -23,6 +23,12 @@ def get_user_display_name_with_context(user, context):
         if 'battle_tag' in user:
             return user['battle_tag'].split('#')[0]
         return '[Unknown User]'
+    
+    elif context == 'MR':
+
+        if 'rivals_username' in user:
+            return user['rivals_username']
+        return '[Unknown User]'
 
     return '[Unknown User]'
 
@@ -32,6 +38,11 @@ def get_user_game_name_with_context(user, context):
         if 'battle_tag' in user:
             return user['battle_tag']
         return '[Unknown Battle Tag]'
+    
+    elif context == 'MR':
+        if 'rivals_username' in user:
+            return user['rivals_username']
+        return '[Unknown Rivals Username]'
 
     return '[Unknown Game Username]'
 
@@ -47,6 +58,12 @@ def get_game_logo_from_context(context):
     if context == 'OW':
         return BATTLE_LOGO_EMOJI_STRING
     
+    elif context == 'MR':
+        return RIVALS_LOGO_EMOJI_STRING
+
+    elif context == 'DB':
+        return DBD_LOGO_EMOJI_STRING
+
     return ''
 
 def get_user_emoji_decoration(member):

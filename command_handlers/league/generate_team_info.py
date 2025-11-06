@@ -6,7 +6,7 @@ from helpers import get_constant_value, set_constant_value
 from league import get_team_color_by_name, get_team_logo_url_by_name
 from safe_send import safe_add_field, safe_create_embed, safe_send, safe_send_embed, safe_set_footer
 from user.user import user_exists
-
+import time
 
 def context_messages_exist(team_info_context):
 
@@ -103,6 +103,8 @@ async def generate_team_info_handler(client, db, message, context):
         team_embed = create_team_embed(db, team_name, league_team, context)
         team_info_message = await safe_send_embed(team_info_channel, team_embed)
         team_info_context[team_name]['message_id'] = team_info_message.id
+
+        time.sleep(1)
 
     team_info[context] = team_info_context
 

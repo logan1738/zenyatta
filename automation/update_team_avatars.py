@@ -31,7 +31,7 @@ async def update_team_avatars(guild, db, message, context):
         
         time.sleep(1)
 
-    await safe_send(message.channel, 'Updated profile pictures for '+str(updated)+' users on team '+team_to_update)
+    await safe_send(message.channel, 'Updated profile pictures for '+str(updated)+' users on team '+team_to_update+' in context '+context+'.')
 
     new_index = current_team_index + 1
     if new_index >= len(team_list):

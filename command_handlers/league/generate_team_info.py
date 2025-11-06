@@ -49,6 +49,16 @@ def get_game_logo_from_context(context):
     
     return ''
 
+def get_user_emoji_decoration(member):
+
+    if member['is_owner']:
+        return '👑'
+    
+    if member['is_admin']:
+        return '🛡️'
+    
+    return ''
+
 def create_team_embed(db, team_name, league_team, context):
 
     team_embed = safe_create_embed(team_name, description='[Team Page for '+team_name+'](https://spicyesports.com/sol/team/'+team_name.lower()+')', color=get_team_color_by_name(team_name))
@@ -56,11 +66,14 @@ def create_team_embed(db, team_name, league_team, context):
     # safe_set_footer(team_embed, '')
 
     for member in league_team['members']:
+
+        user_emoji = get_user_emoji_decoration(member)
+
         user = user_exists(db, member['discord_id'])
         user_discord_username = DISCORD_LOGO_EMOJI_STRING + ' ' + get_user_discord_username(user)
         user_game_username =  get_game_logo_from_context(context) + ' ' + get_user_game_name_with_context(user, context)
 
-        safe_add_field(team_embed, get_user_display_name_with_context(user, context), user_discord_username + ' ' + user_game_username, inline=False)
+        safe_add_field(team_embed, user_emoji + ' ' + get_user_display_name_with_context(user, context), user_discord_username + '  ' + user_game_username, inline=False)
 
     return team_embed
 

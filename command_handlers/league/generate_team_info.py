@@ -29,6 +29,12 @@ def get_user_display_name_with_context(user, context):
         if 'rivals_username' in user:
             return user['rivals_username']
         return '[Unknown User]'
+    
+    elif context == 'DB':
+        
+        if 'dbd_username' in user:
+            return user['dbd_username'].split('#')[0]
+        return '[Unknown User]'
 
     return '[Unknown User]'
 
@@ -43,8 +49,13 @@ def get_user_game_name_with_context(user, context):
         if 'rivals_username' in user:
             return user['rivals_username']
         return '[Unknown Rivals Username]'
+    
+    elif context == 'DB':
+        if 'dbd_username' in user:
+            return user['dbd_username']
+        return '[Unknown DBD Username]'
 
-    return '[Unknown Game Username]'
+    return '[Unknown Username]'
 
 def get_user_discord_username(user):
 

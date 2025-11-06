@@ -1,6 +1,6 @@
 
 
-from constants import DISCORD_LOGO_EMOJI_STRING
+from constants import BATTLE_LOGO_EMOJI_STRING, DISCORD_LOGO_EMOJI_STRING
 from context.context_helpers import get_league_teams_collection_from_context, get_team_info_channel_from_context
 from helpers import get_constant_value, set_constant_value
 from league import get_team_color_by_name, get_team_logo_url_by_name
@@ -26,6 +26,14 @@ def get_user_display_name_with_context(user, context):
 
     return '[Unknown User]'
 
+def get_user_game_name_with_context(user, context):
+
+    if context == 'OW':
+        if 'battle_tag' in user:
+            return user['battle_tag']
+        return '[Unknown Battle Tag]'
+
+    return '[Unknown Game Username]'
 
 def get_user_discord_username(user):
 
@@ -33,6 +41,13 @@ def get_user_discord_username(user):
         return user['discord_username']
 
     return '[Unknown Discord]'
+
+def get_game_logo_from_context(context):
+
+    if context == 'OW':
+        return BATTLE_LOGO_EMOJI_STRING
+    
+    return ''
 
 def create_team_embed(db, team_name, league_team, context):
 
@@ -43,8 +58,9 @@ def create_team_embed(db, team_name, league_team, context):
     for member in league_team['members']:
         user = user_exists(db, member['discord_id'])
         user_discord_username = DISCORD_LOGO_EMOJI_STRING + ' ' + get_user_discord_username(user)
+        user_game_username =  get_game_logo_from_context(context) + ' ' + get_user_game_name_with_context(user, context)
 
-        safe_add_field(team_embed, get_user_display_name_with_context(user, context), user_discord_username, inline=False)
+        safe_add_field(team_embed, get_user_display_name_with_context(user, context), user_discord_username + ' ' + user_game_username, inline=False)
 
     return team_embed
 

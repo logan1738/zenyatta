@@ -61,7 +61,7 @@ def get_user_emoji_decoration(member):
 
 def create_team_embed(db, team_name, league_team, context):
 
-    team_embed = safe_create_embed(team_name, description='[Team Page for '+team_name+'](https://spicyesports.com/sol/team/'+team_name.lower()+')', color=get_team_color_by_name(team_name))
+    team_embed = safe_create_embed(team_name, description='Check our website for a better view: [Team Page for '+team_name+'](https://spicyesports.com/sol/team/'+team_name.lower()+')', color=get_team_color_by_name(team_name))
     team_embed.set_thumbnail(url=get_team_logo_url_by_name(team_name))
     # safe_set_footer(team_embed, '')
 

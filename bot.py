@@ -262,7 +262,7 @@ from command_handlers.join import join_handler
 from command_handlers.help.help import help_handler
 from command_handlers.wager import wager_handler
 from bracket import both_no_show, gen_tourney, no_show, notify_next_users, send_next_info, wipe_tourney, won_match
-from discord_actions import get_guild, get_role_by_id, is_dm_channel, member_has_role, member_has_state_role
+from discord_actions import get_guild, get_role_by_id, is_dm_channel, member_has_role
 from helper_handlers.twitch_pack import twitch_pack_handler
 from helper_handlers.twitch_tokens import twitch_tokens_handler
 from helpers import get_constant_value, is_bot_commands_channel, make_string_from_word_list, set_constant_value
@@ -333,7 +333,6 @@ async def handle_message(message, db, client):
     is_xp_helper = (not message.author.bot) and member_has_role(message.author, constants.XP_HELPER_ROLE_ID)
     is_cp_helper = (not message.author.bot) and member_has_role(message.author, constants.CHANNEL_POINTS_ROLE_ID)
     is_tourney_admin = (not message.author.bot) and member_has_role(message.author, constants.TOURNEY_COMMANDS_PERMS_ROLE)
-    is_state_captain = (not message.author.bot) and member_has_role(message.author, constants.STATE_CAPTAIN_ROLE)
     has_image_perms = message.author.bot or member_has_role(message.author, constants.IMAGE_PERMS_ROLE)
     is_push_bot = (message.author.id == constants.PUSH_BOT_ID)
 
@@ -1782,16 +1781,6 @@ def run_discord_bot(db, is_smoke_test=False):
             guild = await get_guild(client)
             role = guild.get_role(constants.DBD_ROLE)
             await give_role(member, role, 'Raw Reaction Add')
-
-        elif channel_id == constants.STATE_CUP_CHANNEL:
-            if not (member_has_state_role(member)):
-                for state_name in constants.STATE_INFO:
-                    state_info = constants.STATE_INFO[state_name]
-                    if state_info['react_msg'] == message_id:
-                        guild = await get_guild(client)
-                        state_role = guild.get_role(state_info['role'])
-                        await give_role(member, state_role, 'Reaction Roles')
-                        break
 
         else:
 

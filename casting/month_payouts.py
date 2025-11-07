@@ -103,7 +103,6 @@ async def month_payouts_handler(db, message):
 
     await safe_send(message.channel, f'Monthly Payouts for {month}/{year}:\n{output_string}')
 
-    await safe_send(message.channel, 'Starting payouts...')
 
 
 

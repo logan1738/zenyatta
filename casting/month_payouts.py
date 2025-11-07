@@ -4,6 +4,7 @@ from helpers import can_be_int, valid_number_of_params
 from safe_send import safe_send
 from datetime import datetime, timezone
 import zoneinfo
+import time
 
 CREW_FIELDS = ['casters', 'admins']
 
@@ -76,6 +77,8 @@ async def month_payouts_handler(db, message):
     total_points = sum(crew_points_array.values())
 
     output_string = ''
+
+    production_crew = db['production_crew']
     for crew_member, points in crew_points_array.items():
 
         payout = (points / total_points) * money if total_points > 0 else 0
@@ -83,5 +86,24 @@ async def month_payouts_handler(db, message):
 
         output_string += f'{crew_member}: {points} points. Payout: ${payout} Command: !pay {crew_member} {payout}\n'
 
+        crew_document = production_crew.find_one({'username': crew_member})
+        if crew_document:
+
+            new_balance = round(crew_document.get('balance', 0) + payout, 2)
+            production_crew.update_one({'username': crew_member}, {'$set': {'balance': new_balance}})
+
+            await safe_send(message.channel, f"Paid {payout} to {crew_member}. New balance: {new_balance}")
+
+        else:
+            await safe_send(message.channel, f"Could not find production crew member {crew_member} in database. Skipping payout.")
+            
+
+        time.sleep(1)
+
+
     await safe_send(message.channel, f'Monthly Payouts for {month}/{year}:\n{output_string}')
+
+    await safe_send(message.channel, 'Starting payouts...')
+
+
 

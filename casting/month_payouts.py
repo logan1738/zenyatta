@@ -73,3 +73,5 @@ async def month_payouts_handler(db, message):
     for crew_member, points in crew_points_array.items():
         output_string += f'{crew_member}: {points} points\n'
 
+    await safe_send(message.channel, f'Monthly Payouts for {month}/{year}:\n{output_string}')
+

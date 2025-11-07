@@ -26,6 +26,7 @@ async def month_payouts_handler(db, message):
 
     month = params[1]
     year = params[2]
+    money = params[3]
 
     if not valid_params:
         await safe_send(message.channel, "Invalid number of parameters. Please provide a valid command.")
@@ -40,6 +41,8 @@ async def month_payouts_handler(db, message):
         await safe_send(message.channel, "Invalid year parameter. Please provide a valid year (e.g., 2024).")
         return
     year = int(year)
+
+    money = float(money)
     
     matchup_history = db['matchup_history']
     all_past_matchups = matchup_history.find()
@@ -69,9 +72,16 @@ async def month_payouts_handler(db, message):
                 else:
                     crew_points_array[crew_member] += 1
 
+
+    total_points = sum(crew_points_array.values())
+
     output_string = ''
     for crew_member, points in crew_points_array.items():
-        output_string += f'{crew_member}: {points} points\n'
+
+        payout = (points / total_points) * money if total_points > 0 else 0
+        payout = round(payout, 2)
+
+        output_string += f'{crew_member}: {points} points. Payout: ${payout} Command: !pay {crew_member} {payout}\n'
 
     await safe_send(message.channel, f'Monthly Payouts for {month}/{year}:\n{output_string}')
 

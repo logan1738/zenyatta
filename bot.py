@@ -11,6 +11,7 @@ from admin_handlers.take_vouchers import take_vouchers
 from automation.casting.ban_hero import ban_hero_handler
 from automation.casting.first_pick import first_pick_handler
 from automation.casting.team_colors import team_colors_handler
+from casting.month_payouts import month_payouts_handler
 from coin.donate_vouchers import donate_vouchers
 from coin.redeem_trophies import redeem_trophies
 from command_handlers.league.delete_team_info import delete_team_info_handler
@@ -1584,6 +1585,9 @@ async def handle_message(message, db, client):
 
     elif lower_message.startswith('!bal ') and is_admin:
         await bal_handler(db, message)
+
+    elif lower_message.startswith('!monthpayouts ') and is_admin:
+        await month_payouts_handler(db, message)
 
     elif lower_message == '!dropbank' and is_admin:
         await drop_bank_handler(db, message)

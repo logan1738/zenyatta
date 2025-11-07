@@ -22,7 +22,7 @@ def epoch_to_year_month(epoch: int):
 
 async def month_payouts_handler(db, message):
 
-    valid_params, params = valid_number_of_params(message, 3)
+    valid_params, params = valid_number_of_params(message, 4)
 
     month = params[1]
     year = params[2]

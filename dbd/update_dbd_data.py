@@ -39,7 +39,8 @@ def generate_killer_list():
         killer_list.append({
             'name': killer.NAME,
             'tier': killer.TIER,
-            'allowed_survivor_perks': generate_allowed_survivor_perks(killer)
+            'allowed_survivor_perks': generate_allowed_survivor_perks(killer),
+            'forbidden_perk_combos': killer.BANNED_SURVIVOR_PERK_COMBOS,
         })
 
     return killer_list

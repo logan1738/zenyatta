@@ -8,4 +8,4 @@ class BLIGHT:
 
     BANNED_SURVIVOR_PERKS = []
 
-    BANNED_SURVIVOR_PERK_COMBOS = []
+    

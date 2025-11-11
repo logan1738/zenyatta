@@ -11,3 +11,10 @@ class CANNIBAL:
     BANNED_SURVIVOR_PERK_COMBOS = []
 
     SURVIVOR_ITEMS = []
+
+    SURVIVOR_OFFERINGS = [
+        [],
+        [],
+        [],
+        []
+    ]

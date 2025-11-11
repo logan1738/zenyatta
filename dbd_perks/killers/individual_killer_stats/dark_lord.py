@@ -11,3 +11,10 @@ class DARK_LORD:
     BANNED_SURVIVOR_PERK_COMBOS = []
 
     SURVIVOR_ITEMS = []
+
+    SURVIVOR_OFFERINGS = [
+        [],
+        [],
+        [],
+        []
+    ]

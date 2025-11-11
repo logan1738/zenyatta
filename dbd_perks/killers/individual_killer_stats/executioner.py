@@ -12,9 +12,9 @@ class EXECUTIONER:
 
     SURVIVOR_ITEMS = []
 
-    SURVIVOR_OFFERINGS = [
-        [],
-        [],
-        [],
-        []
-    ]
+    SURVIVOR_OFFERINGS = {
+        'offering1': [],
+        'offering2': [],
+        'offering3': [],
+        'offering4': []
+    }

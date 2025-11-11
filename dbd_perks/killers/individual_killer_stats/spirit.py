@@ -81,6 +81,19 @@ class SPIRIT:
                 SURVIVOR_ITEM_ADD_ON_NAMES.GEL_DRESSINGS,
                 SURVIVOR_ITEM_ADD_ON_NAMES.BANDAGES
             ]
+        },
+        {
+            'item': SURVIVOR_ITEM_NAMES.SPORT_FLASHLIGHT,
+            'add_ons': [
+                SURVIVOR_ITEM_ADD_ON_NAMES.BATTERY,
+                SURVIVOR_ITEM_ADD_ON_NAMES.LEATHER_GRIP,
+                SURVIVOR_ITEM_ADD_ON_NAMES.POWER_BULB,
+                SURVIVOR_ITEM_ADD_ON_NAMES.WIDE_LENS
+            ]
+        },
+        {
+            'item': SURVIVOR_ITEM_NAMES.CHINESE_FIRECRACKER,
+            'add_ons': []
         }
     ]
 

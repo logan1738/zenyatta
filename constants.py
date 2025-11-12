@@ -6,7 +6,7 @@ load_dotenv()
 
 VERSION = '1.11.59'
 
-DBD_DATA_VERSION = '1.2.7'
+DBD_DATA_VERSION = '1.2.8'
 
 OPEN_AI_TOKEN = os.getenv("OPEN_AI_TOKEN")
 MONGO_URI = os.getenv("MONGO_URI")

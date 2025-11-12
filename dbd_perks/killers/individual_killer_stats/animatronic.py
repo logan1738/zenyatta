@@ -1,8 +1,10 @@
 
 
-class TWINS:
 
-    NAME = "Twins"
+
+class ANIMATRONIC:
+
+    NAME = "Animatronic"
 
     TIER = 0
 

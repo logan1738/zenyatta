@@ -1,4 +1,5 @@
 
+from dbd_perks.killers.individual_killer_stats.animatronic import ANIMATRONIC
 from dbd_perks.killers.individual_killer_stats.blight import BLIGHT
 from dbd_perks.killers.individual_killer_stats.cannibal import CANNIBAL
 from dbd_perks.killers.individual_killer_stats.dark_lord import DARK_LORD
@@ -14,11 +15,11 @@ from dbd_perks.killers.individual_killer_stats.oni import ONI
 from dbd_perks.killers.individual_killer_stats.pig import PIG
 from dbd_perks.killers.individual_killer_stats.singularity import SINGULARITY
 from dbd_perks.killers.individual_killer_stats.spirit import SPIRIT
-from dbd_perks.killers.individual_killer_stats.twins import TWINS
 from dbd_perks.killers.individual_killer_stats.unknown import UNKNOWN
 from dbd_perks.killers.individual_killer_stats.wraith import WRAITH
 
 ALL_KILLERS = {
+    'ANIMATRONIC': ANIMATRONIC,
     'BLIGHT': BLIGHT,
     'CANNIBAL': CANNIBAL,
     'DARK_LORD': DARK_LORD,
@@ -34,7 +35,6 @@ ALL_KILLERS = {
     'PIG': PIG,
     'SINGULARITY': SINGULARITY,
     'SPIRIT': SPIRIT,
-    'TWINS': TWINS,
     'UNKNOWN': UNKNOWN,
     'WRAITH': WRAITH,
 }

@@ -1,10 +1,40 @@
 
 
+from dbd_perks.items import SURVIVOR_ITEM_ADD_ON_NAMES, SURVIVOR_ITEM_NAMES
+from dbd_perks.killer_perk_names import KILLER_PERK_NAMES
+from dbd_perks.maps import MAP_NAMES
+from dbd_perks.offerings import KILLER_OFFERING_NAMES, SURVIVOR_OFFERING_NAMES
+
+
+class BLIGHT_ADD_ON_NAMES:
+
+    CHIPPED_MONOCLE = "Chipped Monocle"
+    COMPOUND_SEVEN = "Compound Seven"
+    FOXGLOVE = "Foxglove"
+    PLACEBO_TABLET = "Placebo Tablet"
+    BLIGHTED_RAT = "Blighted Rat"
+    CANKER_THORN = "Canker Thorn"
+    PLAGUE_BILE = "Plague Bile"
+    PASTULA_DUST = "Pastula Dust"
+    SHREDDED_NOTES = "Shredded Notes"
+    ADRENALINE_VIAL = "Adrenaline Vial"
+    BLIGHTED_CROW = "Blighted Crow"
+    COMPOUND_TWENTY_ONE = "Compound Twenty-One"
+    ROSE_TONIC = "Rose Tonic"
+    UMBRA_SALTS = "Umbra Salts"
+    ALCHEMISTS_RING = "Alchemist's Ring"
+    SOUL_CHEMICAL = "Soul Chemical"
+    SUMMOINING_STONE = "Summoning Stone"
+    VIGOS_JOURNAL = "Vigo's Journal"
+    COMPOUND_THIRTY_THREE = "Compound Thirty-Three"
+    IRIDESCENT_BLIGHT_TAG = "Iridescent Blight Tag"
+
+
 class BLIGHT:
 
     NAME = "Blight"
 
-    TIER = 0
+    TIER = 1
 
     BANNED_SURVIVOR_PERKS = []
 
@@ -12,9 +42,77 @@ class BLIGHT:
 
     SURVIVOR_ITEMS = []
 
+    BANNED_KILLER_PERKS = [
+        KILLER_PERK_NAMES.AGITATION,
+        KILLER_PERK_NAMES.BRUTAL_STRENGTH
+    ]
+
+    BANNED_KILLER_PERKS_COMBOS = [
+        KILLER_PERK_NAMES.POP_GOES_THE_WEASEL,
+        KILLER_PERK_NAMES.ERUPTION
+    ]
+
+    BANNED_KILLER_ADD_ONS = [
+        BLIGHT_ADD_ON_NAMES.ADRENALINE_VIAL,
+        BLIGHT_ADD_ON_NAMES.ALCHEMISTS_RING,
+        BLIGHT_ADD_ON_NAMES.CANKER_THORN,
+        BLIGHT_ADD_ON_NAMES.CHIPPED_MONOCLE,
+        BLIGHT_ADD_ON_NAMES.COMPOUND_SEVEN,
+        BLIGHT_ADD_ON_NAMES.COMPOUND_THIRTY_THREE,
+        BLIGHT_ADD_ON_NAMES.COMPOUND_TWENTY_ONE,
+        BLIGHT_ADD_ON_NAMES.FOXGLOVE,
+        BLIGHT_ADD_ON_NAMES.IRIDESCENT_BLIGHT_TAG,
+        BLIGHT_ADD_ON_NAMES.PLACEBO_TABLET,
+        BLIGHT_ADD_ON_NAMES.PLAGUE_BILE,
+        BLIGHT_ADD_ON_NAMES.PASTULA_DUST,
+        BLIGHT_ADD_ON_NAMES.ROSE_TONIC,
+        BLIGHT_ADD_ON_NAMES.SHREDDED_NOTES,
+        BLIGHT_ADD_ON_NAMES.SOUL_CHEMICAL,
+        BLIGHT_ADD_ON_NAMES.SUMMOINING_STONE,
+        BLIGHT_ADD_ON_NAMES.UMBRA_SALTS,
+        BLIGHT_ADD_ON_NAMES.VIGOS_JOURNAL
+    ]
+
+    KILLER_OFFERING = KILLER_OFFERING_NAMES.CUT_COIN
+
     SURVIVOR_OFFERINGS = {
-        'offering1': [],
-        'offering2': [],
-        'offering3': [],
+        'offering1': [SURVIVOR_OFFERING_NAMES.VIGOS_SHROUD],
+        'offering2': [SURVIVOR_OFFERING_NAMES.ANNOTATED_BLUEPRINT],
+        'offering3': [SURVIVOR_OFFERING_NAMES.BLOODIED_BLUEPRINT, SURVIVOR_OFFERING_NAMES.TORN_BLUEPRINT],
         'offering4': []
     }
+
+    SURVIVOR_ITEMS = [
+        {
+            'item': SURVIVOR_ITEM_NAMES.RANGER_MED_KIT,
+            'add_ons': [
+                SURVIVOR_ITEM_ADD_ON_NAMES.GEL_DRESSINGS,
+                SURVIVOR_ITEM_ADD_ON_NAMES.BANDAGES
+            ]
+        },
+        {
+            'item': SURVIVOR_ITEM_NAMES.TOOLBOX,
+            'add_ons': [
+                SURVIVOR_ITEM_ADD_ON_NAMES.CLEAN_RAG,
+                SURVIVOR_ITEM_ADD_ON_NAMES.SCRAPS,
+                SURVIVOR_ITEM_ADD_ON_NAMES.INSTRUCTIONS
+            ]
+        },
+        {
+            'item': SURVIVOR_ITEM_NAMES.SPORT_FLASHLIGHT,
+            'add_ons': [
+                SURVIVOR_ITEM_ADD_ON_NAMES.BATTERY,
+                SURVIVOR_ITEM_ADD_ON_NAMES.LEATHER_GRIP,
+                SURVIVOR_ITEM_ADD_ON_NAMES.POWER_BULB,
+                SURVIVOR_ITEM_ADD_ON_NAMES.WIDE_LENS
+            ]
+        },
+        {
+            'item': SURVIVOR_ITEM_NAMES.CHINESE_FIRECRACKER,
+            'add_ons': []
+        }
+    ]
+
+    MAP_1 = MAP_NAMES.SUFFOCATION_PIT_1
+    MAP_2 = MAP_NAMES.BLOOD_LODGE
+    MAP_3 = MAP_NAMES.MOUNT_ORMOND_RESORT_1

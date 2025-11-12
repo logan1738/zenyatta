@@ -1,20 +1,53 @@
 
 
+from dbd_perks.items import SURVIVOR_ITEM_ADD_ON_NAMES, SURVIVOR_ITEM_NAMES
+from dbd_perks.offerings import SURVIVOR_OFFERING_NAMES
+
+
 class HILLBILLY:
 
     NAME = "Hillbilly"
 
-    TIER = 0
+    TIER = 1
 
     BANNED_SURVIVOR_PERKS = []
 
     BANNED_SURVIVOR_PERK_COMBOS = []
 
-    SURVIVOR_ITEMS = []
-
     SURVIVOR_OFFERINGS = {
-        'offering1': [],
-        'offering2': [],
-        'offering3': [],
-        'offering4': []
+        'offering1': [SURVIVOR_OFFERING_NAMES.SHROUD_OF_BINDING],
+        'offering2': [SURVIVOR_OFFERING_NAMES.VIGOS_SHROUD],
+        'offering3': [SURVIVOR_OFFERING_NAMES.ANNOTATED_BLUEPRINT],
+        'offering4': [SURVIVOR_OFFERING_NAMES.BLOODIED_BLUEPRINT, SURVIVOR_OFFERING_NAMES.TORN_BLUEPRINT]
     }
+
+    SURVIVOR_ITEMS = [
+        {
+            'item': SURVIVOR_ITEM_NAMES.RANGER_MED_KIT,
+            'add_ons': [
+                SURVIVOR_ITEM_ADD_ON_NAMES.GEL_DRESSINGS,
+                SURVIVOR_ITEM_ADD_ON_NAMES.BANDAGES
+            ]
+        },
+        {
+            'item': SURVIVOR_ITEM_NAMES.TOOLBOX,
+            'add_ons': [
+                SURVIVOR_ITEM_ADD_ON_NAMES.CLEAN_RAG,
+                SURVIVOR_ITEM_ADD_ON_NAMES.SCRAPS,
+                SURVIVOR_ITEM_ADD_ON_NAMES.INSTRUCTIONS
+            ]
+        },
+        {
+            'item': SURVIVOR_ITEM_NAMES.SPORT_FLASHLIGHT,
+            'add_ons': [
+                SURVIVOR_ITEM_ADD_ON_NAMES.BATTERY,
+                SURVIVOR_ITEM_ADD_ON_NAMES.LEATHER_GRIP,
+                SURVIVOR_ITEM_ADD_ON_NAMES.POWER_BULB,
+                SURVIVOR_ITEM_ADD_ON_NAMES.WIDE_LENS
+            ]
+        },
+        {
+            'item': SURVIVOR_ITEM_NAMES.CHINESE_FIRECRACKER,
+            'add_ons': []
+        }
+    ]

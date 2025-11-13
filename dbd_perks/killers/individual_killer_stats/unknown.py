@@ -45,3 +45,5 @@ class UNKNOWN:
     ALL_KILLER_ADD_ONS = []
 
     BANNED_KILLER_ADD_ONS = []
+
+    KILLER_OFFERINGS = []

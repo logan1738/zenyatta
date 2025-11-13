@@ -69,7 +69,8 @@ def generate_killer_list():
             'forbidden_perk_combos': combine_banned_survivor_perk_combos(killer),
             'survivor_items': killer.SURVIVOR_ITEMS,
             'survivor_offerings': killer.SURVIVOR_OFFERINGS,
-            'allowed_killer_add_ons': generate_allowed_killer_add_ons(killer)
+            'allowed_killer_add_ons': generate_allowed_killer_add_ons(killer),
+            'killer_offerings': killer.KILLER_OFFERINGS
         })
 
     return killer_list

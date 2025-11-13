@@ -38,3 +38,7 @@ class GHOST_FACE:
             'add_ons': []
         }
     ]
+
+    ALL_KILLER_ADD_ONS = []
+
+    BANNED_KILLER_ADD_ONS = []

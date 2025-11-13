@@ -40,6 +40,21 @@ def combine_banned_survivor_perk_combos(killer):
     return combined_banned_combos
 
 
+def generate_allowed_killer_add_ons(killer):
+
+    all_add_ons = killer.ALL_KILLER_ADD_ONS
+
+    banned_add_ons = set(killer.BANNED_KILLER_ADD_ONS)
+
+    allowed_add_ons = []
+
+    for add_on in all_add_ons:
+        if add_on not in banned_add_ons:
+            allowed_add_ons.append(add_on)
+
+    return allowed_add_ons
+
+
 def generate_killer_list():
 
     killer_list = []
@@ -53,7 +68,8 @@ def generate_killer_list():
             'allowed_survivor_perks': generate_allowed_survivor_perks(killer),
             'forbidden_perk_combos': combine_banned_survivor_perk_combos(killer),
             'survivor_items': killer.SURVIVOR_ITEMS,
-            'survivor_offerings': killer.SURVIVOR_OFFERINGS
+            'survivor_offerings': killer.SURVIVOR_OFFERINGS,
+            'allowed_killer_add_ons': generate_allowed_killer_add_ons(killer)
         })
 
     return killer_list

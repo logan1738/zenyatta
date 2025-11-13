@@ -35,9 +35,9 @@ def combine_banned_survivor_perk_combos(killer):
     killer_specific_banned_combos = killer.BANNED_SURVIVOR_PERK_COMBOS
     tier_specific_banned_combos = get_survivor_perk_combo_bans_for_tier(killer.TIER)
 
-    combined_banned_combos = set(killer_specific_banned_combos + tier_specific_banned_combos)
+    combined_banned_combos = tier_specific_banned_combos + killer_specific_banned_combos
 
-    return list(combined_banned_combos)
+    return combined_banned_combos
 
 
 def generate_killer_list():

@@ -42,6 +42,8 @@ class EXECUTIONER:
         }
     ]
 
+    BANNED_KILLER_PERKS = []
+
     ALL_KILLER_ADD_ONS = []
 
     BANNED_KILLER_ADD_ONS = []

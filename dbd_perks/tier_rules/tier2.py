@@ -1,5 +1,6 @@
 
 
+from dbd_perks.killer_perk_names import KILLER_PERK_NAMES
 from dbd_perks.survivor_perk_names import SURVIVOR_PERK_NAMES
 
 
@@ -26,4 +27,8 @@ TIER_2_BANNED_SURVIVOR_PERKS = [
 
 TIER_2_BANNED_SURVIVOR_PERK_COMBOS = [
     {'perk1': SURVIVOR_PERK_NAMES.FOR_THE_PEOPLE, 'perk2': SURVIVOR_PERK_NAMES.SECOND_WIND}
+]
+
+TIER_2_BANNED_KILLER_PERKS = [
+    KILLER_PERK_NAMES.GRIM_EMBRACE
 ]

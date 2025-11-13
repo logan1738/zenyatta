@@ -140,3 +140,11 @@ class KILLER_PERK_NAMES:
     WHISPERS = "Whispers"
     ZANSHIN_TACTICS = "Zanshin Tactics"
 
+
+def get_all_killer_perk_names():
+    perk_names = [
+        getattr(KILLER_PERK_NAMES, attr)
+        for attr in dir(KILLER_PERK_NAMES)
+        if not attr.startswith('_') and isinstance(getattr(KILLER_PERK_NAMES, attr), str)
+    ]
+    return perk_names

@@ -55,12 +55,6 @@ class SPIRIT:
 
     BANNED_SURVIVOR_PERK_COMBOS = []
 
-    BANNED_KILLER_PERKS = [
-        KILLER_PERK_NAMES.HUBRIS
-    ]
-
-    BANNED_KILLER_PERKS_COMBOS = []
-
     SURVIVOR_OFFERINGS = {
         'offering1': [SURVIVOR_OFFERING_NAMES.SHROUD_OF_BINDING],
         'offering2': [SURVIVOR_OFFERING_NAMES.VIGOS_SHROUD],
@@ -90,6 +84,12 @@ class SPIRIT:
             'add_ons': []
         }
     ]
+
+    BANNED_KILLER_PERKS = [
+        KILLER_PERK_NAMES.HUBRIS
+    ]
+
+    BANNED_KILLER_PERKS_COMBOS = []
 
     ALL_KILLER_ADD_ONS = []
 

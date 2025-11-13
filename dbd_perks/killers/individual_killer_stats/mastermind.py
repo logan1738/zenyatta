@@ -10,6 +10,8 @@ class MASTERMIND:
     NAME = "Mastermind"
 
     TIER = 3
+
+    ALL_SURVIVOR_PERKS_BANNED = False
     
     BANNED_SURVIVOR_PERKS = [
         SURVIVOR_PERK_NAMES.LITHE

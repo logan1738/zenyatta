@@ -11,6 +11,8 @@ class WRAITH:
 
     TIER = 5
 
+    ALL_SURVIVOR_PERKS_BANNED = False
+
     BANNED_SURVIVOR_PERKS = [
         SURVIVOR_PERK_NAMES.BREAKOUT,
     ]

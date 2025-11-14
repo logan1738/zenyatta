@@ -2,6 +2,7 @@
 
 from dbd_perks.items import SURVIVOR_ITEM_ADD_ON_NAMES, SURVIVOR_ITEM_NAMES
 from dbd_perks.killer_perk_names import KILLER_PERK_NAMES
+from dbd_perks.killers.killer_info import get_all_add_on_names
 from dbd_perks.maps import MAP_NAMES
 from dbd_perks.offerings import KILLER_OFFERING_NAMES, SURVIVOR_OFFERING_NAMES
 
@@ -29,13 +30,7 @@ class BLIGHT_ADD_ON_NAMES:
     COMPOUND_THIRTY_THREE = "Compound Thirty-Three"
     IRIDESCENT_BLIGHT_TAG = "Iridescent Blight Tag"
 
-def get_all_add_on_names():
-    add_on_names = [
-        getattr(BLIGHT_ADD_ON_NAMES, attr)
-        for attr in dir(BLIGHT_ADD_ON_NAMES)
-        if not attr.startswith('_') and isinstance(getattr(BLIGHT_ADD_ON_NAMES, attr), str)
-    ]
-    return add_on_names
+
 
 class BLIGHT:
 
@@ -100,7 +95,7 @@ class BLIGHT:
         {'perk1': KILLER_PERK_NAMES.POP_GOES_THE_WEASEL, 'perk2': KILLER_PERK_NAMES.ERUPTION}
     ]
 
-    ALL_KILLER_ADD_ONS = get_all_add_on_names()
+    ALL_KILLER_ADD_ONS = get_all_add_on_names(BLIGHT_ADD_ON_NAMES)
 
     BANNED_KILLER_ADD_ONS = [
         BLIGHT_ADD_ON_NAMES.ADRENALINE_VIAL,

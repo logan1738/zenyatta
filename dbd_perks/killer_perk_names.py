@@ -58,7 +58,6 @@ class KILLER_PERK_NAMES:
     HEX_NOTHING_BUT_MISERY = "Hex: Nothing But Misery"
     HEX_OVERTURE_OF_DOOM = "Hex: Overture of Doom"
     HEX_PENTIMENTO = "Hex: Pentimento"
-    HEX_PLAYTHING = "Hex: Plaything"
     HEX_RETRIBUTION = "Hex: Retribution"
     HEX_RUIN = "Hex: Ruin"
     HEX_THE_THIRD_SEAL = "Hex: The Third Seal"

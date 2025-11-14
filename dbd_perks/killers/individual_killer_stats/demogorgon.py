@@ -4,6 +4,29 @@ from dbd_perks.items import SURVIVOR_ITEM_ADD_ON_NAMES, SURVIVOR_ITEM_NAMES
 from dbd_perks.offerings import SURVIVOR_OFFERING_NAMES
 from dbd_perks.survivor_perk_names import SURVIVOR_PERK_NAMES
 
+class DEMOGORGON_ADD_ON_NAMES:
+
+    BLACK_HEART = "Black Heart"
+    RAT_LIVER = "Rat Liver"
+    RAT_TAIL = "Rat Tail"
+    ROTTEN_PUMPKIN = "Rotten Pumpkin"
+    BARBS_GLASSES = "Barb's Glasses"
+    MEWS_GUTS = "Mews' Guts"
+    ROTTEN_GREEN_TRIPE = "Rotten Green Tripe"
+    STICKY_LINING = "Sticky Lining"
+    VISCOUS_WEBBING = "Viscous Webbing"
+    BRASS_CASE_LIGHTER = "Brass Case Lighter"
+    DEER_LUNG = "Deer Lung"
+    ELEVENS_SODA = "Eleven's Soda"
+    THORNY_VINES = "Thorny Vines"
+    VIOLET_WAXCAP = "Violet Waxcap"
+    LIFEGUARD_WHISTLE = "Lifeguard Whistle"
+    UNKNOWN_EGG = "Unknown Egg"
+    UPSIDE_DOWN_RESIN = "Upside Down Resin"
+    VERMILION_WEBCAP = "Vermilion Webcap"
+    LEPROSE_LICHEN = "Leprose Lichen"
+    RED_MOSS = "Red Moss"
+    
 
 class DEMOGORGON:
 

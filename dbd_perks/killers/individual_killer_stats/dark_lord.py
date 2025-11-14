@@ -4,6 +4,32 @@ from dbd_perks.items import SURVIVOR_ITEM_ADD_ON_NAMES, SURVIVOR_ITEM_NAMES
 from dbd_perks.offerings import SURVIVOR_OFFERING_NAMES
 
 
+
+class DARK_LORD_ADD_ON_NAMES:
+
+    CERBERUS_TALON = "Cerberus Talon"
+    CLOCK_TOWER_GEAR = "Clock Tower Gear"
+    RUBY_CIRCLET = "Ruby Circlet"
+    TRAVELLERS_HAT = "Traveller's Hat"
+    BLOOD_FILLED_GOBLET = "Blood-Filled Goblet"
+    MAGICAL_TICKET = "Magical Ticket"
+    MOONSTONE_NECKLACE = "Moonstone Necklace"
+    WHITE_WOLF_MEDALLION = "White Wolf Medallion"
+    WINGED_BOOTS = "Winged Boots"
+    FORCE_OF_ECHO = "Force of Echo"
+    KILLER_DOLL = "Killer Doll"
+    POCKET_WATCH = "Pocket Watch"
+    SUNGLASSES = "Sunglasses"
+    SYLPH_FEATHER = "Sylph Feather"
+    CUBE_OF_ZOE = "Cube of Zoe"
+    LAPIS_LAZULI = "Lapis Lazuli"
+    MEDUSAS_HAIR = "Medusa's Hair"
+    WARGS_FANG = "Warg's Fang"
+    ALUCARDS_SHIELD = "Alucard's Shield"
+    IRIDESCENT_RING_OF_VLAD = "Iridescent Ring of Vlad"
+
+
+
 class DARK_LORD:
 
     NAME = "Dark Lord"

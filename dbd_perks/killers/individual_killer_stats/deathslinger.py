@@ -4,6 +4,28 @@ from dbd_perks.items import SURVIVOR_ITEM_ADD_ON_NAMES, SURVIVOR_ITEM_NAMES
 from dbd_perks.offerings import SURVIVOR_OFFERING_NAMES
 from dbd_perks.survivor_perk_names import SURVIVOR_PERK_NAMES
 
+class DEATHSLINGER_ADD_ON_NAMES:
+
+    MODDIFIED_AMMO_BELT = "Moddified Ammo Belt"
+    RICKETY_CHAIN = "Rickety Chain"
+    SNAKE_OIL = "Snake Oil"
+    SPIT_POLISH_RAG = "Spit Polish Rag"
+    CHEWING_TOBACCO = "Chewing Tobacco"
+    JAW_SMASHER = "Jaw Smasher"
+    MARSHALS_BADGE = "Marshal's Badge"
+    POISON_OAK_LEAVES = "Poison Oak Leaves"
+    RUSTED_SPIKE = "Rusted Spike"
+    BAYSHORES_GOLD_TOOTH = "Bayshore's Gold Tooth"
+    HONEY_LOCUST_THORN = "Honey Locust Thorn"
+    TIN_OIL_CAN = "Tin Oil Can"
+    WANTED_POSTER = "Wanted Poster"
+    WARDENS_KEYS = "Warden's Keys"
+    BARBED_WIRE = "Barbed Wire"
+    BAYSHORES_CIGAR = "Bayshore's Cigar"
+    GOLD_CREEK_WHISKEY = "Gold Creek Whiskey"
+    PRISON_CHAIN = "Prison Chain"
+    HELLSHIRE_IRON = "Hellshire Iron"
+    IRIDESCENT_COIN = "Iridescent Coin"
 
 class DEATHSLINGER:
 

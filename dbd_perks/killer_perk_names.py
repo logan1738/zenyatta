@@ -104,7 +104,6 @@ class KILLER_PERK_NAMES:
     REMEMBER_ME = "Remember Me"
     SAVE_THE_BEST_FOR_LAST = "Save the Best for Last"
     SCOURGE_HOOK_FLOODS_OF_RAGE = "Scourge Hook: Floods of Rage"
-    SCOURGE_HOOK_GIFT_OF_PAIN = "Scourge Hook: Gift of Pain"
     SCOURGE_HOOK_HANGMANS_TRICK = "Scourge Hook: Hangman's Trick"
     SCOURGE_HOOK_JAGGED_COMPASS = "Scourge Hook: Jagged Compass"
     SCOURGE_HOOK_MONSTROUS_SHRINE = "Scourge Hook: Monstrous Shrine"

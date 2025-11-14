@@ -41,6 +41,8 @@ class PIG:
 
     BANNED_KILLER_PERKS = []
 
+    BANNED_KILLER_PERK_COMBOS = []
+
     ALL_KILLER_ADD_ONS = []
 
     BANNED_KILLER_ADD_ONS = []

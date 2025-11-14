@@ -3,12 +3,12 @@
 
 
 from constants import DBD_DATA_VERSION
-from dbd_perks.killer_base_banned_perks import KILLER_BASE_BANNED_PERKS
+from dbd_perks.killer_base_banned_perks import KILLER_BASE_BANNED_PERK_COMBOS, KILLER_BASE_BANNED_PERKS
 from dbd_perks.killer_perk_names import get_all_killer_perk_names
 from dbd_perks.killers.killer_info import ALL_KILLERS
 from dbd_perks.survivor_base_banned_perks import SURVIVOR_BASE_BANNED_PERK_COMBOS, SURVIVOR_BASE_BANNED_PERKS
 from dbd_perks.survivor_perk_names import get_all_survivor_perk_names
-from dbd_perks.tier_rules.logic import get_killer_perk_bans_for_tier, get_survivor_perk_bans_for_tier, get_survivor_perk_combo_bans_for_tier
+from dbd_perks.tier_rules.logic import get_killer_perk_bans_for_tier, get_killer_perk_combo_bans_for_tier, get_survivor_perk_bans_for_tier, get_survivor_perk_combo_bans_for_tier
 from helpers import get_constant_value, set_constant_value
 from safe_send import safe_send
 
@@ -62,6 +62,17 @@ def combine_banned_survivor_perk_combos(killer):
     return combined_banned_combos
 
 
+def combine_banned_killer_perk_combos(killer):
+
+    general_banned_combos = KILLER_BASE_BANNED_PERK_COMBOS
+    tier_specific_banned_combos = get_killer_perk_combo_bans_for_tier(killer.TIER)
+    killer_specific_banned_combos = killer.BANNED_KILLER_PERK_COMBOS
+
+    combined_banned_combos =  general_banned_combos + tier_specific_banned_combos + killer_specific_banned_combos
+
+    return combined_banned_combos
+
+
 def generate_allowed_killer_add_ons(killer):
 
     all_add_ons = killer.ALL_KILLER_ADD_ONS
@@ -92,6 +103,7 @@ def generate_killer_list():
             'survivor_items': killer.SURVIVOR_ITEMS,
             'survivor_offerings': killer.SURVIVOR_OFFERINGS,
             'allowed_killer_perks': generate_allowed_killer_perks(killer),
+            'forbidden_killer_perk_combos': combine_banned_killer_perk_combos(killer),
             'allowed_killer_add_ons': generate_allowed_killer_add_ons(killer),
             'killer_offerings': killer.KILLER_OFFERINGS
         })

@@ -23,7 +23,6 @@ class KILLER_PERK_NAMES:
     DARK_DEVOTION = "Dark Devotion"
     DARKNESS_REVEALED = "Darkness Revealed"
     DEAD_MANS_SWITCH = "Dead Man's Switch"
-    DEADLOCK = "Deadlock"
     DEATHBOUND = "Deathbound"
     DEERSTALKER = "Deerstalker"
     DISCODANCE = "Discordance"

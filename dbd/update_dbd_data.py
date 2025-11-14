@@ -6,7 +6,7 @@ from constants import DBD_DATA_VERSION
 from dbd_perks.killer_base_banned_perks import KILLER_BASE_BANNED_PERKS
 from dbd_perks.killer_perk_names import get_all_killer_perk_names
 from dbd_perks.killers.killer_info import ALL_KILLERS
-from dbd_perks.survivor_base_banned_perks import SURVIVOR_BASE_BANNED_PERKS
+from dbd_perks.survivor_base_banned_perks import SURVIVOR_BASE_BANNED_PERK_COMBOS, SURVIVOR_BASE_BANNED_PERKS
 from dbd_perks.survivor_perk_names import get_all_survivor_perk_names
 from dbd_perks.tier_rules.logic import get_killer_perk_bans_for_tier, get_survivor_perk_bans_for_tier, get_survivor_perk_combo_bans_for_tier
 from helpers import get_constant_value, set_constant_value
@@ -53,10 +53,11 @@ def generate_allowed_killer_perks(killer):
 
 def combine_banned_survivor_perk_combos(killer):
 
-    killer_specific_banned_combos = killer.BANNED_SURVIVOR_PERK_COMBOS
+    general_banned_combos = SURVIVOR_BASE_BANNED_PERK_COMBOS
     tier_specific_banned_combos = get_survivor_perk_combo_bans_for_tier(killer.TIER)
+    killer_specific_banned_combos = killer.BANNED_SURVIVOR_PERK_COMBOS
 
-    combined_banned_combos = tier_specific_banned_combos + killer_specific_banned_combos
+    combined_banned_combos =  general_banned_combos + tier_specific_banned_combos + killer_specific_banned_combos
 
     return combined_banned_combos
 

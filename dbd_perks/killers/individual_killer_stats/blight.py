@@ -2,7 +2,7 @@
 
 from dbd_perks.items import SURVIVOR_ITEM_ADD_ON_NAMES, SURVIVOR_ITEM_NAMES
 from dbd_perks.killer_perk_names import KILLER_PERK_NAMES
-from dbd_perks.killers.killer_info import get_all_add_on_names
+from dbd_perks.killers.killer_utils import get_all_add_on_names
 from dbd_perks.maps import MAP_NAMES
 from dbd_perks.offerings import KILLER_OFFERING_NAMES, SURVIVOR_OFFERING_NAMES
 

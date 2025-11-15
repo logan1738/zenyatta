@@ -5,6 +5,29 @@ from dbd_perks.offerings import SURVIVOR_OFFERING_NAMES
 from dbd_perks.survivor_perk_names import SURVIVOR_PERK_NAMES
 
 
+class HUNTRESS_ADD_ON_NAMES:
+
+    AMANITA_TOXIN = "Amanita Toxin"
+    BANDAGED_HAFT = "Bandaged Haft"
+    COARSE_STONE = "Coarse Stone"
+    YELLOWED_CLOTH = "Yellowed Cloth"
+    LEATHER_LOOP = "Leather Loop"
+    MANNA_GRASS_BRAID = "Manna Grass Braid"
+    OAK_HAFT = "Oak Haft"
+    SHINY_PIN = "Shiny Pin"
+    WEIGHTED_HEAD = "Weighted Head"
+    DEERSKIN_GLOVES = "Deerskin Gloves"
+    FLOWER_BABUSHKA = "Flower Babushka"
+    ROSE_ROOT = "Rose Root"
+    RUSTY_HEAD = "Rusty Head"
+    VENOMOUS_CONCOCTION = "Venomous Concoction"
+    BEGRIMED_HEAD = "Begrimed Head"
+    GLOWING_CONCOCTION = "Glowing Concoction"
+    INFANTRY_BELT = "Infantry Belt"
+    WOODEN_FOX = "Wooden Fox"
+    IRIDESCENT_HEAD = "Iridescent Head"
+    SOLDIERS_PUTTEE = "Soldier's Puttee"
+
 class HUNTRESS:
 
     NAME = "Huntress"

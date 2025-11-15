@@ -4,6 +4,30 @@ from dbd_perks.items import SURVIVOR_ITEM_ADD_ON_NAMES, SURVIVOR_ITEM_NAMES
 from dbd_perks.offerings import SURVIVOR_OFFERING_NAMES
 
 
+class SINGULARITY_ADD_ON_NAMES:
+
+    BROKEN_SECURITY_KEY = "Broken Security Key"
+    DIAGNOSTIC_TOOL_REPAIR = "Diagnostic Tool (Repair)"
+    HEAVY_WATER = "Heavy Water"
+    NUTRITIONAL_SLURRY = "Nutritional Slurry"
+    ANDROID_ARM = "Android Arm"
+    CREMATED_REMAINS = "Cremated Remains"
+    CRYO_GEL = "Cryo Gel"
+    KIDS_BALL_GLOVE = "Kid's Ball Glove"
+    ULTRASONIC_SENSOR = "Ultrasonic Sensor"
+    HOLOGRAM_GENERATOR = "Hologram Generator"
+    HYPERWARENESS_SPRAY = "Hyperawareness Spray"
+    LIVE_WIRES = "Live Wires"
+    NANOMACHINE_GEL = "Nanomachine Gel"
+    SPENT_OXYGEN_TANK = "Spent Oxygen Tank"
+    CREW_MANIFEST = "Crew Manifest"
+    DIAGNOSTIC_TOOL_CONSTRUCTION = "Diagnostic Tool (Construction)"
+    FOREIGN_PLANT_FIBERS = "Foreign Plant Fibers"
+    SOMA_FAMILY_PHOTO = "Soma Family Photo"
+    DENIED_REQUISITION_FORM = "Denied Requisition Form"
+    IRIDESCENT_CRYSTAL_SHARD = "Iridescent Crystal Shard"
+
+
 class SINGULARITY:
 
     NAME = "Singularity"

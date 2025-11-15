@@ -4,6 +4,30 @@ from dbd_perks.items import SURVIVOR_ITEM_ADD_ON_NAMES, SURVIVOR_ITEM_NAMES
 from dbd_perks.offerings import SURVIVOR_OFFERING_NAMES
 from dbd_perks.survivor_perk_names import SURVIVOR_PERK_NAMES
 
+class MASTERMIND_ADD_ON_NAMES:
+
+    JEWEL_BEETLE = "Jewel Beetle"
+    RPD_SHOULDER_WALKIE = "R.P.D. Shoulder Walkie"
+    UNICORN_MEDALLION = "Unicorn Medallion"
+    UROBOROS_TENDRIL = "Uroboros Tendril"
+    BULLHORN = "Bullhorn"
+    CHALICE_GOLD = "Chalice (Gold)"
+    LEATHER_GLOVES = "Leather Gloves"
+    LION_MEDALLION = "Lion Medallion"
+    LOOSE_CRANK = "Loose Crank"
+    EGG_GOLD = "Egg (Gold)"
+    MAIDEN_MEDALLION = "Maiden Medallion"
+    PORTABLE_SAFE = "Portable Safe"
+    RED_HERB = "Red Herb"
+    VIDEO_CONFERENCE_DEVICE = "Video Conference Device"
+    DARK_SUNGLASSES = "Dark Sunglasses"
+    GREEN_HERB = "Green Herb"
+    HELICOPTER_STICK = "Helicopter Stick"
+    UROBOROS_VIRUS = "Uroboros Virus"
+    IRIDESCENT_UROBOROS_VIAL = "Iridescent Uroboros Vial"
+    LAB_PHOTO = "Lab Photo"
+
+
 
 class MASTERMIND:
 

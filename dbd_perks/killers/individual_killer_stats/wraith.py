@@ -5,7 +5,31 @@ from dbd_perks.offerings import SURVIVOR_OFFERING_NAMES
 from dbd_perks.survivor_perk_names import SURVIVOR_PERK_NAMES
 
 
+class WRAITH_ADD_ON_NAMES:
+
+    THE_BEAST_SOOT = '"The Beast" - Soot'
+    THE_GHOST_SOOT = '"The Ghost" - Soot'
+    THE_HOUND_SOOT = '"The Hound" - Soot'
+    THE_SERPENT_SOOT = '"The Serpent" - Soot'
+    BLIND_WARRIOR_MUD = '"Blind Warrior" - Mud'
+    BLINK_MUD = '"Blink" - Mud'
+    SWIFT_HUNT_MUD = '"Swift Hunt" - Mud'
+    WINDSTORM_MUD = '"Windstorm" - Mud'
+    BONE_CLAPPER = "Bone Clapper"
+    BLIND_WARRIOR_WHITE = '"Blind Warrior" - White'
+    BLINK_WHITE = '"Blink" - White'
+    SHADOW_DANCE_WHITE = '"Shadow Dance" - White'
+    SWIFT_HUNT_WHITE = '"Swift Hunt" - White'
+    WINDSTORM_WHITE = '"Windstorm" - White'
+    ALL_SEEING_BLOOD = '"All-Seeing" - Blood'
+    SHADOW_DANCE_BLOOD = '"Shadow Dance" - Blood'
+    SWIFT_HUNT_BLOOD = '"Swift Hunt" - Blood'
+    WINDSTORM_BLOOD = '"Windstorm" - Blood'
+    ALL_SEEING_SPIRIT = '"All-Seeing" - Spirit'
+    COXCOMBED_CLAPPER = "Coxcombed Clapper"
+
 class WRAITH:
+
 
     NAME = "Wraith"
 

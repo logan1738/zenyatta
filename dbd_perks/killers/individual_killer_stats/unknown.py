@@ -5,6 +5,29 @@ from dbd_perks.offerings import SURVIVOR_OFFERING_NAMES
 from dbd_perks.survivor_perk_names import SURVIVOR_PERK_NAMES
 
 
+class UNKNOWN_ADD_ON_NAMES:
+
+    BLURRY_PHOTO = "Blurry Photo"
+    PUNCTURED_EYEBALL = "Punctured Eyeball"
+    RABBITS_FOOT = "Rabbit's Foot"
+    SKETCH_ATTEMPT = "Sketch Attempt"
+    DEVICE_OF_UNDISCLOSED_ORIGIN = "Device of Undisclosed Origin"
+    LAST_KNOWN_RECORDING = "Last Known Recording"
+    NOTEBOOK_OF_THEORIES = "Notebook of Theories"
+    SLASHED_BACKPACK = "Slashed Backpack"
+    VICTIMS_MAP = "Victim's Map"
+    B_MOVIE_POSTER = "B-Movie Poster"
+    FOOTPRINT_CAST = "Footprint Cast"
+    FRONT_PAGE_ARTICLE = "Front Page Article"
+    HYPNOTISTS_WATCH = "Hypnotist's Watch"
+    VANISHING_BOX = "Vanishing Box"
+    DISCARDED_MILK_CARTON = "Discarded Milk Carton"
+    HOMEMADE_MASK = "Homemade Mask"
+    OBSCURE_GAME_CARTRIDGE = "Obscure Game Cartridge"
+    SERUM_VIAL = "Serum Vial"
+    CAPTURED_BY_THE_DARK = "Captured by the Dark"
+    IRIDESCENT_OSS_REPORT = "Iridescent OSS Report"
+
 class UNKNOWN:
 
     NAME = "Unknown"

@@ -4,6 +4,29 @@ from dbd_perks.items import SURVIVOR_ITEM_ADD_ON_NAMES, SURVIVOR_ITEM_NAMES
 from dbd_perks.offerings import SURVIVOR_OFFERING_NAMES
 
 
+class PIG_ADD_ON_NAMES:
+
+    COMBAT_STRAPS = "Combat Straps"
+    INTERLOCKING_RAZOR = "Interlocking Razor"
+    JOHNS_MEDICAL_FILE = "John's Medical File"
+    SHATTERED_SYRINGE = "Shattered Syringe"
+    FACE_MASK = "Face Mask"
+    LAST_WILL = "Last Will"
+    RAZOR_WIRES = "Razor Wires"
+    UTILITY_BLADES = "Utility Blades"
+    WORKSHOP_GREASE = "Workshop Grease"
+    BAG_OF_GEARS = "Bag of Gears"
+    JIGSAWS_ANNOTATED_PLAN = "Jigsaw's Annotated Plan"
+    RULES_SET_NO_2 = "Rules Set No. 2"
+    RUSTY_ATTACHMENTS = "Rusty Attachments"
+    SLOW_RELEASE_TOXIN = "Slow-Release Toxin"
+    AMANDAS_SECRET = "Amanda's Secret"
+    CRATE_OF_GEARS = "Crate of Gears"
+    JIGSAWS_SKETCH = "Jigsaw's Sketch"
+    TAMPERED_TIMER = "Tampered Timer"
+    AMANDAS_LETTER = "Amanda's Letter"
+    VIDEO_TAPE = "Video Tape"
+
 class PIG:
 
     NAME = "Pig"

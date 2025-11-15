@@ -4,6 +4,29 @@ from dbd_perks.items import SURVIVOR_ITEM_ADD_ON_NAMES, SURVIVOR_ITEM_NAMES
 from dbd_perks.offerings import SURVIVOR_OFFERING_NAMES
 
 
+class LEGION_ADD_ON_NAMES:
+
+    FRIENDSHIP_BRACELET = "Friendship Bracelet"
+    MISCHIEF_LIST = "Mischief List"
+    SCRATCHED_RULER = "Scratched Ruler"
+    SMILEY_FACE_PIN = "Smiley Face Pin"
+    DEFACED_SMILEY_PIN = "Defaced Smiley Pin"
+    ETCHED_RULER = "Etched Ruler"
+    JULIES_MIX_TAPE = "Julie's Mix Tape"
+    MURAL_SKETCH = "Mural Sketch"
+    NEVER_SLEEP_PILLS = "Never-Sleep Pills"
+    JOEYS_MIX_TAPE = "Joey's Mix Tape"
+    STOLEN_SKETCH_BOOK = "Stolen Sketch Book"
+    STYLISH_SUNGLASSES = "Stylish Sunglasses"
+    SUSIES_MIX_TAPE = "Susie's Mix Tape"
+    THE_LEGION_PIN = "The Legion Pin"
+    BFFS = "BFFs"
+    FILTHY_BLADE = "Filthy Blade"
+    FRANKS_MIX_TAPE = "Frank's Mix Tape"
+    STAB_WOUNDS_STUDY = "Stab Wounds Study"
+    FUMING_MIX_TAPE = "Fuming Mix Tape"
+    IRIDESCENT_BUTTON = "Iridescent Button"
+
 class LEGION:
 
     NAME = "Legion"

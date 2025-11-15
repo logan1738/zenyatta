@@ -4,6 +4,31 @@ from dbd_perks.items import SURVIVOR_ITEM_ADD_ON_NAMES, SURVIVOR_ITEM_NAMES
 from dbd_perks.offerings import SURVIVOR_OFFERING_NAMES
 
 
+class HILLBILLY_ADD_ON_NAMES:
+
+    COUNTERWEIGHT = "Counterweight"
+    CRACKED_PRIMER_BULB = "Cracked Primer Bulb"
+    DISCARDED_AIR_FILTER = "Discarded Air Filter"
+    STEEL_TOE_BOOTS = "Steel Toe Boots"
+    CLOGGED_INTAKE = "Clogged Intake"
+    GREASED_THROTTLE = "Greased Throttle"
+    HIGH_SPEED_IDLER_SCREW = "High-Speed Idler Screw"
+    OFF_BRAND_MOTOR_OIL = "Off-Brand Motor Oil"
+    THERMAL_CASTING = "Thermal Casting"
+    BEGRIMED_CHAINS = "Begrimed Chains"
+    DADS_BOOTS = "Dad's Boots"
+    LOW_KICKBACK_CHAINS = "Low Kickback Chains"
+    RAGGED_ENGINE = "Ragged Engine"
+    THE_THOMPSONS_MIX = "The Thompsons' Mix"
+    APEX_MUFFLER = "Apex Muffler"
+    FILTHY_SLIPPERS = "Filthy Slippers"
+    LOPRO_CHAINS = "LoPro Chains"
+    SPIKED_BOOTS = "Spiked Boots"
+    IRIDESCENT_ENGRAVINGS = "Iridescent Engravings"
+    TUNED_CARBURETTOR = "Tuned Carburettor"
+
+
+
 class HILLBILLY:
 
     NAME = "Hillbilly"

@@ -5,6 +5,30 @@ from dbd_perks.offerings import SURVIVOR_OFFERING_NAMES
 from dbd_perks.survivor_perk_names import SURVIVOR_PERK_NAMES
 
 
+class ONI_ADD_ON_NAMES:
+
+    BLACKENED_TOENAIL = "Blackened Toenail"
+    CRACKED_SAKAZUKI = "Cracked Sakazuki"
+    PAPER_LANTERN = "Paper Lantern"
+    ROTTING_ROPE = "Rotting Rope"
+    BLOODY_SASH = "Bloody Sash"
+    CHILDS_WOODEN_SWORD = "Child's Wooden Sword"
+    CHIPPED_SAIHAI = "Chipped Saihai"
+    INK_LION = "Ink Lion"
+    POLISHED_MAEDATE = "Polished Meadate"
+    KANAI_ANZEN_TALISMAN = "Kanai-Anzen Talisman"
+    SCALPED_TOPKNOT = "Scalped Topknot"
+    SHATTERED_WAKIZASHI = "Shattered Wakizashi"
+    WOODEN_ONI_MASK = "Wooden Oni Mask"
+    YAMAOKA_SASHIMONO = "Yamaoka Sashimono"
+    AKITOS_CRUTCH = "Akito's Crutch"
+    LION_FANG = "Lion Fang"
+    SPLINTERED_HULL = "Splintered Hull"
+    IRIDESCENT_FAMILY_CREST = "Iridescent Family Crest"
+    RENJIROS_BLOODY_GLOVE = "Renjiro's Bloody Glove"
+
+
+
 class ONI:
 
     NAME = "Oni"

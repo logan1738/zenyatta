@@ -4,6 +4,27 @@ from dbd_perks.items import SURVIVOR_ITEM_ADD_ON_NAMES, SURVIVOR_ITEM_NAMES
 from dbd_perks.offerings import SURVIVOR_OFFERING_NAMES
 from dbd_perks.survivor_perk_names import SURVIVOR_PERK_NAMES
 
+class EXECUTIONER_ADD_ON_NAMES:
+
+    BLACK_STRAP = "Black Strap"
+    COPPER_RING = "Copper Ring"
+    DEAD_BUTTERFLY = "Dead Butterfly"
+    LEAD_RING = "Lead Ring"
+    CINDERELLA_MUSIC_BOX = "Cinderella Music Box"
+    FORGOTTEN_VIDEOTAPE = "Forgotten Videotape"
+    LEOPARD_PRINT_FABRIC = "Leopard-Print Fabric"
+    SPEARHEAD = "Spearhead"
+    WAX_DOLL = "Wax Doll"
+    BURNING_MAN_PAINTING = "Burning Man Painting"
+    MANNEQUIN_FOOT = "Mannequin Foot"
+    MISTY_DAY_REMAINS_OF_JUDGEMENT = "Misty Day, Remains of Judgment"
+    TABLET_OF_THE_OPPRESSOR = "Tablet of the Oppressor"
+    VALTIEL_SECT_PHOTOGRAPH = "Valtiel Sect Photograph"
+    CRIMSON_CEREMONY_BOOK = "Crimson Ceremony Book"
+    RUST_COLOURED_EGG = "Rust-Coloured Egg"
+    SCARLET_EGG = "Scarlet Egg"
+    IRIDESCENT_SEAL_OF_METATRON = "Iridescent Seal of Metatron"
+    OBSIDIAN_GOBLET = "Obsidian Goblet"
 
 class EXECUTIONER:
 

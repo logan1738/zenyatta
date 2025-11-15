@@ -2,6 +2,7 @@
 
 from dbd_perks.items import SURVIVOR_ITEM_NAMES, SURVIVOR_ITEM_ADD_ON_NAMES
 from dbd_perks.killer_perk_names import KILLER_PERK_NAMES
+from dbd_perks.killers.killer_utils import get_all_add_on_names
 from dbd_perks.maps import MAP_NAMES
 from dbd_perks.offerings import KILLER_OFFERING_NAMES, SURVIVOR_OFFERING_NAMES
 from dbd_perks.survivor_perk_names import SURVIVOR_PERK_NAMES
@@ -91,7 +92,7 @@ class SPIRIT:
 
     BANNED_KILLER_PERK_COMBOS = []
 
-    ALL_KILLER_ADD_ONS = []
+    ALL_KILLER_ADD_ONS = get_all_add_on_names(SPIRIT_ADD_ON_NAMES)
 
     BANNED_KILLER_ADD_ONS = [
         SPIRIT_ADD_ON_NAMES.DRIED_CHERRY_BLOSSOM,

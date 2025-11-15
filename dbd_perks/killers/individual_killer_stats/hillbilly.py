@@ -1,7 +1,8 @@
 
 
 from dbd_perks.items import SURVIVOR_ITEM_ADD_ON_NAMES, SURVIVOR_ITEM_NAMES
-from dbd_perks.offerings import SURVIVOR_OFFERING_NAMES
+from dbd_perks.killers.killer_utils import get_all_add_on_names
+from dbd_perks.offerings import KILLER_OFFERING_NAMES, SURVIVOR_OFFERING_NAMES
 
 
 class HILLBILLY_ADD_ON_NAMES:
@@ -83,8 +84,10 @@ class HILLBILLY:
 
     BANNED_KILLER_PERK_COMBOS = []
 
-    ALL_KILLER_ADD_ONS = []
+    ALL_KILLER_ADD_ONS = get_all_add_on_names(HILLBILLY_ADD_ON_NAMES)
 
-    BANNED_KILLER_ADD_ONS = []
+    BANNED_KILLER_ADD_ONS = [
+        HILLBILLY_ADD_ON_NAMES.LOPRO_CHAINS
+    ]
 
-    KILLER_OFFERINGS = []
+    KILLER_OFFERINGS = [KILLER_OFFERING_NAMES.CUT_COIN]

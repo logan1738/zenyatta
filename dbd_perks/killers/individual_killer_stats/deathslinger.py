@@ -8,7 +8,7 @@ from dbd_perks.survivor_perk_names import SURVIVOR_PERK_NAMES
 
 class DEATHSLINGER_ADD_ON_NAMES:
 
-    MODDIFIED_AMMO_BELT = "Moddified Ammo Belt"
+    MODIFIED_AMMO_BELT = "Modified Ammo Belt"
     RICKETY_CHAIN = "Rickety Chain"
     SNAKE_OIL = "Snake Oil"
     SPIT_POLISH_RAG = "Spit Polish Rag"

@@ -25,6 +25,7 @@ class ONI_ADD_ON_NAMES:
     AKITOS_CRUTCH = "Akito's Crutch"
     LION_FANG = "Lion Fang"
     SPLINTERED_HULL = "Splintered Hull"
+    TEAR_SOAKED_TENUGUI = "Tear-Soaked Tenugui"
     IRIDESCENT_FAMILY_CREST = "Iridescent Family Crest"
     RENJIROS_BLOODY_GLOVE = "Renjiro's Bloody Glove"
 

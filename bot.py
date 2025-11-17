@@ -1663,6 +1663,8 @@ async def handle_message(message, db, client):
 
         await check_auction(db, message.channel, client)
 
+        await check_v_auction(db, message.channel, client)
+
         await check_weekly(client, db, message.channel, message)
 
         await check_token_issue(db, message.channel)

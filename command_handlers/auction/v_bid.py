@@ -57,7 +57,6 @@ async def v_bid_handler(db, message, client):
 
     guild = await get_guild(client)
     auction_channel = guild.get_channel(constants.VOUCHER_AUCTION_CHANNEL)
-    bot_channel = guild.get_channel(constants.BOT_CHANNEL)
 
     previous_bid_string = ''
     if data['highest_bidder_id'] != 0:

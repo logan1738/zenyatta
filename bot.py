@@ -54,7 +54,7 @@ from admin_handlers.set_level import set_level_handler
 from admin_handlers.sub_rewards import gift_rewards_handler, sub_rewards_handler
 from admin_handlers.total_league import total_league_handler
 from admin_handlers.wipe_past_teams import wipe_past_teams
-from auction import check_auction
+from auction import check_auction, check_v_auction
 from automation.casting.swap_sides import swap_sides
 from automation.casting.update_score import add_point, remove_point
 from automation.notify_about_matches import check_notify_about_matches
@@ -1662,6 +1662,8 @@ async def handle_message(message, db, client):
         await check_payroll(db, message.channel)
 
         await check_auction(db, message.channel, client)
+
+        await check_v_auction(db, message.channel, client)
 
         await check_weekly(client, db, message.channel, message)
 

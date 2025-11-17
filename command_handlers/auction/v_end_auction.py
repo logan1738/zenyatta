@@ -2,13 +2,10 @@
 
 
 
-import asyncio
 from api import get_member
-from command_handlers.auction.start_auction import start_auction
 from discord_actions import get_guild
 
 import constants
-from rewards import change_tokens
 from safe_send import safe_send
 from user.user import get_user_vouchers, user_exists
 

@@ -554,6 +554,9 @@ async def handle_message(message, db, client):
     elif lower_message.startswith('!bid '):
         await bid_handler(db, message, client)
 
+    elif lower_message.startswith('!vbid '):
+        await v_bid_handler(db, message, client)
+
     elif lower_message.startswith('!makevote') and is_admin:
         await make_vote_handler(db, message, client)
 

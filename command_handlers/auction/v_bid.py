@@ -2,7 +2,6 @@
 
 
 from api import get_member
-from command_handlers.auction.end_auction import end_auction
 from command_handlers.auction.v_end_auction import v_end_auction
 from common_messages import invalid_number_of_params, not_registered_response
 from discord_actions import get_guild

@@ -14,6 +14,7 @@ from automation.casting.team_colors import team_colors_handler
 from casting.month_payouts import month_payouts_handler
 from coin.donate_vouchers import donate_vouchers
 from coin.redeem_trophies import redeem_trophies
+from command_handlers.auction.v_end_auction import v_end_auction_handler
 from command_handlers.auction.v_start_auction import v_start_auction_handler
 from command_handlers.league.delete_team_info import delete_team_info_handler
 from command_handlers.league.generate_team_info import generate_team_info_handler
@@ -795,6 +796,9 @@ async def handle_message(message, db, client):
 
     elif lower_message == '!endauction' and is_admin:
         await end_auction_handler(db, message, client)
+
+    elif lower_message == '!vendauction' and is_admin:
+        await v_end_auction_handler(db, message, client)
 
     elif lower_message.startswith('!fullevents') and is_admin:
         await full_events_handler(db, message)

@@ -14,6 +14,7 @@ from automation.casting.team_colors import team_colors_handler
 from casting.month_payouts import month_payouts_handler
 from coin.donate_vouchers import donate_vouchers
 from coin.redeem_trophies import redeem_trophies
+from command_handlers.auction.v_bid import v_bid_handler
 from command_handlers.auction.v_end_auction import v_end_auction_handler
 from command_handlers.auction.v_start_auction import v_start_auction_handler
 from command_handlers.league.delete_team_info import delete_team_info_handler
@@ -553,6 +554,9 @@ async def handle_message(message, db, client):
 
     elif lower_message.startswith('!bid '):
         await bid_handler(db, message, client)
+
+    elif lower_message.startswith('!vbid '):
+        await v_bid_handler(db, message, client)
 
     elif lower_message.startswith('!makevote') and is_admin:
         await make_vote_handler(db, message, client)

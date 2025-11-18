@@ -15,6 +15,7 @@ async def start_swf(client, db, swf_data):
     await swf_message.add_reaction("✅")
 
     swf_data['active'] = True
+    swf_data['picked'] = False
     swf_data['sign_up_msg_id'] = swf_message.id
     
     set_constant_value(db, 'swf', swf_data)

@@ -38,7 +38,8 @@ async def swf_pick_handler(client, db, message):
     signed_up_users = [user async for user in sign_up_reaction.users()]
 
     if len(signed_up_users) < NUM_SWF_PARTICIPANTS + 1:  # +1 to account for the bot itself
-        await safe_send(message.channel, 'Not enough users have signed up for SWF to pick participants.')
+        num_signed_up = len(signed_up_users) - 1
+        await safe_send(message.channel, f'Not enough users have signed up for SWF to pick participants. Only {num_signed_up} user(s) have signed up.')
         return
     
     await safe_send(message.channel, 'Picking SWF participants...')

@@ -57,6 +57,7 @@ async def swf_pick_handler(client, db, message):
     if len(valid_users) < NUM_SWF_PARTICIPANTS:
         num_valid = len(valid_users)
         await safe_send(message.channel, f'There were not enough users in the database that signed up. Only {num_valid} database user(s) have signed up.')
+        await safe_send(message.channel, valid_users[0]['discord_id'])
         return
     
     dbd_users = []

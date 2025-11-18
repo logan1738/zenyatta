@@ -1699,7 +1699,7 @@ async def handle_message(message, db, client):
         await route_rivals_message(client, db, message, lower_message)
 
     elif context == 'DB':
-        await route_dbd_message(client, db, message, lower_message)
+        await route_dbd_message(client, db, message, lower_message, is_admin)
 
     else:
         await safe_send(message.channel, 'Invalid command. Please see **!help** for a list of commands.')

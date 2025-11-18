@@ -2,7 +2,7 @@
 
 from common_messages import invalid_number_of_params
 from dbd.swf.admin.swf_pick import output_users_picked
-from helpers import can_be_int, get_constant_value, valid_number_of_params
+from helpers import can_be_int, get_constant_value, set_constant_value, valid_number_of_params
 from safe_send import safe_send
 import random
 
@@ -44,5 +44,7 @@ async def swf_replace_handler(client, db, message):
 
     swf_data['picked_participants'] = picked_participants
     swf_data['valid_sign_up_ids'] = new_valid_sign_ups
+
+    set_constant_value(db, 'swf', swf_data)
 
     await output_users_picked(db, client, picked_participants, True)

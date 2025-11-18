@@ -11,8 +11,8 @@ async def start_swf(client, db, swf_data):
 
     swf_channel = client.get_channel(constants.SWF_CHANNEL)
 
-    await swf_channel.send('Next SWF event is ready for sign ups! Click the reaction below for a chance to be selected!')
-
+    swf_message = await swf_channel.send('Next SWF event is ready for sign ups! Click the reaction below for a chance to be selected!')
+    await swf_message.add_reaction("✅")
 
     swf_data['active'] = True
     set_constant_value(db, 'swf', swf_data)

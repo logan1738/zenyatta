@@ -52,9 +52,20 @@ def pick_player_and_remove_from_array(swf_array):
 
     return random_user_id, swf_array
 
-    
 
-async def swf_pick_players(db, dbd_users, swf_data):
+async def ping_users_picked(client, picked_participants):
+
+    swf_channel = client.get_channel(constants.SWF_CHANNEL)
+
+    output_message = 'The 3 participants for the next SWF are:'
+
+    for user_id in picked_participants:
+        output_message += f'\n<@{user_id}>'
+
+    await safe_send(swf_channel, output_message)
+
+
+async def swf_pick_players(client, db, dbd_users, swf_data):
 
     swf_data['picked'] = True
     swf_data['valid_sign_up_ids'] = [user['discord_id'] for user in dbd_users]
@@ -76,6 +87,8 @@ async def swf_pick_players(db, dbd_users, swf_data):
     swf_data['valid_sign_up_ids'] = new_valid_sign_ups
 
     set_constant_value(db, 'swf', swf_data)
+
+    await ping_users_picked(client, picked_participants)
 
 
 async def swf_pick_handler(client, db, message):
@@ -140,7 +153,7 @@ async def swf_pick_handler(client, db, message):
         await safe_send(message.channel, f'There were not enough users with DBD usernames in the database that signed up. Only {num_dbd} user(s) with DBD usernames have signed up.')
         return
     
-    await swf_pick_players(db, dbd_users, swf_data)
+    await swf_pick_players(client, db, dbd_users, swf_data)
 
     await safe_send(message.channel, 'SWF participants have been picked successfully.')
 

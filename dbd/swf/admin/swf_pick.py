@@ -9,9 +9,29 @@ from user.user import user_exists
 
 NUM_SWF_PARTICIPANTS = 3
 
-async def swf_pick_players():
+
+
+def select_a_swf_player():
 
     pass
+
+
+
+
+def build_swf_player_array(dbd_users):
+
+    pass
+
+
+
+
+async def swf_pick_players(dbd_users, swf_data):
+
+    swf_data['picked'] = True
+    swf_data['valid_sign_up_ids'] = [user['discord_id'] for user in dbd_users]
+
+    swf_array = build_swf_player_array(dbd_users)
+
 
 
 
@@ -77,7 +97,7 @@ async def swf_pick_handler(client, db, message):
         await safe_send(message.channel, f'There were not enough users with DBD usernames in the database that signed up. Only {num_dbd} user(s) with DBD usernames have signed up.')
         return
     
-    await safe_send(message.channel, 'Picking SWF participants...')
+    await swf_pick_players(dbd_users, swf_data)
 
 
     

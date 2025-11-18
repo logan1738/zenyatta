@@ -1,6 +1,7 @@
 
 
 from dbd.base_commands.username import dbd_username_handler
+from dbd.swf.admin.swf_pick import swf_pick_handler
 from dbd.swf.admin.swf_start import swf_start_handler
 from safe_send import safe_send
 
@@ -12,6 +13,8 @@ async def route_dbd_message(client, db, message, lower_message, is_admin):
     elif lower_message == '!swfstart' and is_admin:
         await swf_start_handler(client, db, message)
     
+    elif lower_message == '!swfpick' and is_admin:
+        await swf_pick_handler(client, db, message)
 
     else:
         await safe_send(message.channel, 'Invalid command. Please see **!help** for a list of commands.')

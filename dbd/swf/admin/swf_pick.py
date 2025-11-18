@@ -2,37 +2,73 @@
 
 import constants
 from discord_actions import get_message_by_channel_and_id
-from helpers import get_constant_value
+from helpers import get_constant_value, set_constant_value
 from safe_send import safe_send
 from user.user import user_exists
-
+import random
 
 NUM_SWF_PARTICIPANTS = 3
-
-
-
-def select_a_swf_player():
-
-    pass
 
 
 
 
 def build_swf_player_array(dbd_users):
 
-    pass
+    users_with_probabilities = []
+
+    for user in dbd_users:
+
+        number_rejections = user.get('swf_rejections', 0)
+        is_sub = user.get('twitch_subscriber', False)
+
+        base_probability = 1
+        probability_with_rejections = base_probability + number_rejections
+        if is_sub:
+            probability_with_rejections *= 2
+
+        entry = {
+            'user': user,
+            'selection_probability': probability_with_rejections
+        }
+
+        users_with_probabilities.append(entry)
 
 
+    probability_array = []
+
+    for entry in users_with_probabilities:
+        user_id = entry['user']['discord_id']
+        for _ in range(entry['selection_probability']):
+            probability_array.append(user_id)
 
 
-async def swf_pick_players(dbd_users, swf_data):
+    return probability_array
+
+
+def pick_player_and_remove_from_array(swf_array):
+
+    random_user_id = random.choice(swf_array)
+    swf_array = [user_id for user_id in swf_array if user_id != random_user_id]
+
+    return random_user_id, swf_array
+
+    
+
+async def swf_pick_players(db, dbd_users, swf_data):
 
     swf_data['picked'] = True
     swf_data['valid_sign_up_ids'] = [user['discord_id'] for user in dbd_users]
 
     swf_array = build_swf_player_array(dbd_users)
 
+    picked_participants = []
+    for _ in range(NUM_SWF_PARTICIPANTS):
+        picked_user_id, swf_array = pick_player_and_remove_from_array(swf_array)
+        picked_participants.append(picked_user_id)
 
+    swf_data['picked_participants'] = picked_participants
+
+    await set_constant_value(db, 'swf', swf_data)
 
 
 async def swf_pick_handler(client, db, message):
@@ -97,8 +133,9 @@ async def swf_pick_handler(client, db, message):
         await safe_send(message.channel, f'There were not enough users with DBD usernames in the database that signed up. Only {num_dbd} user(s) with DBD usernames have signed up.')
         return
     
-    await swf_pick_players(dbd_users, swf_data)
+    await swf_pick_players(db, dbd_users, swf_data)
 
+    await safe_send(message.channel, 'SWF participants have been picked successfully.')
 
     
 

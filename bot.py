@@ -11,6 +11,7 @@ from admin_handlers.take_vouchers import take_vouchers
 from automation.casting.ban_hero import ban_hero_handler
 from automation.casting.first_pick import first_pick_handler
 from automation.casting.team_colors import team_colors_handler
+from automation.verify_twich_subs import verify_twitch_subs
 from casting.month_payouts import month_payouts_handler
 from coin.donate_vouchers import donate_vouchers
 from coin.redeem_trophies import redeem_trophies
@@ -1694,6 +1695,8 @@ async def handle_message(message, db, client):
         await update_bets(db, message.channel, client)
 
         await update_dbd_data(db, message.channel)
+
+        await verify_twitch_subs(db, message.channel, client)
 
     elif context == 'MR':
         await route_rivals_message(client, db, message, lower_message)

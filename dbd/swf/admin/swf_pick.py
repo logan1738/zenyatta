@@ -53,7 +53,7 @@ def pick_player_and_remove_from_array(swf_array):
     return random_user_id, swf_array
 
 
-async def output_users_picked(db, client, picked_participants):
+async def output_users_picked(db, client, picked_participants, was_replacement=False):
 
     swf_channel = client.get_channel(constants.SWF_CHANNEL)
     dbd_admin_channel = client.get_channel(constants.DBD_ADMIN_COMMAND_CHANNEL)
@@ -69,6 +69,9 @@ async def output_users_picked(db, client, picked_participants):
             user_dbd_name = user['dbd_username']
 
         output_message += f'\n<@{user_id}> - {user_dbd_name}'
+
+    if was_replacement:
+        await safe_send(swf_channel, 'Replacing a participant...')
 
     await safe_send(swf_channel, output_message)
     await safe_send(dbd_admin_channel, output_message)

@@ -1,9 +1,10 @@
 
 
 from common_messages import invalid_number_of_params
+from dbd.swf.admin.swf_pick import output_users_picked
 from helpers import can_be_int, get_constant_value, valid_number_of_params
 from safe_send import safe_send
-
+import random
 
 async def swf_replace_handler(client, db, message):
 
@@ -30,4 +31,18 @@ async def swf_replace_handler(client, db, message):
         await safe_send(message.channel, 'There are no valid sign ups remaining to replace the participant with. This round must be cancelled.')
         return
     
-    await safe_send(message.channel, f'Replacing participant #{replace_index + 1}...')
+    # Just pick a complete random user when replacing for simplicity
+    new_participant_id = random.choice(valid_sign_up_ids)
+
+    picked_participants = swf_data['picked_participants']
+    picked_participants[replace_index] = new_participant_id
+
+    new_valid_sign_ups = []
+    for user_id in valid_sign_up_ids:
+        if user_id != new_participant_id:
+            new_valid_sign_ups.append(user_id)
+
+    swf_data['picked_participants'] = picked_participants
+    swf_data['valid_sign_up_ids'] = new_valid_sign_ups
+
+    await output_users_picked(db, client, picked_participants, True)

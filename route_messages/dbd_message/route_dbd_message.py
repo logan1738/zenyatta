@@ -10,7 +10,7 @@ async def route_dbd_message(client, db, message, lower_message, is_admin):
         await dbd_username_handler(db, message, client)
 
     elif lower_message == '!swfstart' and is_admin:
-        await swf_start_handler(db, message)
+        await swf_start_handler(client, db, message)
     
 
     else:

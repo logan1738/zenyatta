@@ -68,6 +68,13 @@ async def swf_pick_players(db, dbd_users, swf_data):
 
     swf_data['picked_participants'] = picked_participants
 
+    new_valid_sign_ups = []
+    for user in dbd_users:
+        if user['discord_id'] not in picked_participants:
+            new_valid_sign_ups.append(user['discord_id'])
+
+    swf_data['valid_sign_up_ids'] = new_valid_sign_ups
+
     set_constant_value(db, 'swf', swf_data)
 
 

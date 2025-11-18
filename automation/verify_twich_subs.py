@@ -24,9 +24,9 @@ async def verify_twitch_subs(db, channel, client):
     users = db['users']
     all_subscribed_users = list(users.find({'twitch_subscriber': True}))
     for subscribed_user in all_subscribed_users:
-        user_id = subscribed_user['user_id']
+        user_id = subscribed_user['discord_id']
         if user_id not in twitch_sub_id_array:
-            users.update_one({'user_id': user_id}, {'$set': {'twitch_subscriber': False}})
+            users.update_one({'discord_id': user_id}, {'$set': {'twitch_subscriber': False}})
             removed_subs += 1
 
     # Add any subs that are newly subscribed
@@ -34,7 +34,7 @@ async def verify_twitch_subs(db, channel, client):
         user_document = user_exists(db, twitch_sub_id)
         if user_document:
             if not user_document.get('twitch_subscriber', False):
-                users.update_one({'user_id': twitch_sub_id}, {'$set': {'twitch_subscriber': True}})
+                users.update_one({'discord_id': twitch_sub_id}, {'$set': {'twitch_subscriber': True}})
                 added_subs += 1
 
     await safe_send(channel, f'Verification complete! Added {added_subs} new Twitch Subs, removed {removed_subs} old Twitch Subs.')

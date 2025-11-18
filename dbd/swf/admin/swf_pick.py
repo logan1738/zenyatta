@@ -61,16 +61,16 @@ async def swf_pick_handler(client, db, message):
         await safe_send(message.channel, str(valid_users[0]['discord_id']))
         return
     
-    # ADD EXTRA USERS RIGHT NOW FOR TESTING, REMOVE LATER
     dbd_users = []
     for user in valid_users:
         if 'dbd_username' in user and user['dbd_username']:
             dbd_users.append(user)
 
-    # extra_user_1 = user_exists(db, 592828437131952130) # Jacob
-    # extra_user_2 = user_exists(db, 706266168872140847) # Smelly Snail
-    # dbd_users.append(extra_user_1)
-    # dbd_users.append(extra_user_2)
+    # ADD EXTRA USERS RIGHT NOW FOR TESTING, REMOVE LATER
+    extra_user_1 = user_exists(db, 592828437131952130) # Jacob
+    extra_user_2 = user_exists(db, 706266168872140847) # Smelly Snail
+    dbd_users.append(extra_user_1)
+    dbd_users.append(extra_user_2)
 
     if len(dbd_users) < NUM_SWF_PARTICIPANTS:
         num_dbd = len(dbd_users)

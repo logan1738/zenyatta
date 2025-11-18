@@ -9,7 +9,7 @@ from safe_send import safe_send
 async def start_swf(client, db, swf_data):
 
 
-    swf_channel = client.get_channel(constants.FEATURE_CHANNEL)
+    swf_channel = client.get_channel(constants.SWF_CHANNEL)
 
     await swf_channel.send('Next SWF event is ready for sign ups! Click the reaction below for a chance to be selected!')
 

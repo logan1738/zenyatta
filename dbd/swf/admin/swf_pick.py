@@ -68,7 +68,7 @@ async def swf_pick_players(db, dbd_users, swf_data):
 
     swf_data['picked_participants'] = picked_participants
 
-    await set_constant_value(db, 'swf', swf_data)
+    set_constant_value(db, 'swf', swf_data)
 
 
 async def swf_pick_handler(client, db, message):

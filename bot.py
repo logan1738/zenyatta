@@ -1729,7 +1729,7 @@ def run_discord_bot(db, is_smoke_test=False):
 
         if channel_id == constants.XP_BATTLE_CHANNEL:
 
-            if member.id == constants.ZEN_ID:
+            if member.id == constants.BOT_ID:
                 return
             
             constants_db = db['constants']
@@ -1742,7 +1742,7 @@ def run_discord_bot(db, is_smoke_test=False):
             
             return
 
-        if channel_id == constants.CHAT_CHANNEL and member.id != constants.ZEN_ID:
+        if channel_id == constants.CHAT_CHANNEL and member.id != constants.BOT_ID:
             emoji = payload.emoji
             if str(emoji) == '❗':
                 await react_to_event(db, client, message_id, member)
@@ -1809,7 +1809,7 @@ def run_discord_bot(db, is_smoke_test=False):
 
         if channel_id == constants.XP_BATTLE_CHANNEL:
 
-            if user_id == constants.ZEN_ID:
+            if user_id == constants.BOT_ID:
                 return
             
             member = get_member(guild, user_id, 'Raw Reaction Remove')

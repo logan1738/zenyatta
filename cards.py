@@ -630,7 +630,7 @@ async def give_card_handler(db, message):
         await safe_send(message.channel, 'That user is not registered.')
         return
     
-    if give_mention.id == constants.ZEN_ID:
+    if give_mention.id == constants.BOT_ID:
         await safe_send(message.channel, 'You cannot give cards to me, sorry!')
         return
 

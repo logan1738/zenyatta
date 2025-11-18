@@ -44,7 +44,7 @@ async def swf_pick_handler(client, db, message):
         num_signed_up = len(signed_up_users) - 1
         await safe_send(message.channel, f'Not enough users have signed up for SWF to pick participants. Only {num_signed_up} user(s) have signed up.')
         return
-    
+
     valid_users = []
     for user in signed_up_users:
         if user.id == constants.BOT_ID:
@@ -54,16 +54,23 @@ async def swf_pick_handler(client, db, message):
         if db_user:
             valid_users.append(db_user)
 
-    if len(valid_users) < NUM_SWF_PARTICIPANTS:
+    # BYPASS THIS FOR NOW, MAKE SURE TO RE-ENABLE LATER
+    if len(valid_users) < NUM_SWF_PARTICIPANTS and False:
         num_valid = len(valid_users)
         await safe_send(message.channel, f'There were not enough users in the database that signed up. Only {num_valid} database user(s) have signed up.')
         await safe_send(message.channel, str(valid_users[0]['discord_id']))
         return
     
+    # ADD EXTRA USERS RIGHT NOW FOR TESTING, REMOVE LATER
     dbd_users = []
     for user in valid_users:
         if 'dbd_username' in user and user['dbd_username']:
             dbd_users.append(user)
+
+    # extra_user_1 = user_exists(db, 592828437131952130) # Jacob
+    # extra_user_2 = user_exists(db, 706266168872140847) # Smelly Snail
+    # dbd_users.append(extra_user_1)
+    # dbd_users.append(extra_user_2)
 
     if len(dbd_users) < NUM_SWF_PARTICIPANTS:
         num_dbd = len(dbd_users)

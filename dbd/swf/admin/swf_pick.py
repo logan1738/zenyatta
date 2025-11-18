@@ -53,16 +53,25 @@ def pick_player_and_remove_from_array(swf_array):
     return random_user_id, swf_array
 
 
-async def ping_users_picked(client, picked_participants):
+async def output_users_picked(db, client, picked_participants):
 
     swf_channel = client.get_channel(constants.SWF_CHANNEL)
+    dbd_admin_channel = client.get_channel(constants.DBD_ADMIN_COMMAND_CHANNEL)
 
     output_message = 'The 3 participants for the next SWF are:'
 
+    users = db['users']
     for user_id in picked_participants:
-        output_message += f'\n<@{user_id}>'
+
+        user_dbd_name = '[Unknown DBD Username]'
+        user = user_exists(db, user_id)
+        if user and 'dbd_username' in user:
+            user_dbd_name = user['dbd_username']
+
+        output_message += f'\n<@{user_id}> - {user_dbd_name}'
 
     await safe_send(swf_channel, output_message)
+    await safe_send(dbd_admin_channel, output_message)
 
 
 async def swf_pick_players(client, db, dbd_users, swf_data):
@@ -88,7 +97,7 @@ async def swf_pick_players(client, db, dbd_users, swf_data):
 
     set_constant_value(db, 'swf', swf_data)
 
-    await ping_users_picked(client, picked_participants)
+    await output_users_picked(client, picked_participants)
 
 
 async def swf_pick_handler(client, db, message):

@@ -32,6 +32,9 @@ async def swf_result_handler(client, db, message, is_win):
     tokens_to_award_each_user = 500 if is_win else 100
     swf_result_message = SWF_WIN_MESSAGE if is_win else SWF_LOSS_MESSAGE
 
+    # Add host to list of participants
+    picked_participants.append(constants.SPICY_RAGU_ID)
+
     users = db['users']
     for user_id in picked_participants:
         db_user = user_exists(db, user_id)

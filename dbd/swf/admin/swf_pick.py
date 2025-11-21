@@ -1,7 +1,7 @@
 
 
 import constants
-from discord_actions import get_message_by_channel_and_id
+from discord_actions import get_guild, get_member_by_id, get_message_by_channel_and_id
 from helpers import get_constant_value, set_constant_value
 from safe_send import safe_send
 from user.user import user_exists
@@ -83,10 +83,16 @@ async def swf_pick_players(client, db, dbd_users, swf_data):
 
     swf_array = build_swf_player_array(dbd_users)
 
+    guild = await get_guild(client)
+    swf_vc_access_role = guild.get_role(constants.SWF_VC_ACCESS_ROLE)
+
     picked_participants = []
     for _ in range(NUM_SWF_PARTICIPANTS):
         picked_user_id, swf_array = pick_player_and_remove_from_array(swf_array)
         picked_participants.append(picked_user_id)
+        guild_member = await get_member_by_id(guild, picked_user_id)
+        if guild_member:
+            await guild_member.add_roles(swf_vc_access_role)
 
     swf_data['picked_participants'] = picked_participants
 

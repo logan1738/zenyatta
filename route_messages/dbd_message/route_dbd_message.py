@@ -6,12 +6,16 @@ from dbd.swf.admin.swf_pick import swf_pick_handler
 from dbd.swf.admin.swf_replace import swf_replace_handler
 from dbd.swf.admin.swf_result import swf_result_handler
 from dbd.swf.admin.swf_start import swf_start_handler
+from dbd.swf.user.swf_stats import swf_stats_handler
 from safe_send import safe_send
 
 async def route_dbd_message(client, db, message, lower_message, is_admin):
 
     if lower_message.startswith('!username'):
         await dbd_username_handler(db, message, client)
+
+    elif lower_message == '!swfstats':
+        await swf_stats_handler(db, message)
 
     elif lower_message == '!swfstart' and is_admin:
         await swf_start_handler(client, db, message)

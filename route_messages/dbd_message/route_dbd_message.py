@@ -28,5 +28,8 @@ async def route_dbd_message(client, db, message, lower_message, is_admin):
     elif lower_message == '!swfwin' and is_admin:
         await swf_result_handler(client, db, message, True)
 
+    elif lower_message == '!swfloss' and is_admin:
+        await swf_result_handler(client, db, message, False)
+
     else:
         await safe_send(message.channel, 'Invalid command. Please see **!help** for a list of commands.')

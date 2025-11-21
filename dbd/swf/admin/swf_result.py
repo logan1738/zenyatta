@@ -1,7 +1,7 @@
 
 
 
-from helpers import get_constant_value
+from helpers import get_constant_value, set_constant_value
 from safe_send import safe_send
 from user.user import get_user_tokens, user_exists
 import constants
@@ -50,6 +50,8 @@ async def swf_result_handler(client, db, message, is_win):
     swf_data['picked'] = False
     swf_data['picked_participants'] = []
     swf_data['valid_sign_up_ids'] = []
+
+    set_constant_value(db, 'swf', swf_data)
 
     swf_channel = client.get_channel(constants.SWF_CHANNEL)
     await safe_send(swf_channel, swf_result_message)

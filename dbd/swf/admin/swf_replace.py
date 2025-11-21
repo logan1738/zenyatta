@@ -1,7 +1,9 @@
 
 
 from common_messages import invalid_number_of_params
+import constants
 from dbd.swf.admin.swf_pick import output_users_picked
+from discord_actions import get_guild, get_member_by_id
 from helpers import can_be_int, get_constant_value, set_constant_value, valid_number_of_params
 from safe_send import safe_send
 import random
@@ -34,6 +36,7 @@ async def swf_replace_handler(client, db, message):
     # Just pick a completely random user when replacing for simplicity
     new_participant_id = random.choice(valid_sign_up_ids)
 
+    old_participant_id = swf_data['picked_participants'][replace_index]
     picked_participants = swf_data['picked_participants']
     picked_participants[replace_index] = new_participant_id
 
@@ -44,6 +47,19 @@ async def swf_replace_handler(client, db, message):
 
     swf_data['picked_participants'] = picked_participants
     swf_data['valid_sign_up_ids'] = new_valid_sign_ups
+
+    guild = await get_guild(client)
+    swf_vc_access_role = guild.get_role(constants.SWF_VC_ACCESS_ROLE)
+
+    # take role from old participant
+    old_guild_member = await get_member_by_id(guild, old_participant_id)
+    if old_guild_member:
+        await old_guild_member.remove_roles(swf_vc_access_role)
+
+    # give role to new participant
+    new_guild_member = await get_member_by_id(guild, new_participant_id)
+    if new_guild_member:
+        await new_guild_member.add_roles(swf_vc_access_role)
 
     set_constant_value(db, 'swf', swf_data)
 

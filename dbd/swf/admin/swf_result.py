@@ -49,6 +49,16 @@ async def swf_result_handler(client, db, message, is_win):
 
             users.update_one( {'discord_id': user_id}, { '$set': {'tokens': new_tokens,'swf_stats': swf_stats} } )
 
+
+    not_picked_users = swf_data['valid_sign_up_ids']
+    for user_id in not_picked_users:
+        db_user = user_exists(db, user_id)
+        if db_user:
+            user_rejections = db_user.get('swf_rejections', 0)
+            new_rejections = user_rejections + 1
+            users.update_one( {'discord_id': user_id}, { '$set': {'swf_rejections': new_rejections} } )
+
+
     swf_data['active'] = False
     swf_data['picked'] = False
     swf_data['picked_participants'] = []

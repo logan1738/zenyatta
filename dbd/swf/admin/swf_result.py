@@ -44,7 +44,7 @@ async def swf_result_handler(client, db, message, is_win):
             else:
                 swf_stats['losses'] += 1
 
-            users.update_one( {'user_id': user_id}, { '$set': {'tokens': new_tokens,'swf_stats': swf_stats} } )
+            users.update_one( {'discord_id': user_id}, { '$set': {'tokens': new_tokens,'swf_stats': swf_stats} } )
 
     swf_channel = client.get_channel(constants.SWF_CHANNEL)
     await safe_send(swf_channel, swf_result_message)

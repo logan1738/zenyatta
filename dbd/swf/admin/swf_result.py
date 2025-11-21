@@ -46,6 +46,11 @@ async def swf_result_handler(client, db, message, is_win):
 
             users.update_one( {'discord_id': user_id}, { '$set': {'tokens': new_tokens,'swf_stats': swf_stats} } )
 
+    swf_data['active'] = False
+    swf_data['picked'] = False
+    swf_data['picked_participants'] = []
+    swf_data['valid_sign_up_ids'] = []
+
     swf_channel = client.get_channel(constants.SWF_CHANNEL)
     await safe_send(swf_channel, swf_result_message)
 

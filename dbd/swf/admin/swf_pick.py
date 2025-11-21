@@ -58,9 +58,8 @@ async def output_users_picked(db, client, picked_participants, was_replacement=F
     swf_channel = client.get_channel(constants.SWF_CHANNEL)
     dbd_admin_channel = client.get_channel(constants.DBD_ADMIN_COMMAND_CHANNEL)
 
-    output_message = 'The 3 participants for the next SWF are:'
+    output_message = 'The 3 participants for the next SWF are:\n'
 
-    users = db['users']
     for user_id in picked_participants:
 
         user_dbd_name = '[Unknown DBD Username]'

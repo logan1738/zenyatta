@@ -31,7 +31,7 @@ async def swf_replace_handler(client, db, message):
         await safe_send(message.channel, 'There are no valid sign ups remaining to replace the participant with. This round must be cancelled.')
         return
     
-    # Just pick a complete random user when replacing for simplicity
+    # Just pick a completely random user when replacing for simplicity
     new_participant_id = random.choice(valid_sign_up_ids)
 
     picked_participants = swf_data['picked_participants']

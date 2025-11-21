@@ -17,12 +17,20 @@ SWF_LOSS_MESSAGE = 'The SWF team lost. Each participant has been awarded 100 tok
 
 async def swf_result_handler(client, db, message, is_win):
 
-    tokens_to_award_each_user = 500 if is_win else 100
-    swf_result_message = SWF_WIN_MESSAGE if is_win else SWF_LOSS_MESSAGE
-
     swf_data = get_constant_value(db, 'swf')
 
+    if not swf_data['active']:
+        await safe_send(message.channel, 'SWF is not currently active.')
+        return
+    
+    if not swf_data['picked']:
+        await safe_send(message.channel, 'SWF participants have not been picked yet.')
+        return
+
     picked_participants = swf_data['picked_participants']
+
+    tokens_to_award_each_user = 500 if is_win else 100
+    swf_result_message = SWF_WIN_MESSAGE if is_win else SWF_LOSS_MESSAGE
 
     users = db['users']
     for user_id in picked_participants:

@@ -1,6 +1,7 @@
 
 
 
+from discord_actions import get_guild
 from helpers import get_constant_value, set_constant_value
 from safe_send import safe_send
 from user.user import get_user_tokens, user_exists
@@ -58,13 +59,18 @@ async def swf_result_handler(client, db, message, is_win):
             new_rejections = user_rejections + 1
             users.update_one( {'discord_id': user_id}, { '$set': {'swf_rejections': new_rejections} } )
 
-
     swf_data['active'] = False
     swf_data['picked'] = False
     swf_data['picked_participants'] = []
     swf_data['valid_sign_up_ids'] = []
 
     set_constant_value(db, 'swf', swf_data)
+
+    guild = await get_guild(client)
+    swf_vc_access_role = guild.get_role(constants.SWF_VC_ACCESS_ROLE)
+
+    for member in swf_vc_access_role.members:
+        await member.remove_roles(swf_vc_access_role)
 
     swf_channel = client.get_channel(constants.SWF_CHANNEL)
     await safe_send(swf_channel, swf_result_message)

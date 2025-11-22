@@ -1,5 +1,6 @@
 
 
+import constants
 from safe_send import safe_send
 
 
@@ -9,6 +10,9 @@ async def swf_leaderboard_handler(db, message):
 
     # find all users with swf_stats
     all_users = users.find({'swf_stats': {'$exists': True}})
+
+    # remove host user
+    all_users = [user for user in all_users if not user['discord_id'] == constants.SPICY_RAGU_ID]
 
     # rank users by most wins
     leaderboard = sorted(all_users, key=lambda u: u['swf_stats'].get('wins', 0), reverse=True)

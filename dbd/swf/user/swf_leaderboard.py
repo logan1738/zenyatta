@@ -18,6 +18,6 @@ async def swf_leaderboard_handler(db, message):
 
     for rank, user in enumerate(leaderboard[:10], start=1):
         wins = user['swf_stats'].get('wins', 0)
-        output_message += f"\n{rank}. {user['dbd_username']} - Wins: {wins}"
+        output_message += f"\n{rank}. **{user['dbd_username']}** - Wins: {wins}"
 
     await safe_send(message.channel, output_message)

@@ -1,6 +1,6 @@
 
 
-from command_handlers.league.update_team import update_team
+from command_handlers.league.utils.add_team_to_update_queue import add_team_to_update_queue
 from constants import ALL_LEAGUE_CONTEXTS
 from context.context_helpers import get_league_team_field_from_context
 from user.user import user_exists
@@ -23,5 +23,5 @@ async def member_left(payload, db, client):
                 users = db['users']
                 users.update_one({'discord_id': user_id}, {'$set': {league_team_constant: 'None'}})
 
-                await update_team(db, user_team, client, context)
+                add_team_to_update_queue(db, context, user_team)
                 

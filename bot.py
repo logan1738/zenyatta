@@ -1670,8 +1670,6 @@ async def handle_message(message, db, client):
 
         await check_token_issue(db, message.channel)
 
-        await check_streamlabs_raffles(db, message.channel)
-
         await check_lineup_tokens(db, message)
 
         await check_open_bets(db, message)

@@ -13,7 +13,7 @@ async def update_team_info_messages(client, db, message, context):
     team_info_document = get_constant_value(db, 'team_info')
 
     if context not in teams_to_update_document:
-        await safe_send(message.channel, 'No teams to found for context: ' + context)
+        await safe_send(message.channel, 'No teams found for context: ' + context)
         return
     
     teams_to_update = teams_to_update_document[context]

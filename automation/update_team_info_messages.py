@@ -47,6 +47,8 @@ async def update_team_info_messages(client, db, message, context):
 
         await existing_message.edit(embed=new_content)
 
+        teams_updated += 1
+
     teams_to_update_document[context] = []
     set_constant_value(db, 'teams_to_update', teams_to_update_document)
 

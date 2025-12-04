@@ -1,5 +1,6 @@
 
 from api import remove_role
+from command_handlers.league.utils.add_team_to_update_queue import add_team_to_update_queue
 from common_messages import invalid_number_of_params
 from context.context_helpers import get_league_notifs_channel_from_context, get_league_team_field_from_context, get_league_teams_collection_from_context
 from discord_actions import get_role_by_id
@@ -82,5 +83,7 @@ async def league_kick_handler(db, message, client, context):
     await safe_send(league_notifs_channel, team_emoji_string+' Team Update for '+team_name+": "+member_to_find.mention+" was kicked by "+message.author.mention)
 
     my_team['members'] = final_members
+
+    add_team_to_update_queue(db, context, team_name)
     
     await safe_send(message.channel, "User was kicked from the league team.")

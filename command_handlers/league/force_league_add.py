@@ -1,5 +1,6 @@
 
 from api import give_role
+from command_handlers.league.utils.add_team_to_update_queue import add_team_to_update_queue
 from context.context_helpers import get_league_notifs_channel_from_context, get_league_teams_collection_from_context
 from discord_actions import get_role_by_id
 from helpers import get_league_emoji_from_team_name
@@ -58,6 +59,8 @@ async def force_league_add_handler(db, message, client, context):
     league_notifs_channel = get_league_notifs_channel_from_context(client, context)
 
     team_emoji_string = get_league_emoji_from_team_name(real_team_name)
+
+    add_team_to_update_queue(db, context, real_team_name)
 
     await safe_send(league_notifs_channel, team_emoji_string+' User '+mentioned_user.mention+' has joined the team "'+team_name_to_join+'".')
     await safe_send(message.channel, 'Added user to league team.')

@@ -1,4 +1,5 @@
 
+from command_handlers.league.utils.add_team_to_update_queue import add_team_to_update_queue
 from context.context_helpers import get_league_notifs_channel_from_context, get_league_teams_collection_from_context
 from helpers import get_league_emoji_from_team_name
 from league import user_admin_on_team, validate_admin
@@ -55,5 +56,7 @@ async def remove_team_admin_handler(db, message, client, context):
     await safe_send(league_notifs_channel, team_emoji_string+' Team Update for '+team_name+": "+mentioned_member.mention+" is no longer a team admin.")
 
     team_object['members'] = new_members
+
+    add_team_to_update_queue(db, context, team_name)
 
     await safe_send(message.channel, 'User is no longer an admin of your league team')

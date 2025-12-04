@@ -1,4 +1,5 @@
 
+from command_handlers.league.utils.add_team_to_update_queue import add_team_to_update_queue
 from common_messages import invalid_number_of_params
 from context.context_helpers import get_league_teams_collection_from_context
 from discord_actions import get_guild, get_member_by_id
@@ -57,6 +58,8 @@ async def change_team_owner_handler(client, db, message, context):
         await remove_member_admin_role(old_owner_member, context, client)
 
     league_teams.update_one({'team_name': team_name}, {"$set": {"members": team_obj['members'], 'owner_id': mention_member.id}})
+
+    add_team_to_update_queue(db, context, team_name)
 
     await safe_send(message.channel, 'League Team owner changed')
 

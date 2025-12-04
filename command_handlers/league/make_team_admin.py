@@ -1,4 +1,5 @@
 
+from command_handlers.league.utils.add_team_to_update_queue import add_team_to_update_queue
 from context.context_helpers import get_league_notifs_channel_from_context, get_league_teams_collection_from_context
 from discord_actions import get_guild
 from helpers import get_league_emoji_from_team_name
@@ -54,6 +55,8 @@ async def make_team_admin_handler(db, message, client, context):
 
     league_notifs_channel = get_league_notifs_channel_from_context(client, context)
     team_emoji_string = get_league_emoji_from_team_name(team_name)
+
+    add_team_to_update_queue(db, context, team_name)
     
     await safe_send(league_notifs_channel, team_emoji_string+' Team Update for '+team_name+": "+mentioned_member.mention+" is now a team admin.")
     await safe_send(message.channel, 'User was made an admin of your league team')

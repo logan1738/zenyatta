@@ -11,6 +11,7 @@ from admin_handlers.take_vouchers import take_vouchers
 from automation.casting.ban_hero import ban_hero_handler
 from automation.casting.first_pick import first_pick_handler
 from automation.casting.team_colors import team_colors_handler
+from automation.update_team_info_messages import update_team_info_messages
 from automation.verify_twich_subs import verify_twitch_subs
 from casting.month_payouts import month_payouts_handler
 from coin.donate_vouchers import donate_vouchers
@@ -1675,6 +1676,10 @@ async def handle_message(message, db, client):
         await check_open_bets(db, message)
 
         # await check_notify_about_matches(client, db, message)
+
+        await update_team_info_messages(client, db, message, 'OW')
+        await update_team_info_messages(client, db, message, 'MR')
+        await update_team_info_messages(client, db, message, 'DB')
 
         await update_top_subs_avatars(guild, db, message)
 

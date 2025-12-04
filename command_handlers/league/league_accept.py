@@ -1,6 +1,7 @@
 
 
 from api import give_role
+from command_handlers.league.utils.add_team_to_update_queue import add_team_to_update_queue
 from common_messages import invalid_number_of_params, not_registered_response
 from context.context_helpers import get_league_notifs_channel_from_context, get_league_team_field_from_context, get_league_teams_collection_from_context, get_teams_joined_this_season_constant
 from discord_actions import get_role_by_id
@@ -132,6 +133,8 @@ async def league_accept_handler(db, message, client, context):
     league_notifs_channel = get_league_notifs_channel_from_context(client, context)
 
     team_emoji_string = get_league_emoji_from_team_name(real_team_name)
+
+    add_team_to_update_queue(db, context, real_team_name)
 
     await safe_send(league_notifs_channel, team_emoji_string+' User '+message.author.mention+' has joined the team "'+real_team_name+'".')
     

@@ -31,6 +31,10 @@ async def update_team_info_messages(client, db, message, context):
     teams_to_update_count = len(teams_to_update)
     teams_updated = 0
     for team_name in teams_to_update:
+
+        if team_name not in team_info_context:
+            continue
+
         team_info_message_id = team_info_context[team_name]['message_id']
 
         league_teams_collection = get_league_teams_collection_from_context(db, context)

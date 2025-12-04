@@ -1,6 +1,7 @@
 
 
 from command_handlers.league.update_team import update_team
+from command_handlers.league.utils.add_team_to_update_queue import add_team_to_update_queue
 from common_messages import invalid_number_of_params
 from context.context_helpers import get_league_teams_collection_from_context
 from helpers import can_be_int, valid_number_of_params
@@ -8,7 +9,7 @@ from league import validate_admin
 from safe_send import safe_send
 
 
-async def league_order_handler(db, message, client, context):
+async def league_order_handler(db, message, context):
 
     valid_params, params = valid_number_of_params(message, 3)
     if not valid_params:
@@ -62,8 +63,6 @@ async def league_order_handler(db, message, client, context):
     teams_db = get_league_teams_collection_from_context(db, context)
     teams_db.update_one({"team_name": team_name}, {"$set": {"members": team_members}})
 
-    await safe_send(message.channel, 'Please wait... This may take a while...')
-
-    await update_team(db, team_name, client, context)
+    add_team_to_update_queue(db, context, team_name)
 
     await safe_send(message.channel, team_name+' was updated.')

@@ -655,8 +655,8 @@ async def handle_message(message, db, client):
     elif lower_message == '!pruneteam':
         await prune_team_handler(db, message, client, context)
 
-    elif lower_message.startswith('!order '):
-        await league_order_handler(db, message, client, context)
+    elif lower_message.startswith('!order ') or lower_message.startswith('!leagueorder '):
+        await league_order_handler(db, message, context)
 
     elif lower_message.startswith('!allyrequest '):
         await ally_request_handler(db, message, context)

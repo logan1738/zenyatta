@@ -8,7 +8,7 @@ async def help_handler(message):
     safe_add_field(help_embed, '!battle BattleTagHere#1234', 'Register your battle tag with the Spicy Esports server', False)
     safe_add_field(help_embed, '!twitch TwitchUsernameHere', 'Add your twitch username to the server so you can be given rewards you earn on stream!', False)
     safe_add_field(help_embed, '!profile', 'Shows your profile for this Discord Server.', False)
-    safe_add_field(help_embed, '!website', "Get a link to our community's official website.'", False)
+    safe_add_field(help_embed, '!website', "Get a link to our community's official website.", False)
     safe_add_field(help_embed, '!helpcasino', 'Show a list of commands related to the casino channels.', False)
     safe_add_field(help_embed, '!helpleague', 'Show a list of commands related to the Spicy Overwatch League.', False)
     safe_add_field(help_embed, '!helpgems', 'Show a list of commands related to gems.', False)

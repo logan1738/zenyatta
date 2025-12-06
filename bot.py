@@ -283,7 +283,6 @@ from route_messages.dm_messages.route_dm_message import route_dm_message
 from route_messages.rivals_message.route_rivals_message import route_rivals_message
 from route_messages.utils.get_context import get_context
 from safe_send import safe_reply, safe_send, safe_send_test
-from savage_scovi import savage_scovi
 from server_level import sub_points_handler
 from streamlabs import check_streamlabs_raffles
 from supporters.role_commands.role_color import role_color
@@ -366,11 +365,6 @@ async def handle_message(message, db, client):
             mods_channel = guild.get_channel(constants.MODS_CHANNEL)
             await safe_send(mods_channel, 'WARN REPORT: User "'+message.author.name+'" was *warned* for sending a link without Image Permission. Please review the logs and check if what they sent was allowed. If it was allowed, please give them image perms immediately to prevent them from being accidentally banned. Message: '+message.content)
             return
-
-    mentioned_bot = message.mentions and message.mentions[0].id == constants.BOT_ID
-    if mentioned_bot:
-        await savage_scovi(message)
-        return
 
     is_command = len(user_message) > 0 and (user_message[0] == '!')
     if (not is_command) and (not is_push_bot):

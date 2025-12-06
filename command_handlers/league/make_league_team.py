@@ -125,7 +125,6 @@ async def make_league_team_handler(db, message, client, context):
                 'is_owner': True,
                 'is_admin': True,
                 'role': 'Team Owner',
-                'TPP': 10,
             }
         ],
         'team_role_id': team_role,

@@ -19,39 +19,14 @@ async def give_team_tokens(message, db, team_name, tokens_to_give):
         await safe_send(message.channel, 'Did not find team')
         return
 
-    total_team_tpp = 0
-    tpp_table = []
-    for member in team_obj['members']:
-        if member['TPP'] > 0:
-            tpp_table.append({
-                'discord_id': member['discord_id'],
-                'TPP': member['TPP']
-            })
-            total_team_tpp += member['TPP']
-
-    if total_team_tpp == 0:
-
-        team_owner_id = team_obj['owner_id']
-        owner_user = user_exists(db, team_owner_id)
-        if not owner_user:
-            await safe_send(message.channel, 'Critical error. No TPP set and team owner not found. No tokens sent.')
-            return
-        
-        await change_tokens(db, owner_user, tokens_to_give, 'sol-match-tokens')
-        await safe_send(message.channel, 'Tokens sent to the team owner.')
-
-    else:
+    team_owner_id = team_obj['owner_id']
+    owner_user = user_exists(db, team_owner_id)
+    if not owner_user:
+        await safe_send(message.channel, 'Critical error. Team owner not found. No tokens sent.')
+        return
     
-        for member in tpp_table:
-            member_tpp_percent = float(member['TPP']) / float(total_team_tpp)
-            tokens_to_get_raw = float(tokens_to_give) * member_tpp_percent
-            final_tokens = math.floor(tokens_to_get_raw)
-            user = user_exists(db, member['discord_id'])
-            await change_tokens(db, user, final_tokens, 'sol-match-tokens') 
-
-
-        await safe_send(message.channel, 'Done')
-
+    await change_tokens(db, owner_user, tokens_to_give, 'sol-match-tokens')
+    await safe_send(message.channel, 'Tokens sent to the team owner.')
 
 
 async def give_team_tokens_handler(db, message):

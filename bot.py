@@ -159,7 +159,6 @@ from command_handlers.league.ally.rival_request import rival_request_handler
 from command_handlers.league.ally.rival_requests import rival_requests_handler
 from command_handlers.league.change_role import change_role_handler
 from command_handlers.league.change_team_owner import change_team_owner_handler
-from command_handlers.league.change_tpp import change_tpp_handler
 from command_handlers.league.e_sub import e_sub_handler
 from command_handlers.league.fan_of import fan_of_handler
 from command_handlers.league.force_delete_league_team import force_delete_league_team_handler
@@ -582,14 +581,9 @@ async def handle_message(message, db, client):
     elif lower_message == '!fixmrlineups' and is_admin:
         await fix_mr_lineup_handler(db, message)
         
-
     elif lower_message.startswith('!changeteamowner') and is_tier_3_mod:
         # !changeteamowner @player team name
         await change_team_owner_handler(client, db, message, context)
-
-    elif lower_message.startswith('!changetpp'):
-        # !changetpp @Player [new tpp]
-        await change_tpp_handler(db, message, client, context)
 
     elif lower_message.startswith('!changerole'):
         # !changerole @Player [new role]

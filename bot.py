@@ -159,7 +159,6 @@ from command_handlers.league.ally.rival_request import rival_request_handler
 from command_handlers.league.ally.rival_requests import rival_requests_handler
 from command_handlers.league.change_role import change_role_handler
 from command_handlers.league.change_team_owner import change_team_owner_handler
-from command_handlers.league.e_sub import e_sub_handler
 from command_handlers.league.fan_of import fan_of_handler
 from command_handlers.league.force_delete_league_team import force_delete_league_team_handler
 from command_handlers.league.force_league_add import force_league_add_handler

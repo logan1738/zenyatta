@@ -64,7 +64,8 @@ TEAM_NAME_TO_TEAM_COLOR = {
     'Mantas': discord.Colour(0x00476a),
     'Penguins': discord.Colour(0xf7961d),
     'Tsunami': discord.Colour(0x1b6fa2),
-    'Frogs': discord.Colour(0x15e012)
+    'Frogs': discord.Colour(0x15e012),
+    'Cottontails': discord.Colour(0xe1affa)
 }
 
 def get_team_color_by_name(team_name):
@@ -104,7 +105,8 @@ TEAM_NAME_TO_TEAM_LOGO_URL = {
     'Mantas': 'https://spicyesports.com/static/media/Mantas.b4acf814b2c4ed6f7a54.png',
     'Penguins': 'https://spicyesports.com/static/media/Penguins.d63ee6c8b4325a935814.png',
     'Tsunami': 'https://spicyesports.com/static/media/Tsunami.9a5f28db18adb2394e04.png',
-    'Frogs': ''
+    'Frogs': '',
+    'Cottontails': ''
 }
 
 

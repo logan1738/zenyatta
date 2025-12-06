@@ -184,6 +184,11 @@ TEAM_DEFAULT_COLORS = {
     'Frogs': {
         'primary': LIME_GREEN,
         'secondary': GREEN
+    },
+
+    'Cottontails': {
+        'primary': PINK,
+        'secondary': PURPLE
     }
 }
 

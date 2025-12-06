@@ -220,7 +220,8 @@ TEAM_NAME_TO_EMOJI_EMBED_STRING = {
     'Mantas': '<:mantas:1348446040927371304>',
     'Penguins': '<:penguins:1408887466575925421>',
     'Tsunami': '<:tsunami:1408887492123561994>',
-    'Frogs': '<:spicyesports:1344813172342788177>'
+    'Frogs': '<:spicyesports:1344813172342788177>',
+    'Cottontails': '<:spicyesports:1344813172342788177>'
 }
 
 DEFAULT_TEAM_EMOJI = '<:spicyesports:1344813172342788177>'
@@ -324,7 +325,7 @@ NO_MAP_NAME = 'https://i.postimg.cc/hPNGk6G1/No-Map.png'
 
 TEAM_LIST = ['Olympians', 'Polar', 'Eclipse', 'Saviors', 'Ragu', 'Instigators', 'Guardians',  'Fresas', 'Outliers', 'Phoenix', 
              'Celestials', 'Saturn', 'Evergreen', 'Misfits', 'Hunters', 'Legion', 'Diamonds', 'Angels', 'Phantoms', 'Sentinels',
-             'Lotus', 'Deadlock', 'Horizon', 'Monarchs', 'Aces', 'Mantas', 'Penguins', 'Tsunami', 'Frogs']
+             'Lotus', 'Deadlock', 'Horizon', 'Monarchs', 'Aces', 'Mantas', 'Penguins', 'Tsunami', 'Frogs', 'Cottontails']
 
 RIVALS_TEAM_LIST = ['Angels', 'Celestials', 'Deadlock', 'Eclipse', 'Evergreen', 'Fresas', 'Hunters', 'Legion', 'Lotus', 'Misfits']
 

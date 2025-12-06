@@ -245,6 +245,16 @@ COLOR_OVERRIDES = {
         'Polar': NEON_BLUE
     },
 
+    'Cottontails-Guardians': {
+        'Cottontails': PURPLE,
+        'Guardians': MAGENTA
+    },
+
+    'Cottontails-Lotus': {
+        'Cottontails': PURPLE,
+        'Lotus': PINK
+    },
+
     'Deadlock-Fresas': {
         'Deadlock': RED,
         'Fresas': LIME_GREEN

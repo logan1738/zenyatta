@@ -120,7 +120,6 @@ async def league_accept_handler(db, message, client, context):
             'is_owner': False,
             'is_admin': False,
             'role': '[No Role Yet]',
-            'TPP': 0,
         }
     )
 

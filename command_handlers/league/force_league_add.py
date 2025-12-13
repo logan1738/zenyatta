@@ -1,7 +1,7 @@
 
 from api import give_role
 from command_handlers.league.utils.add_team_to_update_queue import add_team_to_update_queue
-from context.context_helpers import get_league_notifs_channel_from_context, get_league_teams_collection_from_context
+from context.context_helpers import get_league_notifs_channel_from_context, get_league_team_field_from_context, get_league_teams_collection_from_context
 from discord_actions import get_role_by_id
 from helpers import get_league_emoji_from_team_name
 from safe_send import safe_send
@@ -37,7 +37,8 @@ async def force_league_add_handler(db, message, client, context):
     real_team_name = league_team['team_name']
 
     users = db['users']
-    update_obj = {"league_team": real_team_name} if context == 'OW' else {'rivals_league_team': real_team_name}
+    league_team_field = get_league_team_field_from_context(context)
+    update_obj = {league_team_field: real_team_name}
     users.update_one({"discord_id": user['discord_id']}, {"$set": update_obj})
 
     league_team['members'].append(

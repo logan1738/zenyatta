@@ -1,6 +1,6 @@
 
 from common_messages import invalid_number_of_params
-from context.context_helpers import get_league_team_field_from_context, get_league_teams_collection_from_context
+from context.context_helpers import get_league_team_field_from_context, get_league_teams_collection_from_context, get_team_admin_role_id_from_context
 from discord_actions import get_role_by_id
 from helpers import valid_number_of_params
 from safe_send import safe_send
@@ -12,15 +12,21 @@ TAKEOVER_USERS = [
 ]
 
 
-async def remove_team_role_from_all_members(message, team, client):
+async def remove_team_role_from_all_members(context, message, team, client):
 
     team_role_id = team['team_role_id']
     team_role = await get_role_by_id(client, team_role_id)
+
+    admin_role_id = get_team_admin_role_id_from_context(context)
+    admin_role = await get_role_by_id(client, admin_role_id)
+
     for member in team_role.members:
 
         if not (member.id in TAKEOVER_USERS):
             await member.remove_roles(team_role)
-
+            if admin_role in member.roles:
+                await member.remove_roles(admin_role)
+            
     await safe_send(message.channel, 'Team role removed from all users.')
 
 
@@ -68,6 +74,6 @@ async def wipe_team(db, message, client, context):
         await safe_send(message.channel, 'There is no team with the name: '+team_name)
         return
     
-    await remove_team_role_from_all_members(message, team, client)
+    await remove_team_role_from_all_members(context, message, team, client)
     await clear_members_from_league_team(message, league_teams_collection, team)
     await remove_league_team_from_all_users(message, db, team, context)
